@@ -1,4 +1,4 @@
-# Ecuaciones Diferenciales I
+# Análisis Numérico
 
 
 ## Información del académico
@@ -11,27 +11,31 @@
 
 ## Prerequisitos
 <ol>
- <li> Cálculo Diferencial e Integral, Cálculo Vectorial </li>
+ <li> Ecuaciones Diferenciales Ordinarias, Programación </li>
 </ol>
 
 ## Software requerido y herramientas
 <ol>
- <li> Wolfram Mathematica & Mathematica Notebook. </li>
+ <li> Python y Jupyter Notebook. </li>
  <li> Sistema operativo: Windows 10, Linux, o macOS. </li>
  <li> Navegador: Google Chrome, Opera o Firefox. </li>
  <li> Markdown para escribir documentación. </li>
  <li> Sistema de control de versiones. </li>
 </ol>
 
-## Temario (adecuación)
+## Temario
 
 | **Unidad** | **Tema** | **Contenido** |
 |:---:|:---:|:---|
-| I | Introducción y ecuaciones diferenciales de primer orden | <ul> <li> Definición de ecuación diferencial <ul> <li> Clasificación por tipo. </li> <li> Clasificación por orden. </li> <li> Clasificación por linealidad. </li> <li> Soluciones. </li> </ul> </li> <li> Problemas con valor inicial <ul> <li> Problemas con valor inicial. </li> <li> Existencia y unicidad. </li> </ul> </li> <li> Curvas solución <ul> <li> ED de primer orden autónomas. </li> <li> Puntos críticos. </li> <li> Curvas solución. </li> <li> Atractores y repulsores. </li> </ul> </li> <li> Solución de ecuaciones diferenciales de primer orden <ul> <li> Variables separables. </li> <li> Ecuaciones lineales. </li> <li> Ecuaciones exactas. </li> <li> Soluciones por sustitución. </li> <li> Ecuaciones homogéneas. </li> <li> Ecuación de Bernoulli. </li> <li> Métodos numéricos. </li> </ul> </li> |
-| II | Ecuaciones diferenciales lineales | <ul> <li> Problemas de valor inicial y valor de frontera </li> <li> Ecuaciones homogéneas y no homogéneas <ul> <li> Ecuaciones homogéneas y no homogéneas. </li> <li> Operadores diferenciales. </li> <li> Ecuaciones diferenciales. </li> <li> Principio de superposición. </li> <li> Dependencia e idependencia lineal. </li> <li> Función complementaria. </li> </ul> </li> <li> Ecuaciones lineales homogéneas con coeficientes constantes <ul> <li> Caso I. Raíces reales y distintas. </li> <li> Caso II. Raíces reales repetidas. </li> <li> Caso III. Raíces complejas conjugadas. </li> <li> Ecuaciones de orden superior. </li> </ul> </li> <li> Variación de parámetros </li> <li> Ecuación de Cauchy-Euler <ul> <li> Caso I. Raíces reales y distintas. </li> <li> Caso II. Raíces reales repetidas. </li> <li> Caso III. Raíces complejas conjugadas. </li> </ul> </li> </ul> |
-| III | Sistemas de ecuaciones diferenciales lineales | <ul> <li> Sistemas de ED lineales de primer orden <ul> <li> Diagramas de fase. </li> </ul> </li> <li> Matriz exponencial <ul> <li> Sistemas no homogéneos. </li> </ul> </li> <li> Modelado con ecuaciones diferenciales de primer orden <ul> <li> Crecimiento y decaimiento. </li> <li> Ley de Newton de enfriamiento o calentamiento. </li> <li> Circuitos en serie. </li> </ul> </li> </ul> |
-| IV | Transformada de Laplace | <ul> <li> Definición de la transformada de Laplace <ul> <li> Propiedades de la transformada de Laplace. </li> <li> Convolución. </li> <li> Transformada de una integral. </li> <li> Ecuación integral de Volterra. </li> </ul> </li> <li> Sistemas de ecuaciones diferenciales lineales <ul> <li> Resortes acoplados. </li> <li> Red eléctrica. </li> <li> Péndulo simple. </li> </ul> </li> </ul> |
-| V | Introducción a las ecuaciones diferenciales en derivadas parciales | <li> Definición de ecuaciones en derivadas parciales. Definición de orden de una ecuación en derivadas parciales. Ecuación en derivadas parciales lineal y no lineal. Solución de la ecuación en derivadas parciales: completa, general y particular. </li> <li> El método de separación de variables. </li> <li> Serie trigonométrica de Fourier. Serie seno de Fourier. Serie coseno de Fourier. Cálculo de los coeficientes de la serie trigonométrica de Fourier. </li> <li> Resolución de problemas de condiciones iniciales y de frontera: ecuaciones de onda, de calor y de Laplace con dos variables independientes. </li> |
+| I | Análisis de error | <ul> <li> Representación de números. </li> <li> Errores de redondeo y aritmética de punto flotante. </li> <li> Propagación del error. </li> <li> Ejemplos. </li> <li> Estimación estadística de errores de redondeo. </li> </ul> |
+| II | Interpolación y aproximación | <ul> <li> Interpolación de una función. </li> <li> Interpolación polinomial de Lagrange. </li> <li> Interpolación de Tchebychev. </li> <li> Interpolación trigonométrica. </li> <li> Mejor aproximación. </li> <li> Comparación entre interpolación y mejor aproximación. </li> </ul> |
+| III | Integración numérica | <ul> <li> Funciones definidas experimentalmente o numéricamente. </li> <li> Funciones regulares definidas matemáticamente. </li> <li> Integrales singulares. </li> <li> Polinomios ortogonales. </li> </ul> |
+| IV | Sistemas de ecuaciones lineales | <ul> <li> Algoritmos de resolución directa. </li> <li> Métodos de factorización. </li> <li> Estimación del error. </li> <li> Algoritmos de resolución indirecta. </li> <li> Métodos de relajación. </li> <li> Métodos iterativos. </li> <li> Almacenamiento de grandes sistemas lineales en computadora. </li> </ul> |
+| V | Sistemas de ecuaciones no lineales | <ul> <li> Resolución de una ecuación cualquiera. </li> <li> Resolución de una ecuación entera. </li> <li> Resolución de sistemas no lineales. </li> <li> Algoritmos de aceleración de la convergencia. </li> <li> Procedimiento de extrapolación de Richardson. </li> </ul> |
+| VI | Optimización de funciones | <ul> <li> El método de Levenberg-Marquardt. </li> <li> El método de Gradiente Conjugado. </li> </ul> |
+| VII | Cálculo de valores propios de una matriz | <ul> <li> Métodos globales matrices generales. </li> <li> Métodos iterativos. </li> </ul> |
+| VIII | Ecuaciones y sistemas diferenciales con valores iniciales | <ul> <li> Ecuación diferencial de primer orden. </li> <li> Métodos de pasos ligados. </li> <li> Sistema diferencial de primer orden. </li> </ul> |
+| IX | Ecuaciones Diferenciales Parciales (EDP) | <ul> <li> Ecuación diferencial general de segundo orden. </li> <li> Introducción a los métodos de diferencias finitas para solución de EDP. </li> <li> Elementos finitos. </li> <li> Introducción a los métodos de elementos finitos para solución de EDP. </li> </ul> |
 
 ## Exámenes ordinarios
 Tendrán derecho a presentarlos aquellas personas que hayan obtenido una calificación no aprobatoria mayor o igual a 55.
@@ -42,20 +46,18 @@ La conducta del profesorado y alumnado del curso será acorde con los principios
 
 ## Bibliografía básica
 <ol>
- <li> Nagle, R. K., Saff, E. B., & Snider, A. D. (2000). Ecuaciones diferenciales y problemas con valores en la frontera. Pearson Educación. </li>
- <li> Rainville, E. D. (1969). Ecuaciones diferenciales elementales. </li>
- <li> Simmons, G. F., & Krantz, S. G. (2007). Ecuaciones diferenciales: Teorı́a, técnica y práctica. </li>
- <li> Zill, D. G. (2002). Ecuaciones diferenciales: con aplicaciones de modelado. </li>
- <li> Zill, D. G., Cullen, M. R., Hernández, A. E. G., & López, E. F. (2002). Ecuaciones diferenciales con problemas de valores en la frontera (Vol. 1). Thomson. </li>
+ <li> Bulirsch, R., Stoer, J., & Stoer, J. (2002). Introduction to numerical analysis (Vol. 3). Heidelberg: Springer. </li>
+ <li> Ascher, U. M., & Greif, C. (Eds.). (2011). A first course on numerical methods. Society for Industrial and Applied Mathematics. </li>
+ <li> Golub, G. H., & Van Loan, C. F. (2013). Matrix computations. JHU press. </li>
+ <li> Quarteroni, A., Sacco, R., & Saleri, F. (2006). Numerical mathematics (Vol. 37). Springer Science & Business Media. </li>
 </ol>
 
 ## Bibliografía complementaria
 <ol>
- <li> Boyce, W. E. (1998). Ecuaciones diferenciales y problemas con valores en la frontera. </li>
- <li> Haberman, R. (1998). Campbell, S; Ecuaciones Diferenciales con problemas de valor de frontera. </li>
- <li> Edwards, C. H., & Penney, D. E. (2009). Ecuaciones diferenciales y problemas con valores de la frontera. Pearson Educación. </li>
- <li> Nagle, R. K., Saff, E. B., & Snider, A. D. (2017). Fundamentals of differential equations and boundary value problems. Pearson. </li>
- <li> Arenas, S., & Ramırez, M. (2010). Cuaderno de Ejercicios de Ecuaciones Diferenciales. Facultad de Ingenierıa, UNAM. </li>
+ <li> Datta, B. N. (2010). Numerical linear algebra and applications. Society for Industrial and Applied Mathematics. </li>
+ <li> Ipsen, I. C. (2009). Numerical matrix analysis: Linear systems and least squares. Society for Industrial and Applied Mathematics. </li>
+ <li> Shonkwiler, R. W., & Mendivil, F. (2009). Explorations in monte carlo methods (pp. 147-158). New York: Springer. </li>
+ <li> Collins, R. E. (1968). Mathematical methods for physicists and engineers. Courier Corporation. </li>
 </ol>
 
-(Última modificación: 01 de enero de 2025)
+(Última modificación: 17 de junio de 2026)
