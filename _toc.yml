@@ -1,0 +1,70 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: docs/home
+parts:
+
+- caption: I. Análisis de error
+  chapters:
+    - file: docs/representacion_numeros
+    - file: docs/errores_redondeo
+    - file: docs/propagacion_error
+    - file: docs/ejemplos
+    - file: docs/estimacion_estadistica
+- caption: II. Interpolación y aproximación
+  chapters:
+    - file: docs/interpolacion_funcion
+    - file: docs/interpolacion_polinomial
+    - file: docs/interpolacion_tchebychev
+    - file: docs/interpolacion_trigonometrica
+    - file: docs/mejor_aproximacion
+    - file: docs/comparacion_interpolacion
+- caption: III. Integración numérica
+  chapters:
+    - file: docs/funciones_definidas
+    - file: docs/funciones_regulares
+    - file: docs/integrales_singulares
+    - file: docs/polinomios_ortogonales
+- caption: IV. Sistemas de ecuaciones lineales
+  chapters:
+    - file: docs/algoritmo_res_directa
+    - file: docs/metodos_factorizacion
+    - file: docs/estimacion_error
+    - file: docs/algoritmo_res_indirecta
+    - file: docs/metodos_relajacion
+    - file: docs/metodos_iterativos
+    - file: docs/almacenamiento_grandes_sistemas
+- caption: V. Sistemas de ecuaciones no lineales
+  chapters:
+    - file: docs/resolucion_ecuacion_cualquiera
+    - file: docs/resolucion_ecuacion_entera
+    - file: docs/resolucion_sistemas_no_lineales
+    - file: docs/algoritmos_aceleracion_convergencia
+    - file: docs/extrapolacion_richardson
+- caption: VI. Optimización de funciones
+  chapters:
+    - file: docs/leventberg_marquardt
+    - file: docs/gradiente_conjugado
+- caption: VII. Cálculo de valores propios de una matriz
+  chapters:
+    - file: docs/metodos_globales
+    - file: docs/metodos_iterativos_mat
+- caption: VIII. Ecuaciones y sistemas diferenciales con valores iniciales
+  chapters:
+    - file: docs/ed_primer_orden
+    - file: docs/metodos_pasos
+    - file: docs/sistema_ed_primer_orden
+- caption: IX. Ecuaciones Diferenciales Parciales (EDP)
+  chapters:
+    - file: docs/ed_segundo_orden
+    - file: docs/introduccion_metodos_diferencias_finitas
+    - file: docs/elementos_finitos
+    - file: docs/introduccion_metodos_elementos_finitos
+- caption: Referencias
+  chapters:
+    - file: docs/references
+# - caption: Apéndices
+#   chapters:
+#     - file: docs/metodo_poshenloh
+#     - file: docs/metodo_ruffini
