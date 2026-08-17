@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Análisis Numérico</title>
+    <title>Funciones regulares definidas matemáticamente &#8212; Análisis Numérico</title>
   
   
   
@@ -30,11 +30,11 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -49,10 +49,10 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/funciones_regulares';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/funciones_regulares.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="integrales_singulares.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="funciones_definidas.html" />
+    <link rel="next" title="Integrales singulares" href="integrales_singulares.html" />
+    <link rel="prev" title="Funciones definidas experimentalmente o numéricamente" href="funciones_definidas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -176,7 +178,35 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Análisis de error</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preliminares_matematicos.html">Preliminares matemáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="representacion_numeros.html">Representación de números</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errores_redondeo.html">Errores de redondeo y aritmética de punto flotante</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Interpolación y aproximación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_funcion.html">Interpolación de una función</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Funciones regulares definidas matemáticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="references.html">Bibliografía</a></li>
 </ul>
@@ -430,7 +460,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Funciones regulares definidas matemáticamente</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -439,9 +469,12 @@ document.write(`
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-del-trapecio">Regla del trapecio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-simpson">Regla de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-romberg">Integración de Romberg</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-cuadratura-adaptativa">Métodos de cuadratura adaptativa</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -452,7 +485,102 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="funciones-regulares-definidas-matematicamente">
+<h1>Funciones regulares definidas matemáticamente<a class="headerlink" href="#funciones-regulares-definidas-matematicamente" title="Link to this heading">#</a></h1>
+<section id="regla-del-trapecio">
+<h2>Regla del trapecio<a class="headerlink" href="#regla-del-trapecio" title="Link to this heading">#</a></h2>
+<p>Para obtener la regla trapezoidal para aproximar <span class="math notranslate nohighlight">\(\int_{a}^{b}f(x)~\mathrm{d}x\)</span>, sea <span class="math notranslate nohighlight">\(x_{0} = a\)</span>, <span class="math notranslate nohighlight">\(x_{1} = b\)</span>, <span class="math notranslate nohighlight">\(h = b − a\)</span> se utiliza el polinomio de Lagrange</p>
+<div class="math notranslate nohighlight">
+\[
+ P_{1} = \frac{(x-x_{1})}{(x_{0}-x_{1})}~f(x_{0}) + \frac{(x-x_{0})}{(x_{1}-x_{0})}~f(x_{1}).
+\]</div>
+<p>Entonces</p>
+<div class="math notranslate nohighlight">
+\[
+ \int_{a}^{b}f(x)~\mathrm{d}x = \int_{x_{0}}^{x_{1}}\left[ \frac{(x-x_{1})}{(x_{0}-x_{1})}~f(x_{0}) + \frac{(x-x_{0})}{(x_{1}-x_{0})}~f(x_{1}) \right]~\mathrm{d}x + \frac{1}{2}\int_{x_{0}}^{x_{1}} f''(\xi(x))(x-x_{0})(x-x_{1})~\mathrm{d}x.
+\]</div>
+<p>Aplicando el teorema del valor medio ponderado para integrales al término del error para algún <span class="math notranslate nohighlight">\(\xi \in (x_{0} , x_{1} )\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{aligned}
+  \int_{x_{0}}^{x_{1}} f''(\xi(x))(x-x_{0})(x-x_{1})~\mathrm{d}x &amp;= f''(\xi) \int_{x_{0}}^{x_{1}}(x-x_{0})(x-x_{1})~\mathrm{d}x, \\
+  &amp;= f''(\xi) \left[ \frac{x^{3}}{3} - \frac{(x_{1} + x_{0})}{2}x^{2} + x_{0}x_{1}x \right]_{x_{0}}^{x_{1}}, \\
+  &amp;= - \frac{h^{3}}{6}f''(\xi).
+ \end{aligned}
+\end{split}\]</div>
+<p>Esto implica que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{aligned}
+  \int_{a}^{b}f(x)~\mathrm{d}x &amp;= \left[ \frac{(x-x_{1})^{2}}{2(x_{0}-x_{1})}~f(x_{0}) + \frac{(x-x_{0})^{2}}{2(x_{1}-x_{0})}~f(x_{1}) \right]_{x_{0}}^{x_{1}} - \frac{h^{3}}{12}f''(\xi), \\
+  &amp;= \frac{(x_{1}-x_{0})}{2}\left[f(x_{0}) + f(x_{1}) \right] - \frac{h^{3}}{12}f''(\xi).
+ \end{aligned}
+\end{split}\]</div>
+<p>Definiendo la variable <span class="math notranslate nohighlight">\(h:=x_{1}-x_{0}\)</span> obtenemos la siguiente regla</p>
+<div class="math notranslate nohighlight">
+\[
+ \int_{a}^{b}f(x)~\mathrm{d}x = \frac{h}{2}\left[f(x_{0}) + f(x_{1}) \right] - \frac{h^{3}}{12}f''(\xi).
+\]</div>
+</section>
+<section id="regla-de-simpson">
+<h2>Regla de Simpson<a class="headerlink" href="#regla-de-simpson" title="Link to this heading">#</a></h2>
+<p>La regla de Simpson resulta de integrar en el intervalo <span class="math notranslate nohighlight">\([a, b]\)</span> el segundo polinomio de Lagrange con nodos equiespaciados <span class="math notranslate nohighlight">\(x_{0} = a\)</span>, <span class="math notranslate nohighlight">\(x_{2} = b\)</span> y <span class="math notranslate nohighlight">\(x_{1} = a + h\)</span>, donde <span class="math notranslate nohighlight">\(h:= (b − a)/2\)</span>. Por lo tanto</p>
+<div class="math notranslate nohighlight">
+\[
+ \int_{a}^{b}f(x)~\mathrm{d}x = \int_{x_{0}}^{x_{2}} \left[ \frac{(x-x_{1})(x-x_{2})}{(x_{0}-x_{1})(x_{0}-x_{2})}~f(x_{0}) + \frac{(x-x_{0})(x-x_{2})}{(x_{1}-x_{0})(x_{1}-x_{2})}~f(x_{1}) + \frac{(x-x_{0})(x-x_{1})}{(x_{2}-x_{0})(x_{2}-x_{1})}~f(x_{2}) \right]~\mathrm{d}x + \int_{x_{0}}^{x_{2}} \frac{(x-x_{0})(x-x_{1})(x-x_{2})}{6}~f^{(3)}(\xi(x))~\mathrm{d}x.
+\]</div>
+<p>Esta ecuación permite obtener un término de error de orden <span class="math notranslate nohighlight">\(O(h^{4})\)</span> que involucra a <span class="math notranslate nohighlight">\(f^{(3)}\)</span>. No obstante, es posible deducir un término de orden superior que involucra a <span class="math notranslate nohighlight">\(f^{(4)}\)</span>. Para ello suponga que <span class="math notranslate nohighlight">\(f\)</span> se expande en el tercer polinomio de Taylor alrededor de <span class="math notranslate nohighlight">\(x_{1}\)</span>. Entonces, para cada <span class="math notranslate nohighlight">\(x\)</span> en <span class="math notranslate nohighlight">\([x_{0}, x_{2}]\)</span>, existe un número <span class="math notranslate nohighlight">\(\xi(x)\)</span> en <span class="math notranslate nohighlight">\((x_{0}, x_{2})\)</span> con</p>
+<div class="math notranslate nohighlight">
+\[
+ f(x) = f(x_{1}) + f'(x_{1})(x-x_{1}) + \frac{f''(x_{1})}{2}(x-x_{1})^{2} + \frac{f'''(x_{1})}{6}(x-x_{1})^{3} + \frac{f^{(4)}(\xi(x))}{24}(x-x_{1})^{4},
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+ \int_{x_{0}}^{x_{2}}f(x)~\mathrm{d}x = \left[f(x_{1})(x-x_{1}) + \frac{f'(x_{1})}{2}(x-x_{1})^{2} + \frac{f''(x_{1})}{6}(x-x_{1})^{3} + \frac{f'''(x_{1})}{24}(x-x_{1})^{4} \right]_{x_{0}}^{x_{2}} + \frac{1}{24} \int_{x_{0}}^{x_{2}} f^{(4)}(\xi(x))(x-x_{1})^{4}~\mathrm{d}x.
+\]</div>
+<p>Para algún número <span class="math notranslate nohighlight">\(x_{1} \in (x_{0},x_{2})\)</span>, el teorema de valor medio ponderado para integrales implica que</p>
+<div class="math notranslate nohighlight">
+\[
+ \frac{1}{24} \int_{x_{0}}^{x_{2}} f^{(4)}(\xi(x))(x-x_{1})^{4}~\mathrm{d}x = \frac{f^{(4)}(\xi_{1})}{24}\int_{x_{0}}^{x_{2}} (x-x_{1})^{4}~\mathrm{d}x = \left. \frac{f^{(4)}(\xi_{1})}{120}(x-x_{1})^{5} \right|_{x_{0}}^{x_{2}}.
+\]</div>
+<p>Sin embargo, <span class="math notranslate nohighlight">\(h=x_{2}-x_{1}=x_{1}-x_{0}\)</span> entonces</p>
+<div class="math notranslate nohighlight">
+\[
+ (x_{2}-x_{1})^{2}-(x_{0}-x_{1})^{2} = (x_{2}-x_{1})^{4} - (x_{0}-x_{1})^{4} = 0,
+\]</div>
+<p>mientras que</p>
+<div class="math notranslate nohighlight">
+\[
+ (x_{2}-x_{1})^{3}-(x_{0}-x_{1})^{3} = 2h^{3}, \quad (x_{2}-x_{1})^{5}-(x_{0}-x_{1})^{5} = 2h^{5}.
+\]</div>
+<p>Por consiguiente</p>
+<div class="math notranslate nohighlight">
+\[
+ \int_{x_{0}}^{x_{2}}f(x)~\mathrm{d}x = 2hf(x_{1}) + \frac{h^{3}}{3}f''(x_{1}) + \frac{f^{(4)}(\xi_{1})}{60}h^{5}.
+\]</div>
+<p>Reemplazando <span class="math notranslate nohighlight">\(f''(x_{1})\)</span>, tenemos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{aligned}
+  \int_{x_{0}}^{x_{2}}f(x)~\mathrm{d}x &amp;= 2hf(x_{1}) + \frac{h^{3}}{3} \left\{\frac{1}{h^{2}} \left[f(x_{0}) - 2f(x_{1}) + f(x_{2}) \right] - \frac{h^{2}}{12}f^{(4)}(\xi_{2}) \right\} + \frac{f^{(4)}(\xi_{1})}{60}h^{5}, \\
+  &amp;= \frac{h}{3}\left[ f(x_{0}) + 4f(x_{1}) + f(x_{2}) \right] - \frac{h^{5}}{12}\left[ \frac{1}{3}f^{(4)}(\xi_{2}) - \frac{1}{5}f^{(4)}(\xi_{1}) \right]
+ \end{aligned}
+\end{split}\]</div>
+<p>Finalmente, considerando que los valores <span class="math notranslate nohighlight">\(\xi_{1}\)</span> y <span class="math notranslate nohighlight">\(\xi_{2}\)</span> de esta expresión pueden sustituirse por un valor común <span class="math notranslate nohighlight">\(\xi \in (x_{0}, x_{2})\)</span>, tenemos</p>
+<div class="math notranslate nohighlight">
+\[
+ \int_{x_{0}}^{x_{2}}f(x)~\mathrm{d}x = \frac{h}{3}\left[ f(x_{0}) + 4f(x_{1}) + f(x_{2}) \right] - \frac{h^{5}}{90}f^{(4)}(\xi).
+\]</div>
+</section>
+<section id="integracion-de-romberg">
+<h2>Integración de Romberg<a class="headerlink" href="#integracion-de-romberg" title="Link to this heading">#</a></h2>
+</section>
+<section id="metodos-de-cuadratura-adaptativa">
+<h2>Métodos de cuadratura adaptativa<a class="headerlink" href="#metodos-de-cuadratura-adaptativa" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -489,7 +617,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Funciones definidas experimentalmente o numéricamente</p>
       </div>
     </a>
     <a class="right-next"
@@ -497,7 +625,7 @@ document.write(`
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Integrales singulares</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,9 +644,12 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contenido
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-del-trapecio">Regla del trapecio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-simpson">Regla de Simpson</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integracion-de-romberg">Integración de Romberg</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-de-cuadratura-adaptativa">Métodos de cuadratura adaptativa</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

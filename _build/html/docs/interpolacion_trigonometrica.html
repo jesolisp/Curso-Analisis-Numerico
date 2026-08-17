@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Análisis Numérico</title>
+    <title>Interpolación trigonométrica &#8212; Análisis Numérico</title>
   
   
   
@@ -30,11 +30,11 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -49,10 +49,10 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/interpolacion_trigonometrica';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/interpolacion_trigonometrica.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="mejor_aproximacion.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="interpolacion_tchebychev.html" />
+    <link rel="next" title="Funciones definidas experimentalmente o numéricamente" href="funciones_definidas.html" />
+    <link rel="prev" title="Interpolación de Chebyshev" href="interpolacion_chebychev.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -176,7 +178,35 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Análisis de error</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preliminares_matematicos.html">Preliminares matemáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="representacion_numeros.html">Representación de números</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errores_redondeo.html">Errores de redondeo y aritmética de punto flotante</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Interpolación y aproximación</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_funcion.html">Interpolación de una función</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpolación trigonométrica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="references.html">Bibliografía</a></li>
 </ul>
@@ -430,7 +460,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Interpolación trigonométrica</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -439,9 +469,9 @@ document.write(`
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aproximacion-trigonometrica-discreta">Aproximación trigonométrica discreta</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -452,7 +482,81 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="interpolacion-trigonometrica">
+<h1>Interpolación trigonométrica<a class="headerlink" href="#interpolacion-trigonometrica" title="Link to this heading">#</a></h1>
+<p>Sea <span class="math notranslate nohighlight">\(\mathcal{T}_{n}\)</span> el conjunto de todas las combinaciones lineales de las funciones <span class="math notranslate nohighlight">\(\phi_{0}, \phi_{1}, \dots , \phi_{2n−1}\)</span>. Este conjunto se denomina conjunto de los <strong>polinomios trigonométricos</strong> de grado menor o igual a <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Para una función <span class="math notranslate nohighlight">\(f \in C[−\pi, \pi]\)</span>, queremos hallar la aproximación <em>continua por mínimos cuadrados</em> mediante funciones de <span class="math notranslate nohighlight">\(\mathcal{T}_{n}\)</span> de la forma</p>
+<div class="math notranslate nohighlight">
+\[
+ S_{n}(x) = \frac{a_{0}}{2} + a_{n}\cos(nx) + \sum_{k=1}^{n-1}(a_{k}\cos(kx) + b_{k}\sin(kx)).
+\]</div>
+<p>Dado que el conjunto de funciones <span class="math notranslate nohighlight">\(\{\phi_{0}, \phi_{1}, \dots , \phi_{2n−1}\}\)</span> es ortogonal en <span class="math notranslate nohighlight">\([−\pi, \pi]\)</span> con respecto a <span class="math notranslate nohighlight">\(w(x) \equiv 1\)</span>, la selección apropiada de coeficientes es</p>
+<div class="math notranslate nohighlight">
+\[
+ a_{k} = \frac{\int_{-\pi}^{\pi}f(x)\cos(kx)~\mathrm{d}x}{\int_{-\pi}^{\pi}\cos(kx)^{2}~\mathrm{d}x} = \frac{1}{\pi} \int_{-\pi}^{\pi}f(x)\cos(kx)~\mathrm{d}x, \quad \text{para cada} \quad k=0,1,2,\dots,n,
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+ b_{k} = \frac{\int_{-\pi}^{\pi}f(x)\sin(kx)~\mathrm{d}x}{\int_{-\pi}^{\pi}\sin(kx)^{2}~\mathrm{d}x} = \frac{1}{\pi} \int_{-\pi}^{\pi}f(x)\sin(kx)~\mathrm{d}x, \quad \text{para cada} \quad k=1,2,\dots,n-1,
+\]</div>
+<p>El límite de <span class="math notranslate nohighlight">\(S_{n}(x)\)</span> cuando <span class="math notranslate nohighlight">\(n \to \infty\)</span> se denomina <strong>serie de Fourier</strong> de <span class="math notranslate nohighlight">\(f\)</span>.</p>
+<p><strong>Ejemplo 1.</strong> Determine el polinomio trigonométrico de <span class="math notranslate nohighlight">\(\mathcal{T}_{n}\)</span> que aproxime</p>
+<div class="math notranslate nohighlight">
+\[
+ f(x) = |x|, \quad x \in (-\pi,\pi).
+\]</div>
+<section id="aproximacion-trigonometrica-discreta">
+<h2>Aproximación trigonométrica discreta<a class="headerlink" href="#aproximacion-trigonometrica-discreta" title="Link to this heading">#</a></h2>
+<p>Suponga que se da un conjunto de <span class="math notranslate nohighlight">\(2m\)</span> pares de datos <span class="math notranslate nohighlight">\(\{(x_{j}, y_{j})\}_{j=0}^{2m-1}\)</span>, donde los primeros elementos de los pares dividen equitativamente un intervalo cerrado. Por conveniencia, suponemos que el intervalo es <span class="math notranslate nohighlight">\([-\pi, \pi]\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+ x_{j} = -\pi + \left( \frac{j}{m} \right)\pi, \quad \text{para cada} \quad j=0,1,\dots,2m-1.
+\]</div>
+<p>Si no es <span class="math notranslate nohighlight">\([-\pi, \pi]\)</span>, se podría utilizar una transformación lineal sencilla para convertir los datos a esta forma.</p>
+<p>El objetivo en el caso discreto es determinar el polinomio trigonométrico <span class="math notranslate nohighlight">\(S_{n}(x)\)</span> en <span class="math notranslate nohighlight">\(\mathcal{T}_{n}\)</span> que minimice</p>
+<div class="math notranslate nohighlight">
+\[
+ E(S_{n}) = \sum_{j=0}^{2m-1} \left[y_{j} - S_{n}(x_{j}) \right]^{2}
+\]</div>
+<div class="proof theorem admonition" id="theorem-0">
+<p class="admonition-title"><span class="caption-number">Teorema 15 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Las constantes en la sumatoria</p>
+<div class="math notranslate nohighlight">
+\[
+ S_{n}(x) = \frac{a_{0}}{2} + a_{n}\cos(nx) + \sum_{k=1}^{n-1}(a_{k}\cos(kx) + b_{k}\sin(kx)),
+\]</div>
+<p>que minimizan la suma de los cuadrados</p>
+<div class="math notranslate nohighlight">
+\[
+ E(a_{0},\dots,a_{n},b_{1},\dots,b_{n-1}) = \sum_{j=0}^{2m-1} \left(y_{j} - S_{n}(x_{j}) \right)^{2}
+\]</div>
+<p>son</p>
+<div class="math notranslate nohighlight">
+\[
+ a_{k} = \frac{1}{m} \sum_{j=0}^{2m-1} y_{j}\cos(kx_{j}), \quad \text{para cada} \quad k=0,1,\dots,n,
+\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[
+ b_{k} = \frac{1}{m} \sum_{j=0}^{2m-1} y_{j}\sin(kx_{j}), \quad \text{para cada} \quad k=1,2,\dots,n-1.
+\]</div>
+</section>
+</div><p><strong>Ejemplo 2</strong>. Encuentre <span class="math notranslate nohighlight">\(S_{2}(x)\)</span>, el polinomio trigonométrico de grado 2 de mínimos cuadrados discretos para</p>
+<div class="math notranslate nohighlight">
+\[
+ f(x) = 2x^{2} − 9 \quad \text{cuando} \quad x \in [−\pi, \pi].
+\]</div>
+<p><strong>Ejemplo 3</strong>. Halle la aproximación de mínimos cuadrados discretos <span class="math notranslate nohighlight">\(S_{3} (x)\)</span> para</p>
+<div class="math notranslate nohighlight">
+\[
+ f(x) = x^{4} - 3x^{3} + 2x^{2} - \tan(x(x-2)),
+\]</div>
+<p>utilizando los datos <span class="math notranslate nohighlight">\(\{(x_{j}, y_{j})\}^{9}_{j=0}\)</span>, donde <span class="math notranslate nohighlight">\(x_{j} = j/5\)</span> y <span class="math notranslate nohighlight">\(y_{j} = f(x_{j})\)</span>.</p>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -484,20 +588,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="interpolacion_tchebychev.html"
+       href="interpolacion_chebychev.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Interpolación de Chebyshev</p>
       </div>
     </a>
     <a class="right-next"
-       href="mejor_aproximacion.html"
+       href="funciones_definidas.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Funciones definidas experimentalmente o numéricamente</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,9 +620,9 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contenido
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aproximacion-trigonometrica-discreta">Aproximación trigonométrica discreta</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

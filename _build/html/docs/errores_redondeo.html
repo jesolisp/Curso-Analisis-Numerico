@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Análisis Numérico</title>
+    <title>Errores de redondeo y aritmética de punto flotante &#8212; Análisis Numérico</title>
   
   
   
@@ -30,11 +30,11 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -49,10 +49,10 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/errores_redondeo';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/errores_redondeo.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="propagacion_error.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="representacion_numeros.html" />
+    <link rel="next" title="Interpolación de una función" href="interpolacion_funcion.html" />
+    <link rel="prev" title="Representación de números" href="representacion_numeros.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -176,7 +178,35 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Análisis de error</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preliminares_matematicos.html">Preliminares matemáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="representacion_numeros.html">Representación de números</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Errores de redondeo y aritmética de punto flotante</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Interpolación y aproximación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_funcion.html">Interpolación de una función</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="references.html">Bibliografía</a></li>
 </ul>
@@ -417,9 +447,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -430,19 +458,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Errores de redondeo y aritmética de punto flotante</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contenido </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -452,7 +472,36 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="errores-de-redondeo-y-aritmetica-de-punto-flotante">
+<h1>Errores de redondeo y aritmética de punto flotante<a class="headerlink" href="#errores-de-redondeo-y-aritmetica-de-punto-flotante" title="Link to this heading">#</a></h1>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definición 6 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Suponga que <span class="math notranslate nohighlight">\(p^{\ast}\)</span> es una aproximación a <span class="math notranslate nohighlight">\(p\)</span>. El <strong>error absoluto</strong> es <span class="math notranslate nohighlight">\(|p-p^{\ast}|\)</span> y el <strong>error relativo</strong> es <span class="math notranslate nohighlight">\(\frac{|p-p^{ast}|}{|p|}\)</span> siempre que <span class="math notranslate nohighlight">\(p\neq 0\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definición 7 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Se dice que el número p* aproxima a <span class="math notranslate nohighlight">\(p\)</span> con <span class="math notranslate nohighlight">\(t\)</span> <strong>dígitos (o cifras) significativos</strong> si <span class="math notranslate nohighlight">\(t\)</span> es el mayor entero no negativo para el cual</p>
+<div class="math notranslate nohighlight">
+\[
+ \frac{|p-p^{\ast}|}{|p|} \leq 5 \times 10^{-t}.
+\]</div>
+</section>
+</div><p><strong>Ejercicio 1.</strong> La función exponencial <span class="math notranslate nohighlight">\(e^{x}\)</span> se aproxima mediante la <strong>serie de Maclaurin</strong>. La fórmula suma potencias de <span class="math notranslate nohighlight">\(x\)</span> divididas entre el factorial del índice</p>
+<div class="math notranslate nohighlight">
+\[
+ e^{x} = \sum_{k=0}^{\infty} \frac{x^{k}}{k!} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \frac{x^{4}}{4!} + \dots
+\]</div>
+<p>Calcule el error absoluto y el error relativo tomando <span class="math notranslate nohighlight">\(k\)</span> y <span class="math notranslate nohighlight">\(k+1\)</span> términos de la serie.</p>
+<p><strong>Ejercicio 2.</strong> Sea</p>
+<div class="math notranslate nohighlight">
+\[
+ f(x) = \frac{e^{x} - e^{-x}}{x},
+\]</div>
+<p>obtenga <span class="math notranslate nohighlight">\(f'(x)\)</span> utilizando diferencias centrales, diferencia hacia adelante y hacia atrás. Además, calcule el error relativo y el error absoluto.</p>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -489,15 +538,15 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Representación de números</p>
       </div>
     </a>
     <a class="right-next"
-       href="propagacion_error.html"
+       href="interpolacion_funcion.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Interpolación de una función</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -507,21 +556,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenido
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>

@@ -30,11 +30,11 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=b4b7a797" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -49,10 +49,10 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -60,12 +60,14 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/home';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/home.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="representacion_numeros.html" />
+    <link rel="next" title="Preliminares matemáticos" href="preliminares_matematicos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -177,7 +179,35 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Análisis de error</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preliminares_matematicos.html">Preliminares matemáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="representacion_numeros.html">Representación de números</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errores_redondeo.html">Errores de redondeo y aritmética de punto flotante</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Interpolación y aproximación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_funcion.html">Interpolación de una función</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="references.html">Bibliografía</a></li>
 </ul>
@@ -392,14 +422,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-del-academico">Información del académico</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisitos">Prerequisitos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-requerido-y-herramientas">Software requerido y herramientas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temario">Temario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examenes-ordinarios">Exámenes ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-conducta">Código de conducta</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-basica">Bibliografía básica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-complementaria">Bibliografía complementaria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-del-titular">👨‍🏫 Información del Titular</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-academicos">📚 Requisitos Académicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requerimientos-tecnicos-y-herramientas">💻 Requerimientos Técnicos y Herramientas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-tematico">📖 Contenido Temático</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politicas-de-evaluacion">📝 Políticas de Evaluación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-etica-y-conducta">⚖️ Código de Ética y Conducta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-basica">📚 Bibliografía Básica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-complementaria">📖 Bibliografía Complementaria</a></li>
 </ul>
             </nav>
         </div>
@@ -413,117 +443,123 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analisis-numerico">
 <h1>Análisis Numérico<a class="headerlink" href="#analisis-numerico" title="Link to this heading">#</a></h1>
-<section id="informacion-del-academico">
-<h2>Información del académico<a class="headerlink" href="#informacion-del-academico" title="Link to this heading">#</a></h2>
-<ul>
-  <li> <b> Profesor: </b> Dr. Jesús Emmanuel Solís Pérez </li>
-  <li> <b> Correo: </b> jsolisp@unam.mx </li>
-  <li> <a href="https://jesolisp.github.io"> Página personal del profesor </a> </li>
+<p>Bienvenidos al material interactivo y notas del curso de Análisis Numérico.</p>
+<section id="informacion-del-titular">
+<h2>👨‍🏫 Información del Titular<a class="headerlink" href="#informacion-del-titular" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Profesor:</strong> Dr. Jesús Emmanuel Solís Pérez</p></li>
+<li><p><strong>Correo electrónico:</strong> <a class="reference external" href="mailto:jsolisp&#37;&#52;&#48;unam&#46;mx">jsolisp<span>&#64;</span>unam<span>&#46;</span>mx</a></p></li>
+<li><p><strong>Sitio web:</strong> <a class="reference external" href="https://jesolisp.github.io">Página personal del profesor</a></p></li>
 </ul>
 </section>
-<section id="prerequisitos">
-<h2>Prerequisitos<a class="headerlink" href="#prerequisitos" title="Link to this heading">#</a></h2>
-<ol>
- <li> Ecuaciones Diferenciales Ordinarias, Programación </li>
+<hr class="docutils" />
+<section id="requisitos-academicos">
+<h2>📚 Requisitos Académicos<a class="headerlink" href="#requisitos-academicos" title="Link to this heading">#</a></h2>
+<p>Para un adecuado seguimiento de este curso, se requiere contar con conocimientos sólidos previos en:</p>
+<ol class="arabic simple">
+<li><p>Ecuaciones Diferenciales Ordinarias.</p></li>
+<li><p>Fundamentos de Programación.</p></li>
 </ol>
 </section>
-<section id="software-requerido-y-herramientas">
-<h2>Software requerido y herramientas<a class="headerlink" href="#software-requerido-y-herramientas" title="Link to this heading">#</a></h2>
-<ol>
- <li> Python y Jupyter Notebook. </li>
- <li> Sistema operativo: Windows 10, Linux, o macOS. </li>
- <li> Navegador: Google Chrome, Opera o Firefox. </li>
- <li> Markdown para escribir documentación. </li>
- <li> Sistema de control de versiones. </li>
-</ol>
+<section id="requerimientos-tecnicos-y-herramientas">
+<h2>💻 Requerimientos Técnicos y Herramientas<a class="headerlink" href="#requerimientos-tecnicos-y-herramientas" title="Link to this heading">#</a></h2>
+<p>Para ejecutar los cuadernos interactivos y realizar las prácticas, es indispensable contar con:</p>
+<ul class="simple">
+<li><p><strong>Entorno de desarrollo:</strong> Python y Jupyter Notebook.</p></li>
+<li><p><strong>Sistema Operativo:</strong> Windows 10, Linux, o macOS.</p></li>
+<li><p><strong>Navegador Web:</strong> Google Chrome, Mozilla Firefox u Opera.</p></li>
+<li><p><strong>Herramientas adicionales:</strong></p>
+<ul>
+<li><p>Conocimiento de Markdown para la redacción de documentación.</p></li>
+<li><p>Uso de un sistema de control de versiones (ej. Git).</p></li>
+</ul>
+</li>
+</ul>
 </section>
-<section id="temario">
-<h2>Temario<a class="headerlink" href="#temario" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="contenido-tematico">
+<h2>📖 Contenido Temático<a class="headerlink" href="#contenido-tematico" title="Link to this heading">#</a></h2>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p><strong>Unidad</strong></p></th>
-<th class="head text-center"><p><strong>Tema</strong></p></th>
-<th class="head text-left"><p><strong>Contenido</strong></p></th>
+<tr class="row-odd"><th class="head text-center"><p>Unidad</p></th>
+<th class="head text-left"><p>Tema</p></th>
+<th class="head text-left"><p>Contenido</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-center"><p>I</p></td>
-<td class="text-center"><p>Análisis de error</p></td>
-<td class="text-left"><p><ul> <li> Representación de números. </li> <li> Errores de redondeo y aritmética de punto flotante. </li> <li> Propagación del error. </li> <li> Ejemplos. </li> <li> Estimación estadística de errores de redondeo. </li> </ul></p></td>
+<tr class="row-even"><td class="text-center"><p><strong>I</strong></p></td>
+<td class="text-left"><p><strong>Análisis de error</strong></p></td>
+<td class="text-left"><p><ul><li>Representación de números.</li><li>Errores de redondeo y aritmética de punto flotante.</li><li>Ejemplos.</li><li>Estimación estadística de errores de redondeo.</li></ul></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>II</p></td>
-<td class="text-center"><p>Interpolación y aproximación</p></td>
-<td class="text-left"><p><ul> <li> Interpolación de una función. </li> <li> Interpolación polinomial de Lagrange. </li> <li> Interpolación de Tchebychev. </li> <li> Interpolación trigonométrica. </li> <li> Mejor aproximación. </li> <li> Comparación entre interpolación y mejor aproximación. </li> </ul></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong>II</strong></p></td>
+<td class="text-left"><p><strong>Interpolación y aproximación</strong></p></td>
+<td class="text-left"><p><ul><li>Interpolación de una función.</li><li>Interpolación polinomial de Lagrange.</li><li>Interpolación de Chebyshev.</li><li>Interpolación trigonométrica.</li></ul></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>III</p></td>
-<td class="text-center"><p>Integración numérica</p></td>
-<td class="text-left"><p><ul> <li> Funciones definidas experimentalmente o numéricamente. </li> <li> Funciones regulares definidas matemáticamente. </li> <li> Integrales singulares. </li> <li> Polinomios ortogonales. </li> </ul></p></td>
+<tr class="row-even"><td class="text-center"><p><strong>III</strong></p></td>
+<td class="text-left"><p><strong>Integración numérica</strong></p></td>
+<td class="text-left"><p><ul><li>Funciones definidas experimentalmente o numéricamente.</li><li>Funciones regulares definidas matemáticamente.</li><li>Integrales singulares.</li><li>Polinomios ortogonales.</li></ul></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>IV</p></td>
-<td class="text-center"><p>Sistemas de ecuaciones lineales</p></td>
-<td class="text-left"><p><ul> <li> Algoritmos de resolución directa. </li> <li> Métodos de factorización. </li> <li> Estimación del error. </li> <li> Algoritmos de resolución indirecta. </li> <li> Métodos de relajación. </li> <li> Métodos iterativos. </li> <li> Almacenamiento de grandes sistemas lineales en computadora. </li> </ul></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong>IV</strong></p></td>
+<td class="text-left"><p><strong>Sistemas de ecuaciones lineales</strong></p></td>
+<td class="text-left"><p><ul><li>Algoritmos de resolución directa.</li><li>Métodos de factorización.</li><li>Estimación del error.</li><li>Algoritmos de resolución indirecta.</li><li>Métodos de relajación e iterativos.</li><li>Almacenamiento de grandes sistemas lineales en computadora.</li></ul></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>V</p></td>
-<td class="text-center"><p>Sistemas de ecuaciones no lineales</p></td>
-<td class="text-left"><p><ul> <li> Resolución de una ecuación cualquiera. </li> <li> Resolución de una ecuación entera. </li> <li> Resolución de sistemas no lineales. </li> <li> Algoritmos de aceleración de la convergencia. </li> <li> Procedimiento de extrapolación de Richardson. </li> </ul></p></td>
+<tr class="row-even"><td class="text-center"><p><strong>V</strong></p></td>
+<td class="text-left"><p><strong>Sistemas de ecuaciones no lineales</strong></p></td>
+<td class="text-left"><p><ul><li>Resolución de una ecuación cualquiera.</li><li>Resolución de una ecuación entera.</li><li>Resolución de sistemas no lineales.</li><li>Algoritmos de aceleración de la convergencia.</li><li>Procedimiento de extrapolación de Richardson.</li></ul></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>VI</p></td>
-<td class="text-center"><p>Optimización de funciones</p></td>
-<td class="text-left"><p><ul> <li> El método de Levenberg-Marquardt. </li> <li> El método de Gradiente Conjugado. </li> </ul></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong>VI</strong></p></td>
+<td class="text-left"><p><strong>Optimización de funciones</strong></p></td>
+<td class="text-left"><p><ul><li>El método de Levenberg-Marquardt.</li><li>El método de Gradiente Conjugado.</li></ul></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>VII</p></td>
-<td class="text-center"><p>Cálculo de valores propios de una matriz</p></td>
-<td class="text-left"><p><ul> <li> Métodos globales matrices generales. </li> <li> Métodos iterativos. </li> </ul></p></td>
+<tr class="row-even"><td class="text-center"><p><strong>VII</strong></p></td>
+<td class="text-left"><p><strong>Cálculo de valores propios de una matriz</strong></p></td>
+<td class="text-left"><p><ul><li>Métodos globales para matrices generales.</li><li>Métodos iterativos.</li></ul></p></td>
 </tr>
-<tr class="row-odd"><td class="text-center"><p>VIII</p></td>
-<td class="text-center"><p>Ecuaciones y sistemas diferenciales con valores iniciales</p></td>
-<td class="text-left"><p><ul> <li> Ecuación diferencial de primer orden. </li> <li> Métodos de pasos ligados. </li> <li> Sistema diferencial de primer orden. </li> </ul></p></td>
+<tr class="row-odd"><td class="text-center"><p><strong>VIII</strong></p></td>
+<td class="text-left"><p><strong>Ecuaciones y sistemas diferenciales con valores iniciales</strong></p></td>
+<td class="text-left"><p><ul><li>Ecuación diferencial de primer orden.</li><li>Métodos de pasos ligados.</li><li>Sistema diferencial de primer orden.</li></ul></p></td>
 </tr>
-<tr class="row-even"><td class="text-center"><p>IX</p></td>
-<td class="text-center"><p>Ecuaciones Diferenciales Parciales (EDP)</p></td>
-<td class="text-left"><p><ul> <li> Ecuación diferencial general de segundo orden. </li> <li> Introducción a los métodos de diferencias finitas para solución de EDP. </li> <li> Elementos finitos. </li> <li> Introducción a los métodos de elementos finitos para solución de EDP. </li> </ul></p></td>
+<tr class="row-even"><td class="text-center"><p><strong>IX</strong></p></td>
+<td class="text-left"><p><strong>Ecuaciones Diferenciales Parciales (EDP)</strong></p></td>
+<td class="text-left"><p><ul><li>Ecuación diferencial general de segundo orden.</li><li>Introducción a los métodos de diferencias finitas para solución de EDP.</li><li>Elementos finitos e Introducción a los métodos de elementos finitos para solución de EDP.</li></ul></p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </section>
-<section id="examenes-ordinarios">
-<h2>Exámenes ordinarios<a class="headerlink" href="#examenes-ordinarios" title="Link to this heading">#</a></h2>
-<p>Tendrán derecho a presentarlos aquellas personas que hayan obtenido una calificación no aprobatoria mayor o igual a 55.</p>
+<hr class="docutils" />
+<section id="politicas-de-evaluacion">
+<h2>📝 Políticas de Evaluación<a class="headerlink" href="#politicas-de-evaluacion" title="Link to this heading">#</a></h2>
+<p><strong>Exámenes Ordinarios:</strong><br />
+Tendrán derecho a presentar los exámenes ordinarios aquellas personas que, durante la evaluación continua, hayan obtenido una calificación no aprobatoria que sea <strong>mayor o igual a 55</strong>.</p>
 </section>
-<section id="codigo-de-conducta">
-<h2>Código de conducta<a class="headerlink" href="#codigo-de-conducta" title="Link to this heading">#</a></h2>
-<p>La conducta del profesorado y alumnado del curso será acorde con los principios y valores especificados en el Código de Ética de la Universidad Nacional Autónoma de México aprobado el 1 de julio del 2015 por el Consejo Universitario, en especial en lo referente a la integridad y honestidad académica. “La integridad y la honestidad académica implican: Citar las fuentes de ideas, textos, imágenes, gráficos u obras artı́sticas que se empleen en el trabajo universitario, y no sustraer o tomar la información generada por otros o por sı́ mismo sin señalar la cita correspondiente u obtener su consentimiento y acuerdo. No falsificar, alterar, manipular, fabricar, inventar o fingir la autenticidad de datos, resultados, imágenes o información en los trabajos académicos, proyectos de investigación, exámenes, ensayos, informes, reportes, tesis, audiencias, procedimientos de orden disciplinario o en cualquier documento inherente a la vida académica universitaria” (Gaceta UNAM, 30 de julio 2015).</p>
+<hr class="docutils" />
+<section id="codigo-de-etica-y-conducta">
+<h2>⚖️ Código de Ética y Conducta<a class="headerlink" href="#codigo-de-etica-y-conducta" title="Link to this heading">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">Integridad Académica (UNAM)</p>
+<p>La conducta del profesorado y alumnado del curso será acorde con los principios y valores especificados en el <strong>Código de Ética de la Universidad Nacional Autónoma de México</strong> (aprobado el 1 de julio del 2015 por el Consejo Universitario), en especial en lo referente a la integridad y honestidad académica.</p>
+<blockquote>
+<div><p><em>“La integridad y la honestidad académica implican: Citar las fuentes de ideas, textos, imágenes, gráficos u obras artísticas que se empleen en el trabajo universitario, y no sustraer o tomar la información generada por otros o por sí mismo sin señalar la cita correspondiente u obtener su consentimiento y acuerdo. No falsificar, alterar, manipular, fabricar, inventar o fingir la autenticidad de datos, resultados, imágenes o información en los trabajos académicos, proyectos de investigación, exámenes, ensayos, informes, reportes, tesis, audiencias, procedimientos de orden disciplinario o en cualquier documento inherente a la vida académica universitaria”</em></p>
+</div></blockquote>
+<p><strong>(Gaceta UNAM, 30 de julio 2015).</strong></p>
+</div>
 </section>
 <section id="bibliografia-basica">
-<h2>Bibliografía básica<a class="headerlink" href="#bibliografia-basica" title="Link to this heading">#</a></h2>
-<ol>
- <li> Bulirsch, R., Stoer, J., & Stoer, J. (2002). Introduction to numerical analysis (Vol. 3). Heidelberg: Springer. </li>
- <li> Ascher, U. M., & Greif, C. (Eds.). (2011). A first course on numerical methods. Society for Industrial and Applied Mathematics. </li>
- <li> Golub, G. H., & Van Loan, C. F. (2013). Matrix computations. JHU press. </li>
- <li> Quarteroni, A., Sacco, R., & Saleri, F. (2006). Numerical mathematics (Vol. 37). Springer Science & Business Media. </li>
-</ol>
+<h2>📚 Bibliografía Básica<a class="headerlink" href="#bibliografia-basica" title="Link to this heading">#</a></h2>
+<p>Bulirsch, R., &amp; Stoer, J. (2002). Introduction to numerical analysis (Vol. 3). Heidelberg: Springer.</p>
+<p>Ascher, U. M., &amp; Greif, C. (Eds.). (2011). A first course on numerical methods. Society for Industrial and Applied Mathematics.</p>
+<p>Golub, G. H., &amp; Van Loan, C. F. (2013). Matrix computations. JHU press.</p>
+<p>Quarteroni, A., Sacco, R., &amp; Saleri, F. (2006). Numerical mathematics (Vol. 37). Springer Science &amp; Business Media.</p>
 </section>
 <section id="bibliografia-complementaria">
-<h2>Bibliografía complementaria<a class="headerlink" href="#bibliografia-complementaria" title="Link to this heading">#</a></h2>
-<ol>
- <li> Datta, B. N. (2010). Numerical linear algebra and applications. Society for Industrial and Applied Mathematics. </li>
- <li> Ipsen, I. C. (2009). Numerical matrix analysis: Linear systems and least squares. Society for Industrial and Applied Mathematics. </li>
- <li> Shonkwiler, R. W., & Mendivil, F. (2009). Explorations in monte carlo methods (pp. 147-158). New York: Springer. </li>
- <li> Collins, R. E. (1968). Mathematical methods for physicists and engineers. Courier Corporation. </li>
-</ol>
-<p>(Última modificación: 17 de junio de 2026)</p>
+<h2>📖 Bibliografía Complementaria<a class="headerlink" href="#bibliografia-complementaria" title="Link to this heading">#</a></h2>
+<p>Datta, B. N. (2010). Numerical linear algebra and applications. Society for Industrial and Applied Mathematics.</p>
+<p>Ipsen, I. C. (2009). Numerical matrix analysis: Linear systems and least squares. Society for Industrial and Applied Mathematics.</p>
+<p>Shonkwiler, R. W., &amp; Mendivil, F. (2009). Explorations in monte carlo methods (pp. 147-158). New York: Springer.</p>
+<p>Collins, R. E. (1968). Mathematical methods for physicists and engineers. Courier Corporation.</p>
+<p>Última modificación: 13 de agosto de 2026</p>
 </section>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -567,11 +603,11 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="representacion_numeros.html"
+       href="preliminares_matematicos.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Preliminares matemáticos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -591,14 +627,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-del-academico">Información del académico</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisitos">Prerequisitos</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#software-requerido-y-herramientas">Software requerido y herramientas</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temario">Temario</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examenes-ordinarios">Exámenes ordinarios</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-conducta">Código de conducta</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-basica">Bibliografía básica</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-complementaria">Bibliografía complementaria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#informacion-del-titular">👨‍🏫 Información del Titular</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-academicos">📚 Requisitos Académicos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requerimientos-tecnicos-y-herramientas">💻 Requerimientos Técnicos y Herramientas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenido-tematico">📖 Contenido Temático</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#politicas-de-evaluacion">📝 Políticas de Evaluación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-de-etica-y-conducta">⚖️ Código de Ética y Conducta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-basica">📚 Bibliografía Básica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bibliografia-complementaria">📖 Bibliografía Complementaria</a></li>
 </ul>
   </nav></div>
 

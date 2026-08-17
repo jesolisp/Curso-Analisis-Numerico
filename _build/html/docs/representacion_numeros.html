@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Análisis Numérico</title>
+    <title>Representación de números &#8212; Análisis Numérico</title>
   
   
   
@@ -30,11 +30,11 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -49,10 +49,10 @@
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleHintShow = 'Haz clic para mostrar';</script>
+    <script>let toggleHintHide = 'Haz clic para ocultar';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
     <script src="../_static/translations.js?v=d190bf04"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/representacion_numeros';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/representacion_numeros.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="errores_redondeo.html" />
-    <link rel="prev" title="Ecuaciones Diferenciales I" href="home.html" />
+    <link rel="next" title="Errores de redondeo y aritmética de punto flotante" href="errores_redondeo.html" />
+    <link rel="prev" title="Preliminares matemáticos" href="preliminares_matematicos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -176,7 +178,35 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">I. Análisis de error</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preliminares_matematicos.html">Preliminares matemáticos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Representación de números</a></li>
+<li class="toctree-l1"><a class="reference internal" href="errores_redondeo.html">Errores de redondeo y aritmética de punto flotante</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">II. Interpolación y aproximación</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_funcion.html">Interpolación de una función</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="references.html">Bibliografía</a></li>
 </ul>
@@ -430,7 +460,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Representación de números</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -439,9 +469,10 @@ document.write(`
                 <h2> Contenido </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numeros-binarios">Números binarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numeros-decimales">Números decimales</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -452,7 +483,69 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="representacion-de-numeros">
+<h1>Representación de números<a class="headerlink" href="#representacion-de-numeros" title="Link to this heading">#</a></h1>
+<section id="numeros-binarios">
+<h2>Números binarios<a class="headerlink" href="#numeros-binarios" title="Link to this heading">#</a></h2>
+<p>El Instituto de Ingenieros Eléctricos y Electrónicos (IEEE) publicó un informe titulado <em>Estándar 754-1985 de aritmética de punto flotante binario</em>. Este trabajo establece normas para números con punto flotante en formato binario y decimal, formatos para el intercambio de datos y algoritmos para el redondeo de operaciones aritméticas asi como el manejo de excepciones.</p>
+<p>Para representar un número real se utiliza un formato de 64 bits (dígitos binarios). El primer bit es un indicador de signo, denominado <em>s</em>. A este le siguen un exponente de 11 bits, <span class="math notranslate nohighlight">\(c\)</span> llamado <strong>característica</strong>, y una fracción binaria de 52 bits, <span class="math notranslate nohighlight">\(f\)</span> llamada <strong>mantisa</strong>.</p>
+<p>Dado que 52 dígitos binarios equivalen a entre 16 y 17 dígitos decimales, podemos asumir que un número representado en este sistema posee una precisión de al menos 16 dígitos decimales. El exponente de 11 bits permite un rango de 0 hasta <span class="math notranslate nohighlight">\(2^{11} - 1 = 2047\)</span>. Para garantizar que los números de pequeña magnitud puedan representarse, se resta 1023 a la característica; de este modo, el rango real del exponente va de -1023 a 1024.</p>
+<p>Con el fin de ahorrar espacio de almacenamiento y ofrecer una representación única para cada número de punto flotante, se aplica una normalización. El uso de este sistema da lugar a un número de punto flotante con la forma</p>
+<div class="math notranslate nohighlight">
+\[
+ (-1)^{s}2^{c-1023}(1+f).
+\]</div>
+<p><strong>Ejemplo 1.</strong> Considere el número binario</p>
+<div class="math notranslate nohighlight">
+\[
+ 0~10000000011~1011100100010000000000000000000000000000000000000000
+\]</div>
+<p>El bit más significativo es <span class="math notranslate nohighlight">\(s = 0\)</span>, lo que indica que el número es positivo. Los siguientes 11 bits, <span class="math notranslate nohighlight">\(10000000011\)</span>, constituyen la característica y equivalen al número decimal</p>
+<div class="math notranslate nohighlight">
+\[
+ c = 1 \cdot 2^{10} + 0 \cdot 2^{9} + \cdots + 0 \cdot 2^{2} + 1 \cdot 2^{1} + 1 \cdot 2^{0} = 1024 + 2 + 1 = 1027.
+\]</div>
+<p>La parte exponencial del número es <span class="math notranslate nohighlight">\(2^{1027−1023} = 2^{4}\)</span>. Los 52 bits finales especifican que la mantisa es</p>
+<div class="math notranslate nohighlight">
+\[
+ f = 1\cdot \left( \frac{1}{2} \right)^{1}  + 1\cdot \left( \frac{1}{2} \right)^{3} + 1 \cdot \left( \frac{1}{2} \right)^{4} + 1\cdot \left( \frac{1}{2} \right)^{5} + 1\cdot \left( \frac{1}{2} \right)^{8} + 1\cdot \left( \frac{1}{2} \right)^{12}.
+\]</div>
+<p>Por consiguiente, este número de máquina representa con precisión el número decimal</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{aligned}
+  (-1)^{s}2^{c-1023}(1+f) &amp;= (-1)^{0}\cdot 2^{1027-1023} \left( 1 + \left(\frac{1}{2} + \frac{1}{8} + \frac{1}{16} + \frac{1}{32} + \frac{1}{256} + \frac{1}{4096} \right) \right), \\
+  &amp;= 27.56640625.
+ \end{aligned}
+\end{split}\]</div>
+</section>
+<section id="numeros-decimales">
+<h2>Números decimales<a class="headerlink" href="#numeros-decimales" title="Link to this heading">#</a></h2>
+<p>Supongamos que los números se representan en formato <em>decimal</em> normalizado de coma flotante</p>
+<div class="math notranslate nohighlight">
+\[
+ \pm0.d_{1}d_{2}\dots d_{k} \times 10^{n}, \quad 1 \leq d_{1} \leq 9, \quad \text{y} \quad 0 \leq d_{i} \leq 9,
+\]</div>
+<p>para cada <span class="math notranslate nohighlight">\(i = 2,\dots, k\)</span>. Los números de esta forma se denominan <em>números decimales de <span class="math notranslate nohighlight">\(k\)</span> dígitos</em>.</p>
+<p>Cualquier número real positivo dentro del rango numérico de la máquina puede normalizarse a la forma</p>
+<div class="math notranslate nohighlight">
+\[
+ y = 0.d_{1}d_{2}\dots d_{k}d_{k+1}d_{k+2}\dots \times 10^{n}.
+\]</div>
+<p>La representación en punto flotante de <span class="math notranslate nohighlight">\(y\)</span>, denotada como <span class="math notranslate nohighlight">\(fl(y)\)</span>, se obtiene truncando la mantisa de <span class="math notranslate nohighlight">\(y\)</span> en <span class="math notranslate nohighlight">\(k\)</span> dígitos decimales. Existen dos formas comunes de realizar este truncamiento. Un método, denominado truncamiento (o <em>chopping</em>), consiste simplemente en eliminar los dígitos <span class="math notranslate nohighlight">\(d_{k+1}d_{k+2}\dots\)</span>. Esto produce la representación en punto flotante</p>
+<div class="math notranslate nohighlight">
+\[
+ fl(y) = 0.d_{1}d_{2}\dots d_{k} \times 10^{n}.
+\]</div>
+<p>El otro método, denominado <strong>redondeo</strong>, suma <span class="math notranslate nohighlight">\(5 \times 10^{n−(k+1)}\)</span> a <span class="math notranslate nohighlight">\(y\)</span> y luego trunca el resultado para obtener un número de la forma</p>
+<div class="math notranslate nohighlight">
+\[
+ fl(y) = 0.\delta_{1}\delta_{2}\dots \delta_{k} \times 10^{n}.
+\]</div>
+<p>Para el redondeo, cuando <span class="math notranslate nohighlight">\(d_{k+1} \geq 5\)</span>, sumamos <span class="math notranslate nohighlight">\(1\)</span> a <span class="math notranslate nohighlight">\(d_{k}\)</span> para obtener <span class="math notranslate nohighlight">\(fl(y)\)</span>; es decir, <em>redondeamos hacia arriba</em>. Cuando <span class="math notranslate nohighlight">\(d_{k+1} &lt; 5\)</span>, simplemente descartamos todos los dígitos excepto los <span class="math notranslate nohighlight">\(k\)</span> primeros; así, <em>redondeamos hacia abajo</em>.</p>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -484,12 +577,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="home.html"
+       href="preliminares_matematicos.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Ecuaciones Diferenciales I</p>
+        <p class="prev-next-title">Preliminares matemáticos</p>
       </div>
     </a>
     <a class="right-next"
@@ -497,7 +590,7 @@ document.write(`
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Errores de redondeo y aritmética de punto flotante</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,9 +609,10 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contenido
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numeros-binarios">Números binarios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numeros-decimales">Números decimales</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
