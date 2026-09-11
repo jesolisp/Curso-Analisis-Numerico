@@ -16,6 +16,7 @@ parts:
     - file: docs/interpolacion_polinomial
     - file: docs/interpolacion_chebychev
     - file: docs/interpolacion_trigonometrica
+    - file: docs/conclusiones_interpolacion
 - caption: III. Integración numérica
   chapters:
     - file: docs/funciones_definidas
