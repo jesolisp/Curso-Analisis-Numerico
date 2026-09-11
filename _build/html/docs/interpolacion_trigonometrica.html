@@ -67,7 +67,7 @@
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/interpolacion_trigonometrica.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Funciones definidas experimentalmente o numéricamente" href="funciones_definidas.html" />
+    <link rel="next" title="Ventajas y desventajas de los métodos de interpolación" href="conclusiones_interpolacion.html" />
     <link rel="prev" title="Interpolación de Chebyshev" href="interpolacion_chebychev.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -190,6 +190,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpolación trigonométrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
@@ -554,6 +555,55 @@ document.write(`
  f(x) = x^{4} - 3x^{3} + 2x^{2} - \tan(x(x-2)),
 \]</div>
 <p>utilizando los datos <span class="math notranslate nohighlight">\(\{(x_{j}, y_{j})\}^{9}_{j=0}\)</span>, donde <span class="math notranslate nohighlight">\(x_{j} = j/5\)</span> y <span class="math notranslate nohighlight">\(y_{j} = f(x_{j})\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">interpolacion_trigonometrica_discreta</span><span class="p">(</span><span class="n">x_datos</span><span class="p">,</span> <span class="n">y_datos</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula los coeficientes y evalúa el polinomio trigonométrico S_n(x)</span>
+<span class="sd">    de mínimos cuadrados discretos para un conjunto de 2m datos en [-pi, pi].</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">    - x_datos: array de nodos x_j (deben tener longitud 2m)</span>
+<span class="sd">    - y_datos: array de valores y_j correspondientes</span>
+<span class="sd">    - n: grado del polinomio trigonométrico (n &lt;= m)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">N_puntos</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_datos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N_puntos</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;El número de puntos de datos (2m) debe ser par.&quot;</span><span class="p">)</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">N_puntos</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="c1"># Cálculo de a_k para k = 0, 1, ..., n</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">suma</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_puntos</span><span class="p">):</span>
+            <span class="n">suma</span> <span class="o">+=</span> <span class="n">y_datos</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">x_datos</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">suma</span>
+
+    <span class="c1"># Cálculo de b_k para k = 1, 2, ..., n-1</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># b[0] no se usa, dejamos espacio por comodidad de índices</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">suma</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_puntos</span><span class="p">):</span>
+            <span class="n">suma</span> <span class="o">+=</span> <span class="n">y_datos</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">x_datos</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">suma</span>
+
+    <span class="c1"># Función para evaluar el polinomio S_n(x) en cualquier punto o arreglo x</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">S_n</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">resultado</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">resultado</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resultado</span>
+
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">S_n</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -597,11 +647,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="funciones_definidas.html"
+       href="conclusiones_interpolacion.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Funciones definidas experimentalmente o numéricamente</p>
+        <p class="prev-next-title">Ventajas y desventajas de los métodos de interpolación</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

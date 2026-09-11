@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Interpolación de Chebyshev &#8212; Análisis Numérico</title>
+    <title>Ventajas y desventajas de los métodos de interpolación &#8212; Análisis Numérico</title>
   
   
   
@@ -62,13 +62,13 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/interpolacion_chebychev';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/conclusiones_interpolacion';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/interpolacion_chebychev.html" />
+    <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/conclusiones_interpolacion.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Interpolación trigonométrica" href="interpolacion_trigonometrica.html" />
-    <link rel="prev" title="Interpolación polinomial de Lagrange" href="interpolacion_polinomial.html" />
+    <link rel="next" title="Funciones definidas experimentalmente o numéricamente" href="funciones_definidas.html" />
+    <link rel="prev" title="Interpolación trigonométrica" href="interpolacion_trigonometrica.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -188,9 +188,9 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_funcion.html">Interpolación de una función</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpolación de Chebyshev</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
@@ -264,7 +264,7 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/jesolisp/Curso-Analisis-Numerico/master?urlpath=tree/docs/interpolacion_chebychev.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/jesolisp/Curso-Analisis-Numerico/master?urlpath=tree/docs/conclusiones_interpolacion.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +282,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/jesolisp/Curso-Analisis-Numerico/blob/master/docs/interpolacion_chebychev.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/jesolisp/Curso-Analisis-Numerico/blob/master/docs/conclusiones_interpolacion.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,7 +330,7 @@
       
       
       
-      <li><a href="https://github.com/jesolisp/Curso-Analisis-Numerico/edit/main/docs/interpolacion_chebychev.ipynb" target="_blank"
+      <li><a href="https://github.com/jesolisp/Curso-Analisis-Numerico/edit/main/docs/conclusiones_interpolacion.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -347,7 +347,7 @@
       
       
       
-      <li><a href="https://github.com/jesolisp/Curso-Analisis-Numerico/issues/new?title=Issue%20on%20page%20%2Fdocs/interpolacion_chebychev.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/jesolisp/Curso-Analisis-Numerico/issues/new?title=Issue%20on%20page%20%2Fdocs/conclusiones_interpolacion.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Abrir un problema"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -377,7 +377,7 @@
       
       
       
-      <li><a href="../_sources/docs/interpolacion_chebychev.ipynb" target="_blank"
+      <li><a href="../_sources/docs/conclusiones_interpolacion.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Descargar archivo fuente"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -459,7 +459,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Interpolación de Chebyshev</h1>
+    <h1>Ventajas y desventajas de los métodos de interpolación</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -473,124 +473,75 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="interpolacion-de-chebyshev">
-<h1>Interpolación de Chebyshev<a class="headerlink" href="#interpolacion-de-chebyshev" title="Link to this heading">#</a></h1>
-<p>Los polinomios de Chebyshev <span class="math notranslate nohighlight">\(\{T_{n}(x)\}\)</span> son ortogonales en <span class="math notranslate nohighlight">\((−1, 1)\)</span> con respecto a la función de peso <span class="math notranslate nohighlight">\(w(x) = (1 − x^{2})^{-1/2}\)</span>. Se utilizan para minimizar el error de aproximación y se emplean para resolver dos problemas de este tipo:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="ventajas-y-desventajas-de-los-metodos-de-interpolacion">
+<h1>Ventajas y desventajas de los métodos de interpolación<a class="headerlink" href="#ventajas-y-desventajas-de-los-metodos-de-interpolacion" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Interpolación de Lagrange</p>
 <ul class="simple">
-<li><p>una ubicación óptima de los puntos de interpolación para minimizar el error en la interpolación de Lagrange.</p></li>
-<li><p>un medio para reducir el grado de un polinomio de aproximación con una pérdida mínima de precisión.</p></li>
+<li><p><strong>Ventajas</strong></p>
+<ul>
+<li><p>Es muy directa y fácil de implementar analíticamente para un número pequeño o moderado de puntos.</p></li>
+<li><p>Garantiza que el polinomio pase exactamente por cada uno de los puntos de datos dados.</p></li>
 </ul>
-<div class="proof theorem admonition" id="theorem-0">
-<p class="admonition-title"><span class="caption-number">Teorema 13 </span></p>
-<section class="theorem-content" id="proof-content">
-<p>El polinomio de Chebyshev <span class="math notranslate nohighlight">\(T_{n}(x)\)</span> de grado <span class="math notranslate nohighlight">\(n \geq 1\)</span> tiene <span class="math notranslate nohighlight">\(n\)</span> ceros simples en <span class="math notranslate nohighlight">\([−1, 1]\)</span> en</p>
-<div class="math notranslate nohighlight">
-\[
- \overline{x}_{k} = \cos \left( \frac{2k + 1}{2n}\pi \right), \quad \text{para cada } k = 1,2,\dots,n.
-\]</div>
-<p>Además, <span class="math notranslate nohighlight">\(T_{n}(x)\)</span> alcanza sus extremos absolutos en</p>
-<div class="math notranslate nohighlight">
-\[
- \overline{x}'_{k} = \cos \left( \frac{k\pi}{n} \right), \quad \text{con} \quad T_{n}\left(\overline{x}'_{k} \right) = (-1)^{k}, \quad \text{para cada} \quad k = 0,1,\dots,n.
-\]</div>
-</section>
-</div><div class="proof theorem admonition" id="theorem-1">
-<p class="admonition-title"><span class="caption-number">Teorema 14 </span></p>
-<section class="theorem-content" id="proof-content">
-<p>Los polinomios de la forma <span class="math notranslate nohighlight">\(\tilde{T}_{n} (x)\)</span>, cuando <span class="math notranslate nohighlight">\(n \geq 1\)</span>, tienen la propiedad de que</p>
-<div class="math notranslate nohighlight">
-\[
- \frac{1}{2^{n-1}} = \max_{x\in[-1,1]} |\tilde{T}_{n} (x)| \leq \max_{x\in[-1,1]} |P_{n} (x)|, \quad \forall P_{n}(x) \in \prod_{n}^{\sim}.
-\]</div>
-<p>Además, la igualdad se produce solo si <span class="math notranslate nohighlight">\(P_{n} \equiv \tilde{T}_{n}.\)</span></p>
-</section>
-</div><p><strong>Ejemplo 1</strong>. Sea <span class="math notranslate nohighlight">\(f(x) = xe^x\)</span> en el intervalo <span class="math notranslate nohighlight">\([0, 1.5]\)</span>. Compare los valores obtenidos mediante el polinomio de Lagrange con cuatro nodos equiespaciados con los obtenidos mediante el polinomio de Lagrange cuyos nodos son los ceros del cuarto polinomio de Chebyshev.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-
-<span class="c1"># Definimos la funcion base del polinomio de Lagrange</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">Lagrange_base</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="n">L_nk</span> <span class="o">=</span> <span class="mf">1.0</span>
-
-    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
-            <span class="n">L_nk</span> <span class="o">*=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_nodos</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_nodos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_nodos</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-
-    <span class="k">return</span> <span class="n">L_nk</span>
-
-
-<span class="c1"># Definimos el polinomio de Lagrange</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">Lagrange_poli</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">y_nodos</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-    <span class="n">Px</span> <span class="o">=</span> <span class="mf">0.0</span>
-
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">)):</span>
-        <span class="n">Px</span> <span class="o">+=</span> <span class="n">y_nodos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">Lagrange_base</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">Px</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span><span class="p">;</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">v_ini</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">v_fin</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">num_nodos</span> <span class="o">=</span> <span class="mi">4</span>
-
-    <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-    <span class="n">y_real</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_eval</span><span class="p">)</span>
-
-    <span class="c1"># Nodos equiespaciados</span>
-    <span class="n">x_equ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">,</span> <span class="n">num_nodos</span><span class="p">)</span>
-    <span class="n">y_equ</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_equ</span><span class="p">)</span>
-    <span class="n">p_equ</span> <span class="o">=</span> <span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_equ</span><span class="p">,</span> <span class="n">y_equ</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">)</span>
-
-    <span class="c1"># Nodos de Chebyshev</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_nodos</span><span class="p">)</span>
-    <span class="n">x_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num_nodos</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-    <span class="c1"># Transformacion lineal de [-1, 1] al intervalo [v_ini, v_fin]</span>
-    <span class="n">x_cheb</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">x_k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_k</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_k</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_cheb</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_cheb</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-
-    <span class="n">y_cheb</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_cheb</span><span class="p">)</span>
-    <span class="n">p_cheb</span> <span class="o">=</span> <span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_cheb</span><span class="p">,</span> <span class="n">y_cheb</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">y_real</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) = xe^x&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">p_equ</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">p_cheb</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="n">err_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_real</span> <span class="o">-</span> <span class="n">p_equ</span><span class="p">)</span>
-    <span class="n">err_cheb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_real</span> <span class="o">-</span> <span class="n">p_cheb</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">err_lag</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">err_cheb</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-
-
-</pre></div>
-</div>
-</div>
-</div>
+</li>
+<li><p><strong>Desventajas</strong></p>
+<ul>
+<li><p>Fenómeno de Runge: Al utilizar polinomios de alto grado en un conjunto de nodos equespaciados, se producen oscilaciones severas en los extremos del intervalo.</p></li>
+<li><p>Si se añade un nuevo punto de datos, el polinomio de Lagrange debe recalcularse por completo.</p></li>
+<li><p>Mal acondicionamiento numérico cuando el grado del polinomio es elevado.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Polinomios de Taylor</p>
+<ul class="simple">
+<li><p><strong>Ventajas</strong></p>
+<ul>
+<li><p>Excelente para aproximar funciones en las cercanías (vecindad local) de un punto específico <span class="math notranslate nohighlight">\(x_0\)</span> si se conocen las derivadas analíticas de la función en dicho punto.</p></li>
+<li><p>Proporciona una estimación clara del error a través del término residual de Taylor.</p></li>
+</ul>
+</li>
+<li><p><strong>Desventajas</strong></p>
+<ul>
+<li><p>Requiere conocer explícitamente las derivadas sucesivas de la función, lo cual es imposible si solo se cuenta con una tabla de datos experimentales o numéricos.</p></li>
+<li><p>Su convergencia es estrictamente local; conforme nos alejamos del punto de expansión <span class="math notranslate nohighlight">\(x_0\)</span>, la aproximación suele deteriorarse con rapidez.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Interpolación de Chebyshev</p>
+<ul class="simple">
+<li><p><strong>Ventajas</strong></p>
+<ul>
+<li><p>Minimiza de forma óptima el error de interpolación polinomial en todo el intervalo mediante la distribución no uniforme de los nodos (nodos de Chebyshev, que se concentran más densamente cerca de los extremos).</p></li>
+<li><p>Elimina de manera efectiva el fenómeno de Runge, permitiendo usar grados altos de interpolación con alta estabilidad.</p></li>
+</ul>
+</li>
+<li><p><strong>Desventajas</strong></p>
+<ul>
+<li><p>Los puntos o nodos de interpolación están fijos y predeterminados por las raíces de los polinomios de Chebyshev, por lo que no permite elegir arbitrariamente la posición de las abscisas si los datos ya están dados de forma equespaciada.</p></li>
+<li><p>Requiere transformar los intervalos de estudio a <span class="math notranslate nohighlight">\([-1, 1]\)</span> mediante un cambio de variable.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Interpolación Trigonométrica</p>
+<ul class="simple">
+<li><p><strong>Ventajas</strong></p>
+<ul>
+<li><p>Es ideal para modelar fenómenos periódicos, cíclicos o con componentes armónicas (señales, vibraciones, ondas).</p></li>
+<li><p>La base de funciones trigonométricas (<span class="math notranslate nohighlight">\(\sin(kx), \cos(kx)\)</span>) es ortogonal, lo que simplifica enormemente el cálculo de los coeficientes.</p></li>
+</ul>
+</li>
+<li><p><strong>Desventajas</strong></p>
+<ul>
+<li><p>No es adecuada para funciones aperiódicas o que presenten crecimiento polinomial desmedido en los extremos.</p></li>
+<li><p>Requiere un número par de puntos equespaciados <span class="math notranslate nohighlight">\(2m\)</span> cubriendo un periodo (típicamente <span class="math notranslate nohighlight">\([-\pi, \pi]\)</span>).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
@@ -624,20 +575,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="interpolacion_polinomial.html"
+       href="interpolacion_trigonometrica.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Interpolación polinomial de Lagrange</p>
+        <p class="prev-next-title">Interpolación trigonométrica</p>
       </div>
     </a>
     <a class="right-next"
-       href="interpolacion_trigonometrica.html"
+       href="funciones_definidas.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Interpolación trigonométrica</p>
+        <p class="prev-next-title">Funciones definidas experimentalmente o numéricamente</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

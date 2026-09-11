@@ -190,6 +190,7 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Interpolación polinomial de Lagrange</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
@@ -582,7 +583,55 @@ document.write(`
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(P(x)\)</span> es la interpolación polinomial dada en la Ec. <a class="reference internal" href="#equation-eqn-polinomio">(1)</a>.</p>
 </section>
-</div></section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Definimos la funcion base del polinomio de Lagrange</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Lagrange_base</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">L_nk</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="n">L_nk</span> <span class="o">*=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_nodos</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_nodos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_nodos</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">L_nk</span>
+
+<span class="c1"># Definimos el polinomio de Lagrange</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">Lagrange_poli</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">y_nodos</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">Px</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">)):</span>
+        <span class="n">Px</span> <span class="o">+=</span> <span class="n">y_nodos</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">Lagrange_base</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Px</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">x_nodos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">y_nodos</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">)</span>
+
+    <span class="n">x_pts_finos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">y_exacta</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x_pts_finos</span><span class="p">)</span>
+
+    <span class="n">y_aprox</span> <span class="o">=</span> <span class="p">[</span><span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">y_nodos</span><span class="p">,</span> <span class="n">xi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x_pts_finos</span><span class="p">]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts_finos</span><span class="p">,</span> <span class="n">y_exacta</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exacta&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_pts_finos</span><span class="p">,</span> <span class="n">y_aprox</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">y_nodos</span><span class="p">,</span> <span class="s1">&#39;ok&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Nodos interp.&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+    <span class="c1"># plt.subplot(122)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
