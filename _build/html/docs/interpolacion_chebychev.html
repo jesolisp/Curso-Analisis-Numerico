@@ -480,7 +480,7 @@ document.write(`
 <li><p>una ubicación óptima de los puntos de interpolación para minimizar el error en la interpolación de Lagrange.</p></li>
 <li><p>un medio para reducir el grado de un polinomio de aproximación con una pérdida mínima de precisión.</p></li>
 </ul>
-<div class="proof theorem admonition" id="theorem-0">
+<div class="proof theorem admonition" id="theorem-3">
 <p class="admonition-title"><span class="caption-number">Teorema 13 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>El polinomio de Chebyshev <span class="math notranslate nohighlight">\(T_{n}(x)\)</span> de grado <span class="math notranslate nohighlight">\(n \geq 1\)</span> tiene <span class="math notranslate nohighlight">\(n\)</span> ceros simples en <span class="math notranslate nohighlight">\([−1, 1]\)</span> en</p>
@@ -494,7 +494,7 @@ document.write(`
  \overline{x}'_{k} = \cos \left( \frac{k\pi}{n} \right), \quad \text{con} \quad T_{n}\left(\overline{x}'_{k} \right) = (-1)^{k}, \quad \text{para cada} \quad k = 0,1,\dots,n.
 \]</div>
 </section>
-</div><div class="proof theorem admonition" id="theorem-1">
+</div><div class="proof theorem admonition" id="theorem-4">
 <p class="admonition-title"><span class="caption-number">Teorema 14 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Los polinomios de la forma <span class="math notranslate nohighlight">\(\tilde{T}_{n} (x)\)</span>, cuando <span class="math notranslate nohighlight">\(n \geq 1\)</span>, tienen la propiedad de que</p>
@@ -507,11 +507,22 @@ document.write(`
 </div><p><strong>Ejemplo 1</strong>. Sea <span class="math notranslate nohighlight">\(f(x) = xe^x\)</span> en el intervalo <span class="math notranslate nohighlight">\([0, 1.5]\)</span>. Compare los valores obtenidos mediante el polinomio de Lagrange con cuatro nodos equiespaciados con los obtenidos mediante el polinomio de Lagrange cuyos nodos son los ceros del cuarto polinomio de Chebyshev.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
-<span class="c1"># Definimos la funcion base del polinomio de Lagrange</span>
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos la funcion base del polinomio de Lagrange</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">Lagrange_base</span><span class="p">(</span><span class="n">x_nodos</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
     <span class="n">L_nk</span> <span class="o">=</span> <span class="mf">1.0</span>
 
@@ -535,60 +546,69 @@ document.write(`
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">in_min</span><span class="p">,</span> <span class="n">in_max</span><span class="p">,</span> <span class="n">out_min</span><span class="p">,</span> <span class="n">out_max</span><span class="p">):</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span><span class="p">;</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">v_ini</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">v_fin</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">num_nodos</span> <span class="o">=</span> <span class="mi">4</span>
-
-    <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-    <span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-    <span class="n">y_real</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_eval</span><span class="p">)</span>
-
-    <span class="c1"># Nodos equiespaciados</span>
-    <span class="n">x_equ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">,</span> <span class="n">num_nodos</span><span class="p">)</span>
-    <span class="n">y_equ</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_equ</span><span class="p">)</span>
-    <span class="n">p_equ</span> <span class="o">=</span> <span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_equ</span><span class="p">,</span> <span class="n">y_equ</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">)</span>
-
-    <span class="c1"># Nodos de Chebyshev</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_nodos</span><span class="p">)</span>
-    <span class="n">x_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num_nodos</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-
-    <span class="c1"># Transformacion lineal de [-1, 1] al intervalo [v_ini, v_fin]</span>
-    <span class="n">x_cheb</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">x_k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">)</span>
-
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_k</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_k</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_cheb</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">x_cheb</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-
-    <span class="n">y_cheb</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_cheb</span><span class="p">)</span>
-    <span class="n">p_cheb</span> <span class="o">=</span> <span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_cheb</span><span class="p">,</span> <span class="n">y_cheb</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">y_real</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) = xe^x&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">p_equ</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">p_cheb</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
-
-    <span class="n">err_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_real</span> <span class="o">-</span> <span class="n">p_equ</span><span class="p">)</span>
-    <span class="n">err_cheb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_real</span> <span class="o">-</span> <span class="n">p_cheb</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">err_lag</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">err_cheb</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
-
-
+  <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">out_max</span> <span class="o">-</span> <span class="n">out_min</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">in_max</span> <span class="o">-</span> <span class="n">in_min</span><span class="p">)</span> <span class="o">+</span> <span class="n">out_min</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_ini</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">v_fin</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">num_nodos</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">y_real</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_eval</span><span class="p">)</span>
+
+<span class="c1"># Nodos equiespaciados</span>
+<span class="n">x_equ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">,</span> <span class="n">num_nodos</span><span class="p">)</span>
+<span class="n">y_equ</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_equ</span><span class="p">)</span>
+<span class="n">p_equ</span> <span class="o">=</span> <span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_equ</span><span class="p">,</span> <span class="n">y_equ</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">)</span>
+
+<span class="c1"># Nodos de Chebyshev</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_nodos</span><span class="p">)</span>
+<span class="n">x_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">num_nodos</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Transformacion lineal de [-1, 1] al intervalo [v_ini, v_fin]</span>
+<span class="n">x_cheb</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">x_k</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">v_ini</span><span class="p">,</span> <span class="n">v_fin</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x_k</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_k</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_cheb</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x_cheb</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="n">y_cheb</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x_cheb</span><span class="p">)</span>
+<span class="n">p_cheb</span> <span class="o">=</span> <span class="n">Lagrange_poli</span><span class="p">(</span><span class="n">x_cheb</span><span class="p">,</span> <span class="n">y_cheb</span><span class="p">,</span> <span class="n">x_eval</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">y_real</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x) = xe^x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">p_equ</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">p_cheb</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">err_lag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_real</span> <span class="o">-</span> <span class="n">p_equ</span><span class="p">)</span>
+<span class="n">err_cheb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_real</span> <span class="o">-</span> <span class="n">p_cheb</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">err_lag</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Lagrange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">err_cheb</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Chebyshev&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.9238795325112867
+0.9238795325112867
+0.07612046748871326
+1.9238795325112867
+</pre></div>
+</div>
+<img alt="../_images/79fdd71036533527fe01cb74daa400029990f50e4163d9b467efb597d7335fee.png" src="../_images/79fdd71036533527fe01cb74daa400029990f50e4163d9b467efb597d7335fee.png" />
+<img alt="../_images/4cc2aae63d967b060faded449d2c5dbc5a2eb7cebf2f1d676e1facdcba16c448.png" src="../_images/4cc2aae63d967b060faded449d2c5dbc5a2eb7cebf2f1d676e1facdcba16c448.png" />
 </div>
 </div>
 </section>

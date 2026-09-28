@@ -190,6 +190,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
@@ -524,7 +525,7 @@ document.write(`
 \]</div>
 <p>significa que la secuencia <span class="math notranslate nohighlight">\(\{x_{n}\}_{n=1}^{\infty}\)</span> converge a <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-3">
+</div><div class="proof theorem admonition" id="continuidad">
 <p class="admonition-title"><span class="caption-number">Teorema 1 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Si <span class="math notranslate nohighlight">\(f\)</span> es una función definida sobre un conjunto <span class="math notranslate nohighlight">\(X\)</span> de números reales y <span class="math notranslate nohighlight">\(x_{0}\in X\)</span>, entonces las siguientes afirmaciones son equivalentes:</p>
@@ -546,12 +547,12 @@ document.write(`
 \]</div>
 <p>existe. El término <span class="math notranslate nohighlight">\(f'\left(x_{0}\right)\)</span> es llamado la <strong>derivada</strong> de <span class="math notranslate nohighlight">\(f\)</span> en <span class="math notranslate nohighlight">\(x_{0}\)</span>. Una función que tiene una derivada en cada número en un conjunto <span class="math notranslate nohighlight">\(X\)</span> is <strong>diferenciable en</strong> <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-5">
+</div><div class="proof theorem admonition" id="continua">
 <p class="admonition-title"><span class="caption-number">Teorema 2 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Si una función <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\(x_{0}\)</span>, entonces <span class="math notranslate nohighlight">\(f\)</span> es continua en <span class="math notranslate nohighlight">\(x_{0}\)</span>.</p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-6">
+</div><div class="proof theorem admonition" id="teorema_rolle">
 <p class="admonition-title"><span class="caption-number">Teorema 3 </span> (Teorema de Rolle)</p>
 <section class="theorem-content" id="proof-content">
 <p>Suponga que <span class="math notranslate nohighlight">\(f \in C[a, b]\)</span> y que <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\((a, b)\)</span>. Si <span class="math notranslate nohighlight">\(f(a) = f(b)\)</span>, entonces existe un número <span class="math notranslate nohighlight">\(c\)</span> en <span class="math notranslate nohighlight">\((a, b)\)</span> tal que <span class="math notranslate nohighlight">\(f'(c) = 0\)</span>.</p>
@@ -565,7 +566,7 @@ document.write(`
  f'(c) = \frac{f(b)-f(a)}{b-a}.
 \]</div>
 </section>
-</div><div class="proof theorem admonition" id="theorem-8">
+</div><div class="proof theorem admonition" id="valor_exacto">
 <p class="admonition-title"><span class="caption-number">Teorema 5 </span> (Teorema del valor extremo)</p>
 <section class="theorem-content" id="proof-content">
 <p>Si <span class="math notranslate nohighlight">\(f\in C[a,b]\)</span>, entonces existen <span class="math notranslate nohighlight">\(c_{1},c_{2} \in[a,b]\)</span> tales que <span class="math notranslate nohighlight">\(f\left(c_{1} \right) \leq f(x) \leq f(c_{2})\)</span> para todo <span class="math notranslate nohighlight">\(x\in[a,b]\)</span>. Además, si <span class="math notranslate nohighlight">\(f\)</span> es diferenciable en <span class="math notranslate nohighlight">\((a,b)\)</span>, entonces los números <span class="math notranslate nohighlight">\(c_{1}\)</span> y <span class="math notranslate nohighlight">\(c_{2}\)</span> se encuentran ya sea en los extremos de <span class="math notranslate nohighlight">\([a, b]\)</span> o donde <span class="math notranslate nohighlight">\(f'\)</span> es cero.</p>
