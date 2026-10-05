@@ -60,6 +60,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/algoritmo_res_indirecta';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/algoritmo_res_indirecta.html" />
@@ -212,6 +214,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrapolacion_richardson.html">Extrapolación de Richardson</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
 <ul class="nav bd-sidenav">
@@ -507,8 +510,36 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algoritmos-de-resolucion-indirecta">
 <h1>Algoritmos de resolución indirecta<a class="headerlink" href="#algoritmos-de-resolucion-indirecta" title="Link to this heading">#</a></h1>
+<p>Un esquema iterativo mejora la solución hasta alcanzar convergen­cia. Los más comunes son el método de <strong>Jacobi</strong> y el de <strong>Gauss­-Seidel</strong>. Ambos utilizan el mismo principio, pero el
+esquema difiere en la forma de realizar la sustitución.</p>
 <section id="metodo-de-jacobi">
 <h2>Método de Jacobi<a class="headerlink" href="#metodo-de-jacobi" title="Link to this heading">#</a></h2>
+<p>Considere que la matriz <span class="math notranslate nohighlight">\(\bf A\)</span> se puede dividir en tres partes que corresponden a tres conjuntos de coeficientes. De modo que la ecuación <span class="math notranslate nohighlight">\(\bf AX = B\)</span> es</p>
+<div class="math notranslate nohighlight" id="equation-eqn-division-elementos">
+<span class="eqno">(60)<a class="headerlink" href="#equation-eqn-division-elementos" title="Link to this equation">#</a></span>\[
+ \bf \left(L + D + U \right) X = B,
+\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\bf L\)</span> es una matriz triangular inferior con ceros en la diagonal, <span class="math notranslate nohighlight">\(\bf D\)</span> es la matriz diagonal que contiene los elementos de la diagonal de <span class="math notranslate nohighlight">\(\bf A\)</span>, y <span class="math notranslate nohighlight">\(\bf U\)</span> es una matriz triangular superior con ceros en la diagonal.</p>
+<p>El método de Jacobi para la <span class="math notranslate nohighlight">\(r\)</span>-­ésima iteración se escribe como</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e7ef47f3-c2b9-45a3-b8ba-703c7ac3e5a9">
+<span class="eqno">(61)<a class="headerlink" href="#equation-e7ef47f3-c2b9-45a3-b8ba-703c7ac3e5a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf DX^{(r)} = -(L+U)X^{(r-1)}+B, \quad \left(r=0,1,2,\dots\right).
+\end{equation}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>El método de Jacobi converge para matrices diagonalmente dominantes, en el sentido que es matemáticamente preciso.</p>
+</div>
+<p>Para determi­nar si el método converge, se tiene que la matriz de iteración</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ebb101a5-aa45-43c1-bde1-60ed6e12b443">
+<span class="eqno">(62)<a class="headerlink" href="#equation-ebb101a5-aa45-43c1-bde1-60ed6e12b443" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf -D^{-1}\left(L+U \right),
+\end{equation}\]</div>
+<p>además de un término aditivo, <span class="math notranslate nohighlight">\(\bf D^{−1}B\)</span>, mapea un conjunto de <span class="math notranslate nohighlight">\(\bf X\)</span> en el siguiente.</p>
+<p>La rapidez de convergencia de este método está dada por la rapidez de disminución del eigenvalor más lento. Es decir, el factor con el módulo más grande. El módu­lo de este factor está acotado entre 0 y 1, y se le llama <em>radio espectral del operador de relajación</em> <span class="math notranslate nohighlight">\((\rho_{s})\)</span>. El número de iteraciones <span class="math notranslate nohighlight">\((r)\)</span> necesarias para reducir el error total por un factor <span class="math notranslate nohighlight">\((10^{-p})\)</span> se aproxima como</p>
+<div class="amsmath math notranslate nohighlight" id="equation-27f7f8f8-090b-48c5-87e5-3fd551c911ae">
+<span class="eqno">(63)<a class="headerlink" href="#equation-27f7f8f8-090b-48c5-87e5-3fd551c911ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ r \approx \frac{p\, \ln(10)}{-\ln(\rho_{s})}.
+\end{equation}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -635,6 +666,36 @@ Solución final obtenida (última iteración): [0.51684613 0.01796922 0.79111632
 </section>
 <section id="metodo-de-gauss-seidel">
 <h2>Método de Gauss-Seidel<a class="headerlink" href="#metodo-de-gauss-seidel" title="Link to this heading">#</a></h2>
+<p>Las ecuaciones <a class="reference internal" href="#equation-eqn-division-elementos">(60)</a> se necesitan escalar mediante la división entre los ele­mentos de la diagonal, de manera que <span class="math notranslate nohighlight">\(\bf D\)</span> será igual a la matriz identidad <span class="math notranslate nohighlight">\(\bf I\)</span>. Mientras que el método de Jacobi transfiere todos los términos al lado derecho, excepto los términos de la diagonal, iterando como sigue</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b68ca004-6e71-418f-8fec-19b17529ec02">
+<span class="eqno">(64)<a class="headerlink" href="#equation-b68ca004-6e71-418f-8fec-19b17529ec02" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf X^{(r+1)} = \left(-L-U \right)X^{(r)} + B, \quad (r=0,1,2,\dots),
+\end{equation}\]</div>
+<p>el método de Gauss­Seidel introduce <span class="math notranslate nohighlight">\(x_{1}^{(r+1)},x_{2}^{(r+1)},\dots,\)</span> en el lado derecho una vez calculados. Por lo tanto, las ecuaciones de iteración están dadas como</p>
+<div class="amsmath math notranslate nohighlight" id="equation-800a696b-0a2b-4a4d-b917-cb727827a88b">
+<span class="eqno">(65)<a class="headerlink" href="#equation-800a696b-0a2b-4a4d-b917-cb727827a88b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf X^{(r+1)} = -LX^{(r+1)} - UX^{(r)} + B,
+\end{equation}\]</div>
+<p>o bien</p>
+<div class="amsmath math notranslate nohighlight" id="equation-77008b31-1fbc-48fb-9e49-60c82474132d">
+<span class="eqno">(66)<a class="headerlink" href="#equation-77008b31-1fbc-48fb-9e49-60c82474132d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf (I+L)X^{(r+1)} = -UX^{(r)} + B.
+\end{equation}\]</div>
+<p>O se puede escribir las ecuaciones de la siguiente forma</p>
+<div class="amsmath math notranslate nohighlight" id="equation-985d7c96-efd5-4339-910d-24497898f689">
+<span class="eqno">(67)<a class="headerlink" href="#equation-985d7c96-efd5-4339-910d-24497898f689" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{aligned}
+  x_{1}^{(r+1)} &amp; = - \left( a_{12}\,x_{2}^{(r)} + a_{13}\,x_{3}^{(r)} + a_{14}\,x_{4}^{(r)} + \cdots +  a_{1n}\,x_{n}^{(r)} \right) + b_{1}, \\
+  x_{2}^{(r+1)} &amp; = - \left( a_{21}\,x_{1}^{(r+1)} + a_{23}\,x_{3}^{(r)} + a_{24}\,x_{4}^{(r)} + \cdots +  a_{2n}\,x_{n}^{(r)} \right) + b_{2}, \\
+  x_{3}^{(r+1)} &amp; = - \left( a_{31}\,x_{1}^{(r+1)} + a_{32}\,x_{2}^{(r+1)} + a_{34}\,x_{4}^{(r)} + \cdots +  a_{3n}\,x_{n}^{(r)} \right) + b_{3}, \\
+  \vdots \quad &amp;= \quad \quad \vdots \\
+  x_{n}^{(r+1)} &amp; = - \left( a_{n1}\,x_{1}^{(r+1)} + a_{n2}\,x_{2}^{(r+1)} + a_{n3}\,x_{3}^{(r+1)} + \cdots +  a_{n(n-1)}\,x_{n-1}^{(r+1)} \right) + b_{n}. \\
+ \end{aligned}
+\end{equation}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Cuando el método de Jacobi converge, el método de Gauss­-Seidel converge más rápido.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>

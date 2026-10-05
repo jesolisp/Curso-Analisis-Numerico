@@ -214,6 +214,7 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Resolución de sistemas no lineales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrapolacion_richardson.html">Extrapolación de Richardson</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
 <ul class="nav bd-sidenav">
@@ -513,10 +514,10 @@ document.write(`
 <h2>Método de Euler<a class="headerlink" href="#metodo-de-euler" title="Link to this heading">#</a></h2>
 <p>Considere una Ecuación Diferencial Ordinaria (<em>EDO</em>) de la forma</p>
 <div class="math notranslate nohighlight" id="equation-eqn-edoform">
-<span class="eqno">(53)<a class="headerlink" href="#equation-eqn-edoform" title="Link to this equation">#</a></span>\[
+<span class="eqno">(68)<a class="headerlink" href="#equation-eqn-edoform" title="Link to this equation">#</a></span>\[
  \dot{y} = f(x),
 \]</div>
-<p>donde <span class="math notranslate nohighlight">\(f\)</span> es una función. La solución general a la Ec. <a class="reference internal" href="#equation-eqn-edoform">(53)</a> está dada por la siguiente expresión</p>
+<p>donde <span class="math notranslate nohighlight">\(f\)</span> es una función. La solución general a la Ec. <a class="reference internal" href="#equation-eqn-edoform">(68)</a> está dada por la siguiente expresión</p>
 <div class="math notranslate nohighlight">
 \[
  y = \int f(x)\mathrm{d}x + c,
