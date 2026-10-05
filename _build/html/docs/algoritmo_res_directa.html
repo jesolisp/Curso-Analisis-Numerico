@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/algoritmo_res_directa';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/algoritmo_res_directa.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
     <link rel="next" title="Métodos de factorización" href="metodos_factorizacion.html" />
-    <link rel="prev" title="Polinomios ortogonales" href="polinomios_ortogonales.html" />
+    <link rel="prev" title="Funciones regulares definidas matemáticamente" href="funciones_regulares.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -188,21 +190,46 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Algoritmos de resolución directa</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extrapolacion_richardson.html">Extrapolación de Richardson</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradiente_conjugado.html">Método del gradiente conjugado</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -445,7 +472,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -461,6 +490,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algoritmos de resolución directa</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-gaussiana">Eliminación gaussiana</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-gauss-jordan">Eliminación de Gauss-Jordan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-una-matriz">Inversa de una matriz</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -472,6 +515,311 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algoritmos-de-resolucion-directa">
 <h1>Algoritmos de resolución directa<a class="headerlink" href="#algoritmos-de-resolucion-directa" title="Link to this heading">#</a></h1>
+<p>Suponga que se tienen <span class="math notranslate nohighlight">\(n\)</span> ecuaciones lineales con <span class="math notranslate nohighlight">\(n\)</span> incógnitas que se pueden escribir de la siguiente forma</p>
+<div class="math notranslate nohighlight" id="equation-eqn-sistemas-ecuaciones">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eqn-sistemas-ecuaciones" title="Link to this equation">#</a></span>\[\begin{split}
+ \begin{aligned}
+  a_{11}x_{1} + a_{12}x_{2} + \cdots + a_{1n}x_{n} &amp;= b_{1}, \\
+  a_{21}x_{1} + a_{22}x_{2} + \cdots + a_{2n}x_{n} &amp;= b_{2}, \\
+  \vdots \quad \quad \quad \vdots \quad \quad \quad \quad &amp;= \vdots, \\
+  a_{n1}x_{1} + a_{n2}x_{2} + \cdots + a_{nn}x_{n} &amp;= b_{n}, \\
+ \end{aligned}
+\end{split}\]</div>
+<p>donde el conjunto de coeficientes <span class="math notranslate nohighlight">\(a_{i,j}\left(i,j=1,2,\dots n \right)\)</span> se representan con <span class="math notranslate nohighlight">\(\bf A\)</span> y los elementos <span class="math notranslate nohighlight">\(x_{j}\)</span> y <span class="math notranslate nohighlight">\(b_{j}\left(j=1,2,\dots,n \right)\)</span> se representan con los vectores <span class="math notranslate nohighlight">\(\bf X\)</span> y <span class="math notranslate nohighlight">\(\bf B\)</span>, respectivamente. De modo que, utilizando álgebra matricial, el conjunto de ecuaciones se puede representar de la siguiente forma</p>
+<div class="amsmath math notranslate nohighlight" id="equation-062a6c85-b6ea-41dd-ac8b-dc13a466f4fd">
+<span class="eqno">(9)<a class="headerlink" href="#equation-062a6c85-b6ea-41dd-ac8b-dc13a466f4fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf A}{\bf X} = {\bf B}.
+\end{equation}\]</div>
+<p>Recordemos que estas ecuaciones tienen una solución única, si y sólo si el <span class="math notranslate nohighlight">\(\text{det}(A) \neq 0\)</span>.</p>
+<p>Hay dos tipos de métodos para resolver el sistema de ecuaciones <a class="reference internal" href="#equation-eqn-sistemas-ecuaciones">(8)</a></p>
+<ol class="arabic simple">
+<li><p>Los <strong>métodos directos</strong>. Se basa en la eliminación de elementos. Por ejemplo, el método de Gauss, el método de Gauss-Jordan y el cálculo de la matriz inversa. También se tienen los métodos con base en la factorización: descomposición triangular inferior y superior, factorización de Doolittle-Crout, el método de Cholesky y la factorización QR.</p></li>
+<li><p>Los <strong>métodos indirectos</strong>, o <strong>métodos iterativos</strong>. calculan una sucesión de aproxima­ciones que se espera converjan a un valor suficientemente cercano a la solución verdadera. Entre estos destacan el método de Jacobi y el método de Gauss-­Seidel.</p></li>
+</ol>
+<p>La ventaja de los métodos directos es que la cantidad de cálculos es fija. Caso contrario, para los métodos iterativos, cuyos cálculos deben continuar indefinidamente hasta que las soluciones tengan una con­vergencia apropiada.</p>
+<section id="eliminacion-gaussiana">
+<h2>Eliminación gaussiana<a class="headerlink" href="#eliminacion-gaussiana" title="Link to this heading">#</a></h2>
+<p>Suponga un sistema de ecuaciones de la forma <a class="reference internal" href="#equation-eqn-sistemas-ecuaciones">(8)</a> donde todos los divisores son no nulos. Entonces, la primera ecuación se almacena para ser usada posteriormente y la variable <span class="math notranslate nohighlight">\(x_{1}\)</span> se elimina de las restantes <span class="math notranslate nohighlight">\(n-1\)</span> ecuaciones al restar un múltiplo apropiado de la primera ecuación de cada una de las otras ecuaciones. Para esto, la siguientes notaciones son utilizadas para hacer referencia a los coeficientes originales</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7f8a250c-e9fe-4d24-becc-421c09d0c69f">
+<span class="eqno">(10)<a class="headerlink" href="#equation-7f8a250c-e9fe-4d24-becc-421c09d0c69f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ a_{ij}^{(1)} = a_{ij}, \quad \left(i,j=1,2,\dots,n \right),
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-97721f76-d461-47eb-a494-c978de25a025">
+<span class="eqno">(11)<a class="headerlink" href="#equation-97721f76-d461-47eb-a494-c978de25a025" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ b_{i}^{(1)} = b_{i}, \quad \left(i=1,2,\dots,n \right),
+\end{equation}\]</div>
+<p>mientras que esta es para los nuevos coeficientes que se encuentran al usar los multiplicadores</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d4f6c5c2-cf0e-499a-bac6-56cf51fc998a">
+<span class="eqno">(12)<a class="headerlink" href="#equation-d4f6c5c2-cf0e-499a-bac6-56cf51fc998a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ m_{i1} = \frac{a_{i1}^{(1)}}{a_{11}^{(1)}}, \quad \left(i,j=2,3,\dots,n \right),
+\end{equation}\]</div>
+<p>con ellos conformamos los nuevos elementos para la matriz <span class="math notranslate nohighlight">\(\bf A\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-23cba520-bba6-4ddc-9ccb-c8136a694c98">
+<span class="eqno">(13)<a class="headerlink" href="#equation-23cba520-bba6-4ddc-9ccb-c8136a694c98" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ a_{ij}^{(2)} = a_{ij}^{(1)} - m_{i1}\, a_{1j}^{(1)}, \quad \left(i=2,3,\dots,n \right), \quad \left(j=1,2,\dots,n \right),
+\end{equation}\]</div>
+<p>mientras que para el vector <span class="math notranslate nohighlight">\(\bf B\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-abaef6d2-9b24-4e82-b418-34bedd545a33">
+<span class="eqno">(14)<a class="headerlink" href="#equation-abaef6d2-9b24-4e82-b418-34bedd545a33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ b_{i}^{(2)} = b_{i}^{(1)} - m_{i1}\, b_{i}^{(1)}, \quad \left(i=1,2,\dots,n \right).
+\end{equation}\]</div>
+<p>De esto se observa que los elementos de la primera columna <span class="math notranslate nohighlight">\(j = 1\)</span>, tienen los siguientes valores</p>
+<div class="amsmath math notranslate nohighlight" id="equation-93f4cc13-6904-4d12-acef-46e0957c5b10">
+<span class="eqno">(15)<a class="headerlink" href="#equation-93f4cc13-6904-4d12-acef-46e0957c5b10" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ a_{i1}^{(2)} = a_{i1}^{(1)} - \frac{a_{i1}^{(1)}}{a_{11}^{(1)}}a_{11}^{(1)} = 0
+\end{equation}\]</div>
+<p>por lo que la primera variable <span class="math notranslate nohighlight">\(x_{1}\)</span> se ha eliminado de las últimas <span class="math notranslate nohighlight">\(n−1\)</span> ecuaciones. Si se repite este procedimiento <span class="math notranslate nohighlight">\(n −1\)</span> veces, la ecuación restante tendrá una sola incógnita y se puede resolver en forma directa.</p>
+<p>En cada etapa del proceso, cuando la variable <span class="math notranslate nohighlight">\(x_{k}\)</span> se va a eliminar, los multiplicadores son</p>
+<div class="amsmath math notranslate nohighlight" id="equation-64b3fd4d-ccb9-4cd2-8288-cc388eae67aa">
+<span class="eqno">(16)<a class="headerlink" href="#equation-64b3fd4d-ccb9-4cd2-8288-cc388eae67aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ m_{ik} = \frac{a_{ik}^{(k)}}{a_{kk}^{(k)}}, \quad \left(i=k+1,k+2,k+3,\dots,n \right),
+\end{equation}\]</div>
+<p>y los nuevos elementos formados son, para la matriz <span class="math notranslate nohighlight">\(\bf A\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-bb50a539-70c1-47f4-8af6-a65711f6eddc">
+<span class="eqno">(17)<a class="headerlink" href="#equation-bb50a539-70c1-47f4-8af6-a65711f6eddc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ a_{ij}^{(k+1)} = a_{ij}^{(k)} - m_{ik}\, a_{kj}^{(k)}, \quad \left(i=k+1,k+2,\dots,n \right), (j=k,k+1,k+2,\dots,n)
+\end{equation}\]</div>
+<p>y para el vector <span class="math notranslate nohighlight">\(\bf B\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-de666809-db8c-4ac8-b057-aa08c005252c">
+<span class="eqno">(18)<a class="headerlink" href="#equation-de666809-db8c-4ac8-b057-aa08c005252c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ b_{i}^{(k+1)} = b_{i}^{(k)} - m_{ik}\, b_{k}^{(k)}, \quad \left(i=k+1,k+2,\dots,n \right).
+\end{equation}\]</div>
+<p>El resultado de este proceso de eliminación es un conjunto triangular de ecuaciones de la forma</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ \begin{aligned}
+  a_{11}^{(1)}x_{1} + a_{12}^{(1)}x_{2} + \cdots + a_{1n}^{(1)}x_{n} &amp;= b_{1}^{(1)}, \\
+  a_{22}^{(2)}x_{2} + \cdots + a_{2n}^{(2)}x_{n} &amp;= b_{2}^{(2)}, \\
+  \vdots \quad \quad \quad \vdots \quad \quad \quad \quad &amp;= \vdots, \\
+  a_{nn}^{(n)}x_{n} &amp;= b_{n}^{(n)}, \\
+ \end{aligned}
+\end{split}\]</div>
+<p>Con un proceso de sustitución hacia atrás o regresiva, la última ecuación tiene la solución</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e38f062a-0ab3-4641-9143-fea8d0341c5c">
+<span class="eqno">(19)<a class="headerlink" href="#equation-e38f062a-0ab3-4641-9143-fea8d0341c5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{n} = \frac{b_{n}^{(n)}}{a_{nn}^{(n)}}.
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Vector para almacenar la solución final.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Proceso de eliminación gaussiana</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="c1"># Cálculo del factor multiplicador para anular los elementos debajo de la diagonal.</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+        
+        <span class="c1"># Modificación de la fila m de la matriz A.</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
+        
+        <span class="c1"># Modificación del elemento m del vector B.</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Proceso de sustitución regresiva</span>
+<span class="c1"># Se calcula primero la última incógnita.</span>
+<span class="n">x</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Se resuelven las demás incógnitas desde la penúltima hasta la primera.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">suma</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Sumatoria de los términos con incógnitas ya despejadas.</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">suma</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    
+    <span class="c1"># Cálculo de la incógnita actual.</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">suma</span><span class="p">)</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Mostrar la solución obtenida</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vector solución x:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector solución x: [-0.69044297  1.63071155  0.5417684  -0.47715382  0.34539588]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eliminacion-de-gauss-jordan">
+<h1>Eliminación de Gauss-Jordan<a class="headerlink" href="#eliminacion-de-gauss-jordan" title="Link to this heading">#</a></h1>
+<p>Para aplicar este método, se procede de una manera similar a la eliminación gaussiana, pero en cada etapa se elimina la variable <span class="math notranslate nohighlight">\(x_{k}\)</span>, no sólo de las ecuaciones sucesivas, sino también de todas las prece­dentes. La eliminación de Jordan necesita aproxi­madamente <span class="math notranslate nohighlight">\(\frac{n^{3}}{2}\)</span> operaciones, en contraste con las <span class="math notranslate nohighlight">\(\frac{n^{3}}{3}\)</span> de la eliminación gaussiana.</p>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>No es recomendable para el uso general.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Proceso de eliminación Gauss-Jordan</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Normalización del pivote: se divide el elemento k de B y la fila k de A </span>
+    <span class="c1"># por el elemento pivote A[k, k] para que la diagonal principal sea 1.</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    
+    <span class="c1"># Eliminación: hacer ceros en todos los demás elementos de la columna k.</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="c1"># Factor multiplicador para anular el elemento A[m, k]</span>
+            <span class="n">MT</span> <span class="o">=</span> <span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+            
+            <span class="c1"># Modificación de la fila m de la matriz A.</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
+            
+            <span class="c1"># Modificación del elemento m del vector B.</span>
+            <span class="n">B</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># NOTA: En el método de Gauss-Jordan, la matriz A se convierte en la matriz identidad </span>
+<span class="c1"># y la solución queda almacenada directamente en el vector B.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Vector solución x:&quot;</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector solución x: [-0.81301939  1.76315789 -2.52770083  0.23961219  1.79778393]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="inversa-de-una-matriz">
+<h1>Inversa de una matriz<a class="headerlink" href="#inversa-de-una-matriz" title="Link to this heading">#</a></h1>
+<p>En el caso de un conjunto de ecuaciones con diferentes entradas de <span class="math notranslate nohighlight">\(\bf B\)</span>, se puede encontrar la solución calculando la inversa de la matriz <span class="math notranslate nohighlight">\(\bf A\)</span>, para lo cual se requiere que ésta sea no singular. Ésta se determina al resolver <span class="math notranslate nohighlight">\(\bf X\)</span> de la ecuación <span class="math notranslate nohighlight">\(\bf AX = I\)</span>, donde la matriz <span class="math notranslate nohighlight">\(\bf A\)</span> tiene los coeficientes del lado izquier­do y el lado derecho, <span class="math notranslate nohighlight">\(\bf I\)</span>, representa a la matriz identidad</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9d71ec02-e3cf-47da-b9e9-7a4bd31c5596">
+<span class="eqno">(20)<a class="headerlink" href="#equation-9d71ec02-e3cf-47da-b9e9-7a4bd31c5596" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ I = \begin{bmatrix}
+  1 &amp; 0 &amp; \cdots &amp; 0 \\
+  0 &amp; 1 &amp; \cdots &amp; 0 \\
+  \vdots &amp; \vdots &amp; \cdots &amp; \vdots \\
+  0 &amp; 0 &amp; \cdots &amp; 1
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Resolviendo cada uno de estos vectores columna de <span class="math notranslate nohighlight">\(\bf I\)</span> se obtienen las columnas de la matriz inversa <span class="math notranslate nohighlight">\(\bf A^{-1}\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-b757da66-d0a1-48d3-8f6b-ec57a71527dd">
+<span class="eqno">(21)<a class="headerlink" href="#equation-b757da66-d0a1-48d3-8f6b-ec57a71527dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ A^{-1} = \frac{\text{adj}(A)}{\text{det}(A)}.
+\end{equation}\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>El determi­nante de una matriz se puede calcular como producto del proceso de la eliminación gaussiana.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Matriz unitaria (identidad de tamaño N x N).</span>
+<span class="n">Id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Proceso de eliminación Gauss-Jordan para calcular la inversa</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Normalización del pivote en la matriz Identidad (Id) y en A.</span>
+    <span class="n">Id</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Id</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    
+    <span class="c1"># Eliminación: hacer ceros en todos los demás elementos de la columna k.</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">m</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="c1"># Factor multiplicador para anular el elemento A[m, k]</span>
+            <span class="n">MT</span> <span class="o">=</span> <span class="o">-</span><span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+            
+            <span class="c1"># Modificación de la fila m de la matriz A.</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
+            
+            <span class="c1"># Modificación de la fila m de la matriz Id (acumulando las operaciones inversas).</span>
+            <span class="n">Id</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">Id</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">Id</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
+
+<span class="c1"># NOTA: En este punto, la matriz A se convierte en la matriz identidad </span>
+<span class="c1"># y la matriz &#39;Id&#39; almacena la matriz inversa de A.</span>
+
+<span class="c1"># Cálculo del vector solución multiplicando la matriz inversa (Id) por el vector B.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Id</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz Inversa (Id):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vector solución x:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz Inversa (Id):
+[[-1.98019802e-02 -7.92079208e-01 -1.83168317e+00  2.21782178e+00
+   1.63366337e+00]
+ [-3.16831683e-01 -1.67326733e+00 -3.30693069e+00  4.48514851e+00
+   3.13861386e+00]
+ [ 9.90099010e-02 -3.96039604e-02  1.58415842e-01 -8.91089109e-02
+  -1.68316832e-01]
+ [ 1.27722772e+00  8.08910891e+00  1.76435644e+01 -2.30495050e+01
+  -1.58712871e+01]
+ [-3.26732673e-01 -1.06930693e+00 -2.72277228e+00  3.59405941e+00
+   2.45544554e+00]]
+
+Vector solución x:
+[-1.47524752 -2.6039604   0.37623762 16.65346535 -2.84158416]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -505,12 +853,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="polinomios_ortogonales.html"
+       href="funciones_regulares.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Polinomios ortogonales</p>
+        <p class="prev-next-title">Funciones regulares definidas matemáticamente</p>
       </div>
     </a>
     <a class="right-next"
@@ -528,6 +876,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Algoritmos de resolución directa</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-gaussiana">Eliminación gaussiana</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-gauss-jordan">Eliminación de Gauss-Jordan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#inversa-de-una-matriz">Inversa de una matriz</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

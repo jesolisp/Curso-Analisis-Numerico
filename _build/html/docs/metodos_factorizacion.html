@@ -60,6 +60,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/metodos_factorizacion';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/metodos_factorizacion.html" />
@@ -188,21 +190,45 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Métodos de factorización</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradiente_conjugado.html">Método del gradiente conjugado</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -445,7 +471,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -461,6 +489,21 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Métodos de factorización</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factorizacion-lu">Factorización LU</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#factorizacion-de-doolittle-crout">Factorización de Doolittle-Crout</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-cholesky">Método de Cholesky</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#factorizacion-qr">Factorización QR</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -472,6 +515,643 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="metodos-de-factorizacion">
 <h1>Métodos de factorización<a class="headerlink" href="#metodos-de-factorizacion" title="Link to this heading">#</a></h1>
+<section id="factorizacion-lu">
+<h2>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Link to this heading">#</a></h2>
+<p>Si se necesita resolver el sistema de la forma <span class="math notranslate nohighlight">\(\bf AX = B\)</span>, se puede utilizar el método de descomposición triangular <span class="math notranslate nohighlight">\(\bf A=LU\)</span> y reescribir el sistema como</p>
+<div class="amsmath math notranslate nohighlight" id="equation-212c1c13-69aa-41b6-995d-5c1ea972f4b3">
+<span class="eqno">(22)<a class="headerlink" href="#equation-212c1c13-69aa-41b6-995d-5c1ea972f4b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf LUX = B.
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\bf U\)</span> es una matriz triangular superior y <span class="math notranslate nohighlight">\(\bf L\)</span> es una matriz triangular inferior.</p>
+<p>Considere un sistema de ecuaciones de dimensión 3, tenemos</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a561dc8d-5d84-40d0-ba54-b47d3333bb26">
+<span class="eqno">(23)<a class="headerlink" href="#equation-a561dc8d-5d84-40d0-ba54-b47d3333bb26" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{bmatrix}
+  1 &amp; 0 &amp; 0 \\
+  l_{21} &amp; 1 &amp; 0 \\
+  l_{31} &amp; l_{32} &amp; 1 
+ \end{bmatrix}
+ \begin{bmatrix}
+  u_{11} &amp; u_{12} &amp; u_{13} \\
+  0 &amp; u_{22} &amp; u_{23} \\
+  0 &amp; 0 &amp; u_{33} \\
+ \end{bmatrix}=
+ \begin{bmatrix}
+  a_{11} &amp; a_{12} &amp; a_{13} \\
+  a_{21} &amp; a_{22} &amp; a_{23} \\
+  a_{31} &amp; a_{32} &amp; a_{33} \\
+ \end{bmatrix}
+\end{equation}\]</div>
+<p>Introduciendo una variable auxiliar <span class="math notranslate nohighlight">\(\bf Y\)</span>, tenemos</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f14152be-a0a4-4249-9811-b8291bbdc574">
+<span class="eqno">(24)<a class="headerlink" href="#equation-f14152be-a0a4-4249-9811-b8291bbdc574" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \bf UX = Y, \quad LY = B.
+\end{equation}\]</div>
+<p>Dado un vector <span class="math notranslate nohighlight">\(\bf B\)</span>, se despeja <span class="math notranslate nohighlight">\(\bf Y\)</span> del sistema <span class="math notranslate nohighlight">\(\bf LY = B\)</span> y luego se despeja <span class="math notranslate nohighlight">\(\bf X\)</span> del sistema <span class="math notranslate nohighlight">\(\bf UX = Y\)</span>.</p>
+<p>Los valores diagonales de <span class="math notranslate nohighlight">\(\bf L\)</span> son iguales a 1, por lo tanto, el sistema de ecuaciones resultante es</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8a3300f7-84ce-48e6-9699-19d4829ef6d0">
+<span class="eqno">(25)<a class="headerlink" href="#equation-8a3300f7-84ce-48e6-9699-19d4829ef6d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ l_{21}u_{11} = a_{21} \quad \rightarrow \quad l_{21} = \frac{a_{21}}{u_{11}},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ecfcf8d9-c129-4980-8afa-ba56a7d31c6d">
+<span class="eqno">(26)<a class="headerlink" href="#equation-ecfcf8d9-c129-4980-8afa-ba56a7d31c6d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ l_{31}u_{11} = a_{31} \quad \rightarrow \quad l_{31} = \frac{a_{31}}{u_{11}},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ab793c02-bd8f-4e52-be69-e14f765c8f0a">
+<span class="eqno">(27)<a class="headerlink" href="#equation-ab793c02-bd8f-4e52-be69-e14f765c8f0a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ l_{31}u_{12} + l_{32}u_{22} = a_{32} \quad \rightarrow \quad l_{32} = \frac{\left(a_{32} - l_{31}u_{12}\right)}{u_{22}}.
+\end{equation}\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>Este algoritmo realiza una cantidad de operaciones igual que el método de eliminación gaussiana. Por tal razón, se recomienda para uso general donde sea necesario algún método directo.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Proceso de eliminación gaussiana para obtener U</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Inicialmente U es una copia de la matriz A.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="o">-</span><span class="n">U</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>  <span class="c1"># Multiplicadores</span>
+        <span class="n">U</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># Modificación de la matriz U</span>
+
+<span class="c1"># Proceso para obtener L (Matriz Triangular Inferior)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>  <span class="c1"># Se inicializa con una matriz identidad.</span>
+
+<span class="c1"># Se resuelve la primera columna de L (índice 0 en Python).</span>
+<span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="c1"># Sumatoria de elementos conocidos (adaptada a indexación de 0)</span>
+            <span class="n">MT</span> <span class="o">=</span> <span class="n">MT</span> <span class="o">+</span> <span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+        
+        <span class="c1"># Se calcula el elemento (m, k) de la matriz L.</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">MT</span><span class="p">)</span> <span class="o">/</span> <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Proceso de sustitución progresiva (LY = B)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">Y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># El primer elemento del vector auxiliar Y.</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">suma_y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">suma_y</span> <span class="o">=</span> <span class="n">suma_y</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">Y</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    <span class="n">Y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">suma_y</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># Proceso de sustitución regresiva (Ux = y)</span>
+<span class="c1"># ==========================================</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">U</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Se calcula la última variable.</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">suma_x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
+        <span class="n">suma_x</span> <span class="o">=</span> <span class="n">suma_x</span> <span class="o">-</span> <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">m</span><span class="p">]</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">suma_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz L:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matriz U:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vector solución x:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz L:
+[[ 1.          0.          0.          0.          0.        ]
+ [ 0.44444444  1.          0.          0.          0.        ]
+ [ 0.33333333  1.5         1.          0.          0.        ]
+ [ 0.88888889  0.5        -0.33333333  1.          0.        ]
+ [ 0.55555556  1.625       0.25       -2.5         1.        ]]
+
+Matriz U:
+[[  9.           3.           3.           0.           1.        ]
+ [  0.           2.66666667   3.66666667   5.           7.55555556]
+ [  0.           0.           1.5         -4.5         -5.66666667]
+ [  0.           0.           0.           2.          -5.55555556]
+ [  0.           0.           0.           0.         -24.30555556]]
+
+Vector solución x:
+[ 1.256      -7.072       4.95657143  1.22857143 -0.95771429]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="factorizacion-de-doolittle-crout">
+<h1>Factorización de Doolittle-Crout<a class="headerlink" href="#factorizacion-de-doolittle-crout" title="Link to this heading">#</a></h1>
+<p>La matriz <span class="math notranslate nohighlight">\(\bf A\)</span> se factoriza en una triangular inferior <span class="math notranslate nohighlight">\(\bf D\)</span> y en una triangular superior <span class="math notranslate nohighlight">\(\bf C\)</span>, con unos en la diagonal que se obtiene haciendo una eliminación Gauss-­Jordan, quedando como <span class="math notranslate nohighlight">\(\bf DC = A\)</span>.</p>
+<p>Considere la siguiente matriz</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5a72bf4a-18c7-49df-b80f-c8329d47d3f7">
+<span class="eqno">(28)<a class="headerlink" href="#equation-5a72bf4a-18c7-49df-b80f-c8329d47d3f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ A = \begin{bmatrix}
+  4 &amp; 1 &amp; 1 &amp; 1 \\
+  1 &amp; 3 &amp; -1 &amp; 1 \\
+  1 &amp; -1 &amp; 2 &amp; 0 \\
+  1 &amp; 1 &amp; 0 &amp; 2 \\
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Si aplicamos Gauss-­Jordan hasta poner unos en la diagonal, tenemos</p>
+<div class="amsmath math notranslate nohighlight" id="equation-69158653-29be-4cc3-9c6a-1c1fd54001e0">
+<span class="eqno">(29)<a class="headerlink" href="#equation-69158653-29be-4cc3-9c6a-1c1fd54001e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ C = \begin{bmatrix}
+  1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
+  0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
+  0 &amp; 0 &amp; 1 &amp; \frac{1}{13} \\ \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Dado que <span class="math notranslate nohighlight">\(\bf DC = A\)</span>, tenemos</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e28ee2c7-0f6d-48f3-ba4d-3a2080cc1f58">
+<span class="eqno">(30)<a class="headerlink" href="#equation-e28ee2c7-0f6d-48f3-ba4d-3a2080cc1f58" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{bmatrix}
+  D_{11} &amp; 0 &amp; 0 &amp; 0 \\ \\
+  D_{21} &amp; D_{22} &amp; 0 &amp; 0 \\ \\
+  D_{31} &amp; D_{32} &amp; D_{33} &amp; 0 \\ \\
+  D_{41} &amp; D_{42} &amp; D_{43} &amp; D_{44} \\
+ \end{bmatrix}
+ \begin{bmatrix}
+  1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
+  0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
+  0 &amp; 0 &amp; 1 &amp; \frac{1}{13} \\ \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+ \end{bmatrix}=
+ \begin{bmatrix}
+  4 &amp; 1 &amp; 1 &amp; 1 \\ \\
+  1 &amp; 3 &amp; -1 &amp; 1 \\ \\
+  1 &amp; -1 &amp; 2 &amp; 0 \\ \\
+  1 &amp; 1 &amp; 0 &amp; 2 \\
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Multiplicando los cuatro renglones por la primera columna se obtienen las siguientes ecuaciones</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8bbfa601-7e2e-4f0d-b73f-2db6b8d412b4">
+<span class="eqno">(31)<a class="headerlink" href="#equation-8bbfa601-7e2e-4f0d-b73f-2db6b8d412b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{1}}{\bf C_{1}} = A_{11}, \quad D_{11}(1) = 4, \quad D_{11} = 4,
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-71ea328c-abd1-4d4e-9695-b835d3a97ea5">
+<span class="eqno">(32)<a class="headerlink" href="#equation-71ea328c-abd1-4d4e-9695-b835d3a97ea5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{2}}{\bf C_{1}} = A_{21}, \quad D_{21}(1) = 1, \quad D_{21} = 1,
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-76ea5ca9-7fd2-4187-a0ad-ffcce2127159">
+<span class="eqno">(33)<a class="headerlink" href="#equation-76ea5ca9-7fd2-4187-a0ad-ffcce2127159" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{3}}{\bf C_{1}} = A_{31}, \quad D_{13}(1) = 1, \quad D_{31} = 1,
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-eda16a36-bfc8-4dd0-85e6-84462dc6c5b2">
+<span class="eqno">(34)<a class="headerlink" href="#equation-eda16a36-bfc8-4dd0-85e6-84462dc6c5b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{4}}{\bf C_{1}} = A_{41}, \quad D_{41}(1) = 1, \quad D_{41} = 1.
+\end{equation}\]</div>
+<p>Para la columna dos sólo se necesitan calcular tres valores</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c691eac2-bba1-416c-a1ef-c025e97cdb07">
+<span class="eqno">(35)<a class="headerlink" href="#equation-c691eac2-bba1-416c-a1ef-c025e97cdb07" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{2}}{\bf C_{2}} = A_{22}, \quad D_{21}\left(\frac{1}{4} \right) + D_{22}\left(1 \right) = 3, \quad D_{22} = \frac{11}{4},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-ffc941c4-8cdc-428b-90d0-7fd39766ab6d">
+<span class="eqno">(36)<a class="headerlink" href="#equation-ffc941c4-8cdc-428b-90d0-7fd39766ab6d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{3}}{\bf C_{2}} = A_{32}, \quad D_{31}\left(\frac{1}{4} \right) + D_{32}\left(1 \right) = -1, \quad D_{32} = -\frac{5}{4},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-a8589c00-2676-4ec6-9839-b503f434dc53">
+<span class="eqno">(37)<a class="headerlink" href="#equation-a8589c00-2676-4ec6-9839-b503f434dc53" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{4}}{\bf C_{2}} = A_{42}, \quad D_{41}\left(\frac{1}{4} \right) + D_{42}\left(1 \right) = 1, \quad D_{42} = \frac{3}{4}.
+\end{equation}\]</div>
+<p>En la columna tres sólo hay dos incógnitas</p>
+<div class="amsmath math notranslate nohighlight" id="equation-f63937c9-3072-49ae-abf5-885e92defebf">
+<span class="eqno">(38)<a class="headerlink" href="#equation-f63937c9-3072-49ae-abf5-885e92defebf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{3}}{\bf C_{3}} = A_{33}, \quad D_{31}\left(\frac{1}{4} \right) + D_{32}\left( -\frac{5}{11} \right) + D_{33}(1) = 2, \quad D_{33} = \frac{13}{11},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-d0d2d6f8-7850-4697-87f0-04f7af25d63c">
+<span class="eqno">(39)<a class="headerlink" href="#equation-d0d2d6f8-7850-4697-87f0-04f7af25d63c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{4}}{\bf C_{3}} = A_{43}, \quad D_{41}\left(\frac{1}{4} \right) + D_{42}\left(-\frac{5}{11} \right) + D_{43}(1) = 0, \quad D_{43} = \frac{1}{11}.
+\end{equation}\]</div>
+<p>Finalmente, para la columna cuatro, se tiene una incógnita en función de los valores de las columnas anterio­res</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5133cc0b-b1b5-4839-b458-32641c3c8f25">
+<span class="eqno">(40)<a class="headerlink" href="#equation-5133cc0b-b1b5-4839-b458-32641c3c8f25" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ {\bf R_{4}}{\bf C_{4}} = A_{44}, \quad D_{41}\left(\frac{1}{4} \right) + D_{42}\left(\frac{3}{11} \right) + D_{43}\left(\frac{1}{13}\right) + D_{44}(1) = 2, \quad D_{44} = \frac{20}{13}.
+\end{equation}\]</div>
+<p>Así, se tiene la factorización final <span class="math notranslate nohighlight">\(\bf DC = A\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-3e18b1a2-a87d-4041-8ef7-92e2056490d5">
+<span class="eqno">(41)<a class="headerlink" href="#equation-3e18b1a2-a87d-4041-8ef7-92e2056490d5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{bmatrix}
+  4 &amp; 0 &amp; 0 &amp; 0 \\ \\
+  1 &amp; \frac{11}{4} &amp; 0 &amp; 0 \\ \\
+  1 &amp; -\frac{5}{4} &amp; \frac{13}{11} &amp; 0 \\ \\
+  1 &amp; \frac{3}{4} &amp; \frac{1}{11} &amp; \frac{20}{13} \\
+ \end{bmatrix}
+ \begin{bmatrix}
+  1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
+  0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
+  0 &amp; 0 &amp; 1 &amp; \frac{1}{13} \\ \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+ \end{bmatrix}=
+ \begin{bmatrix}
+  4 &amp; 1 &amp; 1 &amp; 1 \\ \\
+  1 &amp; 3 &amp; -1 &amp; 1 \\ \\
+  1 &amp; -1 &amp; 2 &amp; 0 \\ \\
+  1 &amp; 1 &amp; 0 &amp; 2 \\
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>De modo que el sistema a resolver está dado como sigue</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6d618dee-1206-4af2-bd58-72bb5008fad9">
+<span class="eqno">(42)<a class="headerlink" href="#equation-6d618dee-1206-4af2-bd58-72bb5008fad9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{bmatrix}
+  4 &amp; 0 &amp; 0 &amp; 0 \\ \\
+  1 &amp; \frac{11}{4} &amp; 0 &amp; 0 \\ \\
+  1 &amp; -\frac{5}{4} &amp; \frac{13}{11} &amp; 0 \\ \\
+  1 &amp; \frac{3}{4} &amp; \frac{1}{11} &amp; \frac{20}{13} \\
+ \end{bmatrix}
+ \begin{bmatrix}
+  1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
+  0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
+  0 &amp; 0 &amp; 1 &amp; \frac{1}{13} \\ \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+ \end{bmatrix}
+ \begin{bmatrix}
+  x_{1} \\ \\ x_{2} \\ \\ x_{3} \\ \\ x_{4}
+ \end{bmatrix} =
+ \begin{bmatrix}
+  2 \\ \\
+  4 \\ \\
+  6 \\ \\
+  8
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Utilizando un paso intermedio de la forma</p>
+<div class="amsmath math notranslate nohighlight" id="equation-52091fcd-c4c4-4cfe-abd2-01022546b2bd">
+<span class="eqno">(43)<a class="headerlink" href="#equation-52091fcd-c4c4-4cfe-abd2-01022546b2bd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{bmatrix}
+  4 &amp; 0 &amp; 0 &amp; 0 \\ \\
+  1 &amp; \frac{11}{4} &amp; 0 &amp; 0 \\ \\
+  1 &amp; -\frac{5}{4} &amp; \frac{13}{11} &amp; 0 \\ \\
+  1 &amp; \frac{3}{4} &amp; \frac{1}{11} &amp; \frac{20}{13} \\
+ \end{bmatrix}
+ \begin{bmatrix}
+  y_{1} \\ \\ y_{2} \\ \\ y_{3} \\ \\ y_{4}
+ \end{bmatrix} =
+ \begin{bmatrix}
+  2 \\ \\
+  4 \\ \\
+  6 \\ \\
+  8
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Por sustitución hacia adelante se obtiene la solución</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1771b016-5833-4e65-84f3-71a9d3c8a6c7">
+<span class="eqno">(44)<a class="headerlink" href="#equation-1771b016-5833-4e65-84f3-71a9d3c8a6c7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y_{1} = \frac{2}{4},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-4e75fddd-dc2a-4744-8278-52f49cea6c1c">
+<span class="eqno">(45)<a class="headerlink" href="#equation-4e75fddd-dc2a-4744-8278-52f49cea6c1c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y_{2} = \frac{14}{11},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-da5a5409-b9d7-484c-b18b-3f7800fe4860">
+<span class="eqno">(46)<a class="headerlink" href="#equation-da5a5409-b9d7-484c-b18b-3f7800fe4860" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y_{3} = \frac{78}{13},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-bddb1d54-5154-4af5-afdd-841512089320">
+<span class="eqno">(47)<a class="headerlink" href="#equation-bddb1d54-5154-4af5-afdd-841512089320" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y_{4} = \frac{78}{20}.
+\end{equation}\]</div>
+<p>De esta forma se llega a</p>
+<div class="amsmath math notranslate nohighlight" id="equation-82e1dd4a-ab7c-4f5b-bfe9-6cc87af937d7">
+<span class="eqno">(48)<a class="headerlink" href="#equation-82e1dd4a-ab7c-4f5b-bfe9-6cc87af937d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \begin{bmatrix}
+  1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
+  0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
+  0 &amp; 0 &amp; 1 &amp; \frac{1}{13} \\ \\
+  0 &amp; 0 &amp; 0 &amp; 1 \\
+ \end{bmatrix}
+\begin{bmatrix}
+  x_{1} \\ \\ x_{2} \\ \\ x_{3} \\ \\ x_{4}
+ \end{bmatrix} =
+ \begin{bmatrix}
+  \frac{2}{4} \\ \\
+  \frac{14}{11} \\ \\
+  \frac{78}{13} \\ \\
+  \frac{39}{10}
+ \end{bmatrix}.
+\end{equation}\]</div>
+<p>Finalmente, por sustitución regresiva obtenemos la solución del sistema</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b57ed342-1bd4-4301-8f93-adc98f9891fb">
+<span class="eqno">(49)<a class="headerlink" href="#equation-b57ed342-1bd4-4301-8f93-adc98f9891fb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{4} = \frac{39}{10},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-665a8aaf-b09a-4597-9f37-a70ba860e572">
+<span class="eqno">(50)<a class="headerlink" href="#equation-665a8aaf-b09a-4597-9f37-a70ba860e572" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{3} = \frac{57}{10},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-3f897292-dff7-43a4-be08-ef43c568ef9a">
+<span class="eqno">(51)<a class="headerlink" href="#equation-3f897292-dff7-43a4-be08-ef43c568ef9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{2} = \frac{14}{5},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-66549771-2d24-467f-9189-9c3355a1b64e">
+<span class="eqno">(52)<a class="headerlink" href="#equation-66549771-2d24-467f-9189-9c3355a1b64e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{1} = -\frac{13}{5}.
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># Proceso para obtener la matriz triangular superior (C)</span>
+<span class="c1"># ==========================================</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Inicialmente C es una copia de la matriz A.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Normalización del pivote en la fila k.</span>
+    <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="o">-</span><span class="n">C</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>  <span class="c1"># Multiplicadores</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">MT</span> <span class="o">*</span> <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># Modificación de la matriz C</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># Proceso para obtener la matriz triangular inferior (D)</span>
+<span class="c1"># ==========================================</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>  <span class="c1"># Se inicializa con una matriz de ceros.</span>
+
+<span class="c1"># Se resuelve la primera columna de D (índice 0 en Python).</span>
+<span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="n">MT</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="c1"># Sumatoria de elementos conocidos (adaptada a indexación de 0)</span>
+            <span class="n">MT</span> <span class="o">=</span> <span class="n">MT</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">C</span><span class="p">[</span><span class="n">l</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+        
+        <span class="c1"># Se calcula el elemento (m, k) de la matriz D.</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">MT</span><span class="p">)</span> <span class="o">/</span> <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># Proceso de sustitución progresiva (Dy = B)</span>
+<span class="c1"># ==========================================</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># El primer elemento del vector auxiliar y.</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">suma_y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">suma_y</span> <span class="o">=</span> <span class="n">suma_y</span> <span class="o">-</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">suma_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># ==========================================</span>
+<span class="c1"># Proceso de sustitución regresiva (Cx = y)</span>
+<span class="c1"># ==========================================</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">C</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Se calcula la última variable.</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">suma_x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
+        <span class="n">suma_x</span> <span class="o">=</span> <span class="n">suma_x</span> <span class="o">-</span> <span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">m</span><span class="p">]</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">suma_x</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz D (Inferior):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matriz C (Superior):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vector solución x:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz D (Inferior):
+[[  1.           0.           0.           0.           0.        ]
+ [  2.           3.           0.           0.           0.        ]
+ [  4.          -1.          -8.66666667   0.           0.        ]
+ [  6.          -1.         -23.66666667  12.96153846   0.        ]
+ [  6.          -2.         -18.33333333   2.73076923  -5.97626113]]
+
+Matriz C (Superior):
+[[ 1.          1.          4.          2.          2.        ]
+ [ 0.          1.         -1.66666667  0.66666667  0.66666667]
+ [-0.         -0.          1.          0.73076923  0.03846154]
+ [ 0.          0.          0.          1.         -0.72700297]
+ [-0.         -0.         -0.         -0.          1.        ]]
+
+Vector solución x:
+[ 0.85004965 -1.85203575  0.93843098  1.19314796 -0.06901688]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="metodo-de-cholesky">
+<h1>Método de Cholesky<a class="headerlink" href="#metodo-de-cholesky" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="c1"># (Nota: Para Cholesky, la matriz debe ser simétrica y definida positiva).</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Proceso para obtener la matriz triangular inferior (CInf)</span>
+<span class="n">CInf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+
+<span class="c1"># Se calcula el primer pivote (índice 0 en Python).</span>
+<span class="n">CInf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Se calcula la primera columna de CInf.</span>
+<span class="n">CInf</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">CInf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Se calculan los siguientes pivotes y columnas.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Cálculo del pivote en la posición diagonal (k, k).</span>
+    <span class="n">CInf</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">CInf</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+        <span class="c1"># Sumatoria de los elementos conocidos.</span>
+        <span class="n">suma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">CInf</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">CInf</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="n">k</span><span class="p">])</span>
+        <span class="c1"># Cálculo del elemento (m, k).</span>
+        <span class="n">CInf</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">CInf</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">-</span> <span class="n">suma</span><span class="p">)</span>
+
+<span class="c1"># Matriz triangular superior (CSup)</span>
+<span class="c1"># En Cholesky, la matriz superior es la transpuesta de la inferior.</span>
+<span class="n">CSup</span> <span class="o">=</span> <span class="n">CInf</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># Proceso de sustitución progresiva (CInf * y = B)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">CInf</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Primer elemento del vector auxiliar y.</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">suma_y</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">suma_y</span> <span class="o">=</span> <span class="n">suma_y</span> <span class="o">-</span> <span class="n">CInf</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">m</span><span class="p">]</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">suma_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">CInf</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Proceso de sustitución regresiva (CSup * x = y)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">CSup</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Última variable.</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">suma_x</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">k</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ind</span><span class="p">):</span>
+        <span class="n">suma_x</span> <span class="o">=</span> <span class="n">suma_x</span> <span class="o">-</span> <span class="n">CSup</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">m</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">m</span><span class="p">]</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">suma_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">CSup</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz Triangular Inferior (CInf):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">CInf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Matriz Triangular Superior (CSup):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">CSup</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vector solución x:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz Triangular Inferior (CInf):
+[[ 3.          0.          0.          0.          0.        ]
+ [ 0.33333333  2.62466929  0.          0.          0.        ]
+ [ 1.          0.25400025  2.81699909  0.          0.        ]
+ [ 0.66666667  1.05833439  0.02290243  2.33129993  0.        ]
+ [ 0.33333333  1.48166815  0.45804863 -0.34350493  2.31640761]]
+
+Matriz Triangular Superior (CSup):
+[[ 3.          0.33333333  1.          0.66666667  0.33333333]
+ [ 0.          2.62466929  0.25400025  1.05833439  1.48166815]
+ [ 0.          0.          2.81699909  0.02290243  0.45804863]
+ [ 0.          0.          0.          2.33129993 -0.34350493]
+ [ 0.          0.          0.          0.          2.31640761]]
+
+Vector solución x:
+[ 0.0628659  -0.15137998  0.35405631  0.09018679  0.34304433]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="factorizacion-qr">
+<h1>Factorización QR<a class="headerlink" href="#factorizacion-qr" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">Aqr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de Aqr).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">Aqr</span><span class="p">)</span>
+
+<span class="n">A1</span> <span class="o">=</span> <span class="n">Aqr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Asignación de la matriz original a A1.</span>
+<span class="n">Qi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>   <span class="c1"># Se inicializa Qi como matriz unitaria.</span>
+<span class="n">Qd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>   <span class="c1"># Se inicializa Qd como matriz unitaria.</span>
+
+<span class="c1"># Ciclo iterativo para calcular Qd y Qi para la triangulación (Algoritmo QR)</span>
+<span class="c1"># En Python, &#39;range(1, 31, 2)&#39; emula el incremento de 1 a 30 con paso de 2 (1, 3, 5, ..., 29).</span>
+<span class="k">for</span> <span class="n">kr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">Q1</span><span class="p">,</span> <span class="n">R1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+    <span class="n">A2</span> <span class="o">=</span> <span class="n">R1</span> <span class="o">@</span> <span class="n">Q1</span>
+    <span class="n">Q2</span><span class="p">,</span> <span class="n">R2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span>
+    <span class="n">A1</span> <span class="o">=</span> <span class="n">R2</span> <span class="o">@</span> <span class="n">Q2</span>
+    
+    <span class="c1"># Actualización de Qd y Qi.</span>
+    <span class="n">Qd</span> <span class="o">=</span> <span class="n">Qd</span> <span class="o">@</span> <span class="n">Q1</span> <span class="o">@</span> <span class="n">Q2</span>
+    <span class="n">Qi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Q2</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">Q1</span><span class="p">)</span> <span class="o">@</span> <span class="n">Qi</span>
+
+<span class="c1"># Triangular superior a la que se llega utilizando el método QR.</span>
+<span class="n">As</span> <span class="o">=</span> <span class="n">Qi</span> <span class="o">@</span> <span class="n">Aqr</span> <span class="o">@</span> <span class="n">Qd</span>
+
+<span class="c1"># Solución del sistema de ecuaciones.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Qd</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">As</span><span class="p">)</span> <span class="o">@</span> <span class="n">Qi</span> <span class="o">@</span> <span class="n">B</span>
+
+<span class="c1"># Mostrar resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz Triangular Superior (As):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">As</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vector solución x:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz Triangular Superior (As):
+[[ 2.25104624e+01  7.55156334e-01  2.37447855e+00  3.59185254e+00
+  -6.60024070e+00]
+ [-3.55357804e-15  6.45865053e+00  1.94422204e+00 -1.91070019e+00
+   9.68106235e-01]
+ [-2.11665787e-15  4.22387329e-06 -4.08553885e+00 -4.52429044e-01
+  -1.31832197e+00]
+ [ 1.12047556e-15 -3.87898657e-12  1.35775224e-05  2.73655361e+00
+  -1.27841962e-01]
+ [ 1.01581394e-15 -4.78723422e-16 -3.16477837e-16  4.77579321e-16
+  -6.20127696e-01]]
+
+Vector solución x:
+[ 1.70634921 -0.88690476 -0.61706349 -0.70833333  2.38888889]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -528,6 +1208,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Métodos de factorización</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factorizacion-lu">Factorización LU</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#factorizacion-de-doolittle-crout">Factorización de Doolittle-Crout</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-cholesky">Método de Cholesky</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#factorizacion-qr">Factorización QR</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

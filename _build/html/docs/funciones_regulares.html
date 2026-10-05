@@ -67,7 +67,7 @@
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/funciones_regulares.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Integrales singulares" href="integrales_singulares.html" />
+    <link rel="next" title="Algoritmos de resolución directa" href="algoritmo_res_directa.html" />
     <link rel="prev" title="Funciones definidas experimentalmente o numéricamente" href="funciones_definidas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -196,16 +196,39 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Funciones regulares definidas matemáticamente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradiente_conjugado.html">Método del gradiente conjugado</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -689,36 +712,36 @@ Valor real (scipy.integrate.quad): 0.746824
 <section id="aplicaciones-en-sistemas-de-primer-orden">
 <h3>Aplicaciones en sistemas de primer orden<a class="headerlink" href="#aplicaciones-en-sistemas-de-primer-orden" title="Link to this heading">#</a></h3>
 <p>Considere un problema de valor inicial de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d9c9076d-9b07-4331-9c77-baf5fd3c55ba">
-<span class="eqno">(2)<a class="headerlink" href="#equation-d9c9076d-9b07-4331-9c77-baf5fd3c55ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b869a8d8-2112-4516-b779-1ba3fd90f8c5">
+<span class="eqno">(2)<a class="headerlink" href="#equation-b869a8d8-2112-4516-b779-1ba3fd90f8c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \dot{y} = f(t,y),
 \end{equation}\]</div>
 <p>integrando por ambos lados de la igualdad en el intervalo <span class="math notranslate nohighlight">\([t_{n}, t_{n+1}]\)</span>, tenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-47179df2-a204-48cf-b506-ef52a7db6fce">
-<span class="eqno">(3)<a class="headerlink" href="#equation-47179df2-a204-48cf-b506-ef52a7db6fce" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34297288-f152-419d-ad0c-b24b85a5a8a6">
+<span class="eqno">(3)<a class="headerlink" href="#equation-34297288-f152-419d-ad0c-b24b85a5a8a6" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y\left(t_{n+1} \right) = y\left(t_{n} \right) + \int_{t_{n}}^{t_{n+1}}f(t,y(t))~\mathrm{d}t.
 \end{equation}\]</div>
 <section id="metodo-del-trapecio-implicito-adams-moulton-de-2do-orden">
 <h4>Método del trapecio implícito (Adams-Moulton de 2do orden)<a class="headerlink" href="#metodo-del-trapecio-implicito-adams-moulton-de-2do-orden" title="Link to this heading">#</a></h4>
 <p>Aplicando la regla del trapecio a la integral anterior, obtenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e46eb94-09fa-483f-826c-0525da509641">
-<span class="eqno">(4)<a class="headerlink" href="#equation-9e46eb94-09fa-483f-826c-0525da509641" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3f91b269-57e1-4650-8d5b-2dd8c31a691b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-3f91b269-57e1-4650-8d5b-2dd8c31a691b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{n+1} = y_{n} + \frac{h}{2}\left[ f\left(t_{n},y_{n} \right) + f\left(t_{n+1},y_{n+1} \right) \right].
 \end{equation}\]</div>
 <p>Dado que <span class="math notranslate nohighlight">\(y_{n+1}\)</span> aparece en ambos lados (implícito) es necesario encontrar un algoritmo de búsqueda de raíces como Newton-Raphson para despejarlo.</p>
 <p>Para resolver un sistema mediante el método del trapecio implícito, necesitamos encontrar la raíz de una ecuación no lineal en cada paso de tiempo. Para encontrar <span class="math notranslate nohighlight">\(y_{n+1}\)</span> definimos una función residual <span class="math notranslate nohighlight">\(G\left(y_{n+1} \right)\)</span> que debe ser igual a cero</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b89b7a89-403a-4e6a-982c-8de024f08160">
-<span class="eqno">(5)<a class="headerlink" href="#equation-b89b7a89-403a-4e6a-982c-8de024f08160" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c5cb22a6-8230-45b3-8926-dbc0315a4869">
+<span class="eqno">(5)<a class="headerlink" href="#equation-c5cb22a6-8230-45b3-8926-dbc0315a4869" title="Permalink to this equation">#</a></span>\[\begin{equation}
  G\left(y_{n+1} \right) = y_{n+1} - y_{n} - \frac{h}{2}\left[ f\left(t_{n},y_{n} \right) + f\left(t_{n+1},y_{n+1} \right) \right] = 0.
 \end{equation}\]</div>
 <p>Aplicando el método de Newton-Raphson multivariable, la iteración para actualizar la suposición inicial <span class="math notranslate nohighlight">\(y_{n+1}^{(k)}\)</span> es</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87486da5-1555-4b6a-a509-09e1fcc59ef4">
-<span class="eqno">(6)<a class="headerlink" href="#equation-87486da5-1555-4b6a-a509-09e1fcc59ef4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-41d1fe15-27da-40ef-83ec-cbbffe392598">
+<span class="eqno">(6)<a class="headerlink" href="#equation-41d1fe15-27da-40ef-83ec-cbbffe392598" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{n+1}^{(k+1)} = y_{n+1}^{(k)} - J_{G}^{-1}G\left(y_{n+1}^{(k)} \right),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(J_{G}\)</span> es la matriz Jacobiana del residual con respecto a <span class="math notranslate nohighlight">\(y_{n+1}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-94edd71a-0aa8-4915-916c-a2994034550b">
-<span class="eqno">(7)<a class="headerlink" href="#equation-94edd71a-0aa8-4915-916c-a2994034550b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-207aa869-4f67-4033-8f13-148ac9bfed1b">
+<span class="eqno">(7)<a class="headerlink" href="#equation-207aa869-4f67-4033-8f13-148ac9bfed1b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  J_{G} = I - \frac{h}{2}J_{f}\left(t_{n+1},y_{n+1} \right).
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -824,14 +847,6 @@ Valor real (scipy.integrate.quad): 0.746824
 <img alt="../_images/0b29375f4572b254309b1e11eea7439c43ce0cd794b12e964bd47cd4b58b1aa9.png" src="../_images/0b29375f4572b254309b1e11eea7439c43ce0cd794b12e964bd47cd4b58b1aa9.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Integración de Romberg</span>
-<span class="c1">## Métodos de cuadratura adaptativa</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 </section>
 </section>
@@ -877,11 +892,11 @@ Valor real (scipy.integrate.quad): 0.746824
       </div>
     </a>
     <a class="right-next"
-       href="integrales_singulares.html"
+       href="algoritmo_res_directa.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Integrales singulares</p>
+        <p class="prev-next-title">Algoritmos de resolución directa</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

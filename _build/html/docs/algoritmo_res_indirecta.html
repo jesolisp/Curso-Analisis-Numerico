@@ -188,21 +188,45 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_polinomial.html">Interpolación polinomial de Lagrange</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_chebychev.html">Interpolación de Chebyshev</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolacion_trigonometrica.html">Interpolación trigonométrica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusiones_interpolacion.html">Ventajas y desventajas de los métodos de interpolación</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">III. Integración numérica</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="funciones_definidas.html">Funciones definidas experimentalmente o numéricamente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="funciones_regulares.html">Funciones regulares definidas matemáticamente</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrales_singulares.html">Integrales singulares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="polinomios_ortogonales.html">Polinomios ortogonales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">IV. Sistemas de ecuaciones lineales</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_directa.html">Algoritmos de resolución directa</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="metodos_factorizacion.html">Métodos de factorización</a></li>
+
+
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Algoritmos de resolución indirecta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradiente_conjugado.html">Método del gradiente conjugado</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -445,7 +469,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -461,6 +487,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-jacobi">Método de Jacobi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-gauss-seidel">Método de Gauss-Seidel</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -472,6 +507,220 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="algoritmos-de-resolucion-indirecta">
 <h1>Algoritmos de resolución indirecta<a class="headerlink" href="#algoritmos-de-resolucion-indirecta" title="Link to this heading">#</a></h1>
+<section id="metodo-de-jacobi">
+<h2>Método de Jacobi<a class="headerlink" href="#metodo-de-jacobi" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Inicialización de matrices D, L y U en ceros.</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+
+<span class="c1"># Se asigna la diagonal de A a un vector y luego a la matriz D.</span>
+<span class="n">K1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">K1</span><span class="p">)</span>
+
+<span class="c1"># Se eliminan los elementos de la diagonal de la matriz A para trabajar con los fuera de diagonal.</span>
+<span class="n">A_off</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">D</span>
+
+<span class="c1"># Ciclo para extraer las matrices triangulares L y U</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">L</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A_off</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">A_off</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">]</span>
+
+<span class="c1"># Cálculo del número de iteraciones y convergencia</span>
+<span class="c1"># Matriz de iteración de Jacobi: F = -D^(-1) * (L + U)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">L</span> <span class="o">+</span> <span class="n">U</span><span class="p">)</span>
+
+<span class="c1"># Cálculo de los valores propios y obtención del radio espectral (Rs).</span>
+<span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+<span class="n">Rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">))</span>  <span class="c1"># Módulo del valor propio de disminución más lento.</span>
+
+<span class="c1"># Régimen de convergencia para estimar iteraciones.</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Ni</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rs</span><span class="p">))</span>  <span class="c1"># Número de iteraciones en valor real.</span>
+<span class="n">Nm</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="n">Ni</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>               <span class="c1"># Número de iteraciones enteras.</span>
+
+<span class="c1"># Proceso iterativo de Jacobi</span>
+<span class="c1"># Matriz donde se guardan los resultados de cada iteración (N filas x Nm columnas).</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">Nm</span><span class="p">))</span>
+
+<span class="c1"># Condiciones iniciales: vector de unos para la primera iteración (columna 0 en Python).</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Ciclo iterativo del método.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nm</span><span class="p">):</span>
+    <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span> <span class="o">@</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">@</span> <span class="n">B</span>
+
+<span class="c1"># Mostrar los resultados de todas las iteraciones en pantalla</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz de resultados por iteración (X):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Solución final obtenida (última iteración): </span><span class="si">{</span><span class="n">X</span><span class="p">[:,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz de resultados por iteración (X):
+[[ 1.          0.22222222  0.79761905  0.35394621  0.64036255  0.4327246
+   0.57593645  0.47557464  0.54565687  0.49671123  0.53090766  0.50702196
+   0.5237076   0.51205207  0.52019395  0.5145065   0.51847942  0.51570417
+   0.5176428   0.51628859  0.51723456  0.51657376  0.51703536  0.51671291
+   0.51693815  0.51678081  0.51689072  0.51681395  0.51686758  0.51683011
+   0.51685628  0.516838    0.51685077  0.51684185  0.51684808  0.51684373
+   0.51684677  0.51684465  0.51684613]
+ [ 1.         -0.25        0.31051587 -0.16889881  0.14958211 -0.07460709
+   0.08229016 -0.02707329  0.04940606 -0.00399617  0.03331164  0.00725097
+   0.02545534  0.01273875  0.0216218   0.01541661  0.01975119  0.01672331
+   0.01883841  0.01736092  0.01839301  0.01767205  0.01817567  0.01782387
+   0.01806962  0.01789796  0.01801787  0.01793411  0.01799262  0.01795175
+   0.0179803   0.01796035  0.01797428  0.01796455  0.01797135  0.0179666
+   0.01796992  0.0179676   0.01796922]
+ [ 1.          0.25        1.08829365  0.5713459   0.94450054  0.68468054
+   0.86578406  0.73905067  0.82750583  0.76569845  0.80887044  0.7787128
+   0.79977929  0.78506353  0.79534313  0.7881624   0.79317844  0.78967453
+   0.79212216  0.79041239  0.79160673  0.79077243  0.79135523  0.79094812
+   0.7912325   0.79103385  0.79117262  0.79107568  0.7911434   0.7910961
+   0.79112914  0.79110606  0.79112218  0.79111092  0.79111878  0.79111329
+   0.79111713  0.79111444  0.79111632]
+ [ 1.         -0.42857143  0.57936508 -0.04724112  0.42713057  0.10686841
+   0.33314531  0.1755009   0.28564396  0.2086875   0.26243608  0.22488772
+   0.25111619  0.23279441  0.24559294  0.23665263  0.24289781  0.23853529
+   0.2415827   0.23945396  0.24094097  0.23990223  0.24062784  0.24012097
+   0.24047504  0.24022771  0.24040048  0.24027979  0.24036409  0.2403052
+   0.24034634  0.24031761  0.24033768  0.24032366  0.24033345  0.24032661
+   0.24033139  0.24032805  0.24033038]
+ [ 1.          0.          0.71560847  0.23754409  0.57794916  0.34167434
+   0.50696627  0.39151221  0.47214973  0.41581505  0.45516528  0.42767703
+   0.44687863  0.4334655   0.44283514  0.43629005  0.44086207  0.43766832
+   0.43989929  0.43834087  0.43942949  0.43866904  0.43920025  0.43882918
+   0.43908838  0.43890732  0.4390338   0.43894545  0.43900716  0.43896405
+   0.43899417  0.43897313  0.43898783  0.43897756  0.43898473  0.43897972
+   0.43898322  0.43898078  0.43898248]]
+
+Solución final obtenida (última iteración): [0.51684613 0.01796922 0.79111632 0.24033038 0.43898248]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodo-de-gauss-seidel">
+<h2>Método de Gauss-Seidel<a class="headerlink" href="#metodo-de-gauss-seidel" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Número de incógnitas del sistema de ecuaciones (calculado como el rango de A).</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Ciclo iterativo para normalizar los pivotes de las ecuaciones</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+
+<span class="c1"># Inicialización de matrices D, L y U.</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>         <span class="c1"># La matriz D es la matriz identidad.</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>  <span class="c1"># Se inicializa L en ceros.</span>
+<span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>  <span class="c1"># Se inicializa U en ceros.</span>
+
+<span class="c1"># Se elimina la diagonal de la matriz A para trabajar con los términos fuera de ella.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">D</span>
+
+<span class="c1"># Ciclo para hacer la asignación de las matrices triangulares</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">L</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span>
+    <span class="n">U</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span><span class="n">N</span><span class="p">]</span>
+
+<span class="c1"># Cálculo del número de iteraciones y convergencia</span>
+<span class="c1"># Matriz de iteración de Gauss-Seidel: F = -(D + L)^(-1) * U</span>
+<span class="n">inv_DL</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">D</span> <span class="o">+</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="o">-</span><span class="n">inv_DL</span> <span class="o">@</span> <span class="n">U</span>
+
+<span class="c1"># Cálculo de los valores propios y obtención del radio espectral (Rs).</span>
+<span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+<span class="n">Rs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">))</span>  <span class="c1"># Módulo del valor propio de disminución más lento.</span>
+
+<span class="c1"># Régimen de convergencia para estimar el número de iteraciones.</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">Ni</span> <span class="o">=</span> <span class="p">(</span><span class="n">p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Rs</span><span class="p">))</span>  <span class="c1"># Número de iteraciones en valor real.</span>
+<span class="n">Nm</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="n">Ni</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>               <span class="c1"># Número de iteraciones enteras.</span>
+
+<span class="c1"># Proceso iterativo del método de Gauss-Seidel</span>
+<span class="c1"># Matriz de N filas x Nm columnas donde se guardan los resultados de cada iteración.</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">Nm</span><span class="p">))</span>
+
+<span class="c1"># Condiciones iniciales: vector de unos para iniciar el proceso iterativo (columna 0).</span>
+<span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># Ciclo iterativo del método.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Nm</span><span class="p">):</span>
+    <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span> <span class="o">@</span> <span class="n">X</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">inv_DL</span> <span class="o">@</span> <span class="n">B</span>
+
+<span class="c1"># Mostrar en pantalla el resultado de todas las iteraciones</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz de resultados por iteración (X):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Solución final obtenida (última iteración): </span><span class="si">{</span><span class="n">X</span><span class="p">[:,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matriz de resultados por iteración (X):
+[[ 1.         -0.44444444 -0.08626578 -0.04226703 -0.04337483 -0.04514031
+  -0.04547892 -0.04548471 -0.04547266]
+ [ 1.          0.34920635  0.55394536  0.5885329   0.589716    0.58872375
+   0.58846134  0.58844181  0.58844776]
+ [ 1.         -0.11309524 -0.09867789 -0.07093506 -0.06657988 -0.06677967
+  -0.06700145 -0.06704382 -0.06704466]
+ [ 1.          0.680839    0.55654442  0.54594568  0.54876863  0.54984041
+   0.5499718   0.54995936  0.54995142]
+ [ 1.          0.96006551  0.90812575  0.89440651  0.89311666  0.89334839
+   0.89344985  0.89346346  0.89346253]]
+
+Solución final obtenida (última iteración): [-0.04547266  0.58844776 -0.06704466  0.54995142  0.89346253]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -528,6 +777,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-jacobi">Método de Jacobi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-gauss-seidel">Método de Gauss-Seidel</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
