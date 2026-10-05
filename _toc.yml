@@ -26,13 +26,10 @@ parts:
     - file: docs/algoritmo_res_directa
     - file: docs/metodos_factorizacion
     - file: docs/algoritmo_res_indirecta
-    - file: docs/metodos_relajacion
-    - file: docs/almacenamiento_grandes_sistemas
 - caption: V. Sistemas de ecuaciones no lineales
   chapters:
     - file: docs/resolucion_sistemas_no_lineales
-    - file: docs/algoritmos_aceleracion_convergencia
-    - file: docs/extrapolacion_richardson
+    - file: docs/resolucion_sistemas_ecuaciones
 - caption: VI. Optimización de funciones
   chapters:
     - file: docs/leventberg_marquardt

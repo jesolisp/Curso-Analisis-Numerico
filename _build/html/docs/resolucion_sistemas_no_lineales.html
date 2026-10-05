@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Resolución de sistemas no lineales &#8212; Análisis Numérico</title>
+    <title>Solución de ecuaciones no lineales &#8212; Análisis Numérico</title>
   
   
   
@@ -67,8 +67,8 @@
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/resolucion_sistemas_no_lineales.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Algoritmos de aceleración de convergencia" href="algoritmos_aceleracion_convergencia.html" />
-    <link rel="prev" title="Almacenamiento de grandes sistemas lineales en computadora" href="almacenamiento_grandes_sistemas.html" />
+    <link rel="next" title="Solución de sistemas de ecuaciones diferenciales" href="resolucion_sistemas_ecuaciones.html" />
+    <link rel="prev" title="Algoritmos de resolución indirecta" href="algoritmo_res_indirecta.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -207,14 +207,11 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Resolución de sistemas no lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extrapolacion_richardson.html">Extrapolación de Richardson</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Solución de ecuaciones no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_ecuaciones.html">Solución de sistemas de ecuaciones diferenciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
 <ul class="nav bd-sidenav">
@@ -485,7 +482,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Resolución de sistemas no lineales</h1>
+    <h1>Solución de ecuaciones no lineales</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -495,8 +492,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-euler">Método de Euler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-runge-kutta">Método de Runge-Kutta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-biseccion">Método de bisección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-la-falsa-posicion-o-regla-falsa">Método de la falsa posición o regla falsa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-la-secante">Método de la secante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-newton-raphson">Método de Newton-Raphson</a></li>
 </ul>
             </nav>
         </div>
@@ -508,272 +507,631 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="resolucion-de-sistemas-no-lineales">
-<h1>Resolución de sistemas no lineales<a class="headerlink" href="#resolucion-de-sistemas-no-lineales" title="Link to this heading">#</a></h1>
-<section id="metodo-de-euler">
-<h2>Método de Euler<a class="headerlink" href="#metodo-de-euler" title="Link to this heading">#</a></h2>
-<p>Considere una Ecuación Diferencial Ordinaria (<em>EDO</em>) de la forma</p>
-<div class="math notranslate nohighlight" id="equation-eqn-edoform">
-<span class="eqno">(68)<a class="headerlink" href="#equation-eqn-edoform" title="Link to this equation">#</a></span>\[
- \dot{y} = f(x),
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(f\)</span> es una función. La solución general a la Ec. <a class="reference internal" href="#equation-eqn-edoform">(68)</a> está dada por la siguiente expresión</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="solucion-de-ecuaciones-no-lineales">
+<h1>Solución de ecuaciones no lineales<a class="headerlink" href="#solucion-de-ecuaciones-no-lineales" title="Link to this heading">#</a></h1>
+<p>Considere una ecuación no lineal de la forma</p>
 <div class="math notranslate nohighlight">
 \[
- y = \int f(x)\mathrm{d}x + c,
+ f(x) = 0,
 \]</div>
-<p>donde <span class="math notranslate nohighlight">\(c\)</span> es una constante arbitraria. Para obtener una solución, dependemos de un valor inicial de la forma</p>
-<div class="math notranslate nohighlight">
-\[
- y\left(x_{0}\right) = y_{0}.
-\]</div>
-<p>Para la mayoría de problemas de valor inicial no es posible encontrar una solución exacta (analítica) ya que las ecuaciones son no lineales, discontinuas, o estocásticas. Por ejemplo, <span class="math notranslate nohighlight">\(\dot{y} = e^{{xy}^{4}}\)</span>. Por lo tanto, necesitamos de un método numérico para aproximar la solución.</p>
-<p>Es posible aproximar el término del lado izquierdo de un problema de valor inicial <span class="math notranslate nohighlight">\(\frac{\mathrm{d}f}{\mathrm{d}x}\)</span> utilizando el <em>teorema de Taylor</em> alrededor de un punto dado <span class="math notranslate nohighlight">\(x_{0}\)</span></p>
-<div class="math notranslate nohighlight">
-\[
- f\left(x_{1}\right) = f\left(x_{0}\right) + \left(x_{1}-x_{0}\right)\dot{f}\left(x_{0}\right) + \tau,
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(\tau\)</span> es el error de truncamiento</p>
-<div class="math notranslate nohighlight">
-\[
- \tau = \frac{\left(x_{1} - x_{0}\right)^{2}}{2!}\ddot{f}\left(\xi \right), \quad \xi\in\left[x_{0}, x_{1}\right].
-\]</div>
-<p>Recordando que <span class="math notranslate nohighlight">\(h = x_{1} - x_{0}\)</span>, las ecuación anterior queda definida como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- \dot{f}\left(x_{0}\right) = \frac{f\left(x_{1}\right) - f\left(x_{0}\right)}{h} - \frac{h}{2}\ddot{f}\left(\xi\right)
-\]</div>
-<p>Es posible obtener el método de Euler directo utilizando una variación de la <em>interpolación de Lagrange</em> llamada <em>diferencia dividida</em>.</p>
-<p>Podemos aproximar cualquier función <span class="math notranslate nohighlight">\(f(x)\)</span> utilizando un polinomio de grado <span class="math notranslate nohighlight">\(P_{n}(x)\)</span> y un término de error</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
- \begin{aligned}
-  f(x) &amp;= P_{n}(x) + \text{error}, \\
-  &amp;= f\left(x_{0}\right) + f\left[x_{0}, x_{1}\right]\left(x - x_{0}\right) + f\left[x_{0}, x_{1}, x_{2}\right]\left(x - x_{0}\right)\left(x - x_{1}\right), \\
-  &amp;+ \cdots + f\left[x_{0},\dots,x_{n}\right]\prod_{i=0}^{n-1}\left(x - x_{1}\right) + \text{error},
- \end{aligned}
-\end{split}\]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
- \begin{aligned}
-  f\left[x_{0}, x_{1}\right] &amp;= \frac{f\left(x_{1}\right) - f\left(x_{0}\right)}{x_{1} - x_{0}}, \\
-  f\left[x_{0}, x_{1}, x_{2}\right] &amp;= \frac{f\left[x_{1},x_{2}\right] - f\left[x_{0},x_{1}\right]}{x_{2} - x_{0}}, \\
-  f\left[x_{0}, x_{1}, \dots, x_{n}\right] &amp;= \frac{f\left[x_{1},x_{2},\dots,x_{n}\right] - f\left[x_{0},x_{1},\dots,x_{n-1}\right]}{x_{n} - x_{0}}. \\
- \end{aligned}
-\end{split}\]</div>
-<p>Derivando <span class="math notranslate nohighlight">\(P_{n}(x)\)</span>, tenemos</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
- \begin{aligned}
-  \dot{P}_{n}(x) &amp;= f\left[x_{0},x_{1}\right] + f\left[x_{0},x_{1},x_{2}\right]\left\{\left(x - x_{0}\right) + \left(x - x_{1}\right) \right\}, \\
-  &amp;+ \cdots + f\left[x_{0},\dots,x_{n}\right]\sum_{i=0}^{n-1} \frac{\left(x - x_{0}\right)\dots\left(x - x_{n-1}\right)}{\left(x - x_{i}\right)},
- \end{aligned}
-\end{split}\]</div>
-<p>por consiguiente el error se define como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- \text{error} = \left(x - x_{0}\right)\dots\left(x - x_{n}\right)\frac{f^{n+1}\left(\xi\right)}{\left(n + 1\right)!}.
-\]</div>
-<p>Definimos entonces la primer derivada como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- \dot{f}(x) = \left[x_{0}, x_{1}\right] = \frac{f\left(x_{1}\right) - f\left(x_{0}\right)}{x_{1} - x_{0}},
-\]</div>
-<p>lo que implica</p>
-<div class="math notranslate nohighlight">
-\[
- \dot{f}(x) =  \frac{f\left(x_{1}\right) - f\left(x_{0}\right)}{x_{1} - x_{0}} + O\left(h\right), \quad \text{Euler},
-\]</div>
-<div class="math notranslate nohighlight">
-\[
- \dot{f}(x) =  \frac{f\left(x_{1}\right) - f\left(x_{-1}\right)}{x_{1} - x_{-1}} + O\left(h^{2}\right), \quad \text{Central}.
-\]</div>
-<p>Utilizando el mismo método, obtenemos una aproximación a la segunda derivada como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- \ddot{f}\left(x_{0}\right) = \frac{f_{2} - 2f_{1} + f_{0}}{h^{2}} + O\left(h^{2} \right),
-\]</div>
-<div class="math notranslate nohighlight">
-\[
- \ddot{f}\left(x_{0}\right) = \frac{f_{1} - 2f_{0} + f_{-1}}{h^{2}} + O\left(h^{2} \right), \quad \text{central}.
-\]</div>
-<p><strong>Ejemplo</strong></p>
-<p>Resuelva numéricamente la ecuación diferencial de primer orden</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{aligned}
-   \dot{y} = f\left(x,y\right), \\
-   a \leq x \leq b.
-  \end{aligned}
-\end{split}\]</div>
-<p><strong>Ejemplo</strong></p>
-<p>Aplique la fórmula de Euler a la ecuación de primer orden con una entrada oscilante</p>
-<div class="math notranslate nohighlight">
-\[
- \dot{y} = \sin(x), \quad 0 \leq x \leq 10.
-\]</div>
-<p><strong>Ejemplo</strong></p>
-<p>El crecimiento demográfico simple está descrito por una ecuación diferencial de primer orden de la forma</p>
-<div class="math notranslate nohighlight">
-\[
- \dot{y} = \varepsilon y,
-\]</div>
-<p>cuya solución exacta está dada por</p>
-<div class="math notranslate nohighlight">
-\[
- y = Ce^{\varepsilon x}.
-\]</div>
-<p>Dada la siguiente condición inicial</p>
-<div class="math notranslate nohighlight">
-\[
- y\left(0\right) = 1,
-\]</div>
-<p>con una tasa de cambio de <span class="math notranslate nohighlight">\(\varepsilon = 0.5\)</span>, la solución analítica queda expresada como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- y = e^{0.5 x}.
-\]</div>
-<p>Aplique la fórmula de Euler para obtener una solución aproximada.</p>
-</section>
-<section id="metodo-de-runge-kutta">
-<h2>Método de Runge-Kutta<a class="headerlink" href="#metodo-de-runge-kutta" title="Link to this heading">#</a></h2>
-<p>El método de Runge-Kutta (<em>RK</em>) está relacionado con la expansión de la <em>serie de Taylor</em>, con la diferencia de que no es necesaria la diferenciación de <span class="math notranslate nohighlight">\(f\)</span>.</p>
-<p>Los métodos RK se escriben de la siguiente forma</p>
-<div class="math notranslate nohighlight">
-\[
- w_{n+1} = w_{n} + hF\left(t,w,h; f\right), \quad n\geq 0,
-\]</div>
-<p>donde el error de truncamiento está definido por</p>
-<div class="math notranslate nohighlight">
-\[
- T_{n}\left(y\right) = y\left(t_{n+1}\right) - y\left(t_{n}\right) - hF\left(t_{n},y\left(t_{n}\right),h;f\right),
-\]</div>
-<p>tal que el error está dado como sigue <span class="math notranslate nohighlight">\(\tau_{n}\left(y\right)\)</span></p>
-<div class="math notranslate nohighlight">
-\[
- T_{n} = h\tau_{n}\left(y\right).
-\]</div>
-<p>Reescribiendo términos, tenemos</p>
-<div class="math notranslate nohighlight">
-\[
- y\left(t_{n+1}\right) = y\left(t_{n}\right) - hF \left(t_{n}, y\left(t_{n}\right), h; f \right) + h\tau_{n}\left(y\right).
-\]</div>
-<p>Considere el método explícito de un paso</p>
-<div class="math notranslate nohighlight">
-\[
- \frac{w_{i+1} - w_{i}}{h} = F\left(f, t_{i}, w_{i},h \right),
-\]</div>
-<p>con</p>
-<div class="math notranslate nohighlight">
-\[
- F\left(f, t, y, h \right) = a_{0}k_{1} + a_{1}k_{2},
-\]</div>
-<div class="math notranslate nohighlight">
-\[
- F\left(f, t, y, h \right) = a_{0}\left(t, y \right) + a_{1}\left(t + \alpha_{1}, y + \beta_{1} \right),
-\]</div>
-<p>donde <span class="math notranslate nohighlight">\(\alpha_{0} + \alpha_{1} = 1\)</span>.</p>
-<div class="admonition important">
-<p class="admonition-title">Importante</p>
-<p>En la formulación del <em>método de Runge-Kutta</em> existe un parámetro libre. En este caso, <span class="math notranslate nohighlight">\(\alpha_{0}\)</span>.</p>
+<p>donde <span class="math notranslate nohighlight">\(f\)</span> es una función real. Para determinar las soluciones reales se emplean métodos iterativos. Es decir, dado un valor inicial <span class="math notranslate nohighlight">\(x_{0}\)</span>, se construye una suce­sión de números reales <span class="math notranslate nohighlight">\(\{ x_{n} \}_{n=0}^{\infty} = \{x_{0} , x_{1} , x_{2} ,\dots \}\)</span>. Si el método es adecuado, se espera que <span class="math notranslate nohighlight">\(|x_{n} - x^{\star}|\rightarrow 0\)</span> cuando <span class="math notranslate nohighlight">\(n\rightarrow \infty\)</span>. En este caso se dice que el
+método <em>converge</em> a la solución <span class="math notranslate nohighlight">\(x^{\star}\)</span>; de lo contrario se dice que el método <em>diverge</em>.</p>
+<section id="metodo-de-biseccion">
+<h2>Método de bisección<a class="headerlink" href="#metodo-de-biseccion" title="Link to this heading">#</a></h2>
+<p>Suponga que se desea encontrar el valor de <span class="math notranslate nohighlight">\(x\)</span> tal que <span class="math notranslate nohighlight">\(f(x)=0\)</span>, es decir, <em>un cruce por cero</em>. Para este método, se determinan dos puntos <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{0}\)</span> en los cuales la función toma valores con signo opuesto. Suponiendo que la función es continua, por el teorema del valor intermedio se garantiza que debe existir al menos un cruce por cero de <span class="math notranslate nohighlight">\(f\)</span> entre <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{0}\)</span>.</p>
+<p>Entonces, la función se evalúa en el punto <span class="math notranslate nohighlight">\(x_{1} = \frac{1}{2} \left( x_{0} + \tilde{x}_{0} \right)\)</span>. Por consiguiente, el punto <span class="math notranslate nohighlight">\(\tilde{x}_{1}\)</span> se elige como análogo del par <span class="math notranslate nohighlight">\(\left(x_{0}, \tilde{x}_{0}\right)\)</span> en el cual el valor de la función tiene signo opuesto a <span class="math notranslate nohighlight">\(f(x_{1})\)</span>. Con esto, obtenemos un intervalo <span class="math notranslate nohighlight">\(\left[x_{1}, \tilde{x}_{1} \right]\)</span> que continúa conteniendo un cruce por cero y con la mitad del tamaño del intervalo original. Este proceso se repite hasta que los límites inferior y superior del cruce por cero estén sufi­cientemente cercanos.</p>
+<p>El método se detiene cuando <span class="math notranslate nohighlight">\(|x_{n} − \tilde{x}_{n}| &lt; \text{tol}\)</span> o bien, cuando  <span class="math notranslate nohighlight">\(|f \left( x_{n+1} \right)| &lt; \text{tol}\)</span> , donde <span class="math notranslate nohighlight">\(\text{tol}\)</span> es la tolerancia especificada para el método de
+bisección.</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>El método de bisección es sencillo. Sin embargo, convergen lento y cuando las iteraciones se aproximan al cruce por cero, es mejor utilizar otro método que converja más rápido.</p>
 </div>
-<div class="proof theorem admonition" id="thm:polynomial">
+<div class="proof theorem admonition" id="thm:biseccion">
 <p class="admonition-title"><span class="caption-number">Teorema 16 </span></p>
 <section class="theorem-content" id="proof-content">
-<p>Sea <span class="math notranslate nohighlight">\(f\left(t,y\right)\)</span> y todas sus derivadas parciales de orden menor o igual a <span class="math notranslate nohighlight">\(n+1\)</span> continuas sobre <span class="math notranslate nohighlight">\(D = \left\{ \left(t,y \right) | a \leq t \leq b, c \leq y \leq d \right\}\)</span> y sea <span class="math notranslate nohighlight">\(\left(t_{0}, y_{0}\right)\in D\)</span> para cada <span class="math notranslate nohighlight">\(\left(t, y\right) \in D\)</span>, <span class="math notranslate nohighlight">\(\exists \xi \in \left(t, t_{0}\right)\)</span> y <span class="math notranslate nohighlight">\(\mu \in \left(y, y_{0}\right)\)</span> con</p>
-<div class="math notranslate nohighlight">
-\[
-  f\left(t,y\right) = P_{n} \left(t,y\right) + R_{n}\left(t,y\right),
- \]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  \begin{aligned}
-   P_{n}\left(t,y\right) &amp;= f\left(t_{0},y_{0}\right) + \left[ \left(t - t_{0}\right) \frac{\partial f}{\partial t}\left(t_{0},y_{0}\right) + \left(y - y_{0}\right)\frac{\partial f}{\partial y}\left(t_{0}, y_{0}\right) \right] \\
-   &amp;+ \left[ \frac{\left(t -t_{0}\right)^{2}}{2}\frac{\partial^{2}f}{\partial t^{2}}\left(t_{0}, y_{0}\right) + \left(y - y_{0}\right)\left(t - t_{0}\right) \frac{\partial^{2} f}{\partial y\partial t}\left(t_{0}, y_{0}\right) \right. \\
-   &amp;+ \left. \frac{\left(y - y_{0}\right)^{2}}{2}\frac{\partial^{2} f}{\partial y^{2}} \left(t_{0}, y_{0} \right) \right] \\
-   &amp;+ \dots + \\
-   &amp;+ \left[ \frac{1}{n!} \sum_{j=0}^{n} \binom{n}{j} \left(t - t_{0}\right)^{n-j}\left(y - y_{0}\right)^{j}\frac{\partial^{n} f}{\partial y^{j}\partial t^{n-j}}\left(t_{0},y_{0}\right) \right].
-  \end{aligned}
- \end{split}\]</div>
+<p>Suponga que <span class="math notranslate nohighlight">\(f\)</span> es  continua en el intervalo <span class="math notranslate nohighlight">\(\left[x_{0},\tilde{x}_{0} \right]\)</span> y <span class="math notranslate nohighlight">\(f(x_{0}), f(\tilde{x}_{0})&lt;0\)</span>, el método de bisección genera una sucesión <span class="math notranslate nohighlight">\(\left\{x_{n} \right\}_{n=1}^{\infty}\)</span> que aproxima <span class="math notranslate nohighlight">\(x^{\star}\)</span> a un cruce por cero de <span class="math notranslate nohighlight">\(f\)</span>, tal que</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c213d1d9-1cdd-406e-93ae-7e8563352f48">
+<span class="eqno">(68)<a class="headerlink" href="#equation-c213d1d9-1cdd-406e-93ae-7e8563352f48" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ | x_{n} - x^{\star} | \leq \frac{x_{0}- \tilde{x}_{0}}{2^{n}}, \quad n \geq 1.
+\end{equation}\]</div>
+<p>Esto implica que</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4be26fc5-403d-45bf-9550-49d44129f862">
+<span class="eqno">(69)<a class="headerlink" href="#equation-4be26fc5-403d-45bf-9550-49d44129f862" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{n} = x^{\star} + \mathcal{O}\left( \frac{1}{2^{n}} \right),
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathcal{O}\left( 1/2^{n} \right)\)</span> es la velocidad de convergencia del método. Además, el método de bisección satisface</p>
+<div class="amsmath math notranslate nohighlight" id="equation-15d46009-b5aa-4270-9a05-b0d9e83e9833">
+<span class="eqno">(70)<a class="headerlink" href="#equation-15d46009-b5aa-4270-9a05-b0d9e83e9833" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \lim_{n\rightarrow \infty}~\frac{| x_{n+1} - x^{\star} |}{| x_{n} - x^{\star} |} = \frac{1}{2},
+\end{equation}\]</div>
+<p>por lo que el método converge linealmente.</p>
 </section>
-</div><p>Podemos utilizar el <a class="reference internal" href="#thm:polynomial">Teorema 16</a> para encontrar los valores <span class="math notranslate nohighlight">\(a_{1}\)</span>, <span class="math notranslate nohighlight">\(\alpha_{1}\)</span> y <span class="math notranslate nohighlight">\(\beta_{1}\)</span> considerando que <span class="math notranslate nohighlight">\(\alpha_{1}f\left(t+\alpha_{1}, y + \beta_{1}\right)\)</span> aproxima a Taylor de segundo orden</p>
-<div class="math notranslate nohighlight">
-\[
- f\left(t,y\right) + \frac{h}{2}\dot{f}\left(t,y\right)
-\]</div>
-<p>con un error no mayor a <span class="math notranslate nohighlight">\(O\left(h^{2}\right)\)</span>.</p>
-<p>Utilizando</p>
-<div class="math notranslate nohighlight">
-\[
- \dot{f}\left(t,y\right) = \frac{\partial f}{\partial t}\left(y,t\right) + \frac{\partial f}{\partial y}\left(t,y\right)\dot{y}(t),
-\]</div>
-<p>la expresión de Taylor de segundo orden se puede escribir como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- f\left(t,y\right) + \frac{h}{2}\frac{\partial f}{\partial t}\left(y,t\right) + \frac{h}{2}\frac{\partial f}{\partial y}\left(t,y\right)f\left(t,y\right).
-\]</div>
-<p>Expandiendo <span class="math notranslate nohighlight">\(\alpha_{1}f\left(t+\alpha_{1}, y + \beta_{1}\right)\)</span> y su <em>polinomio de Taylor</em> de grado uno alrededor de <span class="math notranslate nohighlight">\(\left(t,y\right)\)</span>, tenemos</p>
-<div class="math notranslate nohighlight">
-\[
- \alpha_{1}f\left(t+\alpha_{1}, y + \beta_{1}\right) = \alpha_{1}f\left(t, y\right) + a_{1}\alpha_{1}\frac{\partial f}{\partial t}\left(t, y\right) + a_{1}\beta_{1}\frac{\partial f}{\partial y} + a_{1}R_{1}\left(t + \alpha_{1}, y + \beta_{1}\right),
-\]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
- R_{1}\left(t + \alpha_{1}, y + \beta_{1} \right) = \frac{\alpha_{1}^{2}}{2}\frac{\partial^{2}f}{\partial t^{2}}\left(\xi, \mu \right) + \alpha_{1}\beta_{1} \frac{\partial^{2}f}{\partial t\partial y}\left(\xi,\mu \right) + \frac{\beta_{1}^{2}}{2}\frac{\partial^{2}f}{\partial y^{2}}\left(\xi,\mu \right),
-\]</div>
-<p>para algún <span class="math notranslate nohighlight">\(\xi \in \left[t,t + \alpha_{1} \right]\)</span> y <span class="math notranslate nohighlight">\(\mu \in \left[y,y + \beta_{1} \right]\)</span>.</p>
-<p>Los métodos de orden mayor se obtienen de forma similar. Por ejemplo, Runge-Kutta de tercer orden se expresa como sigue</p>
-<div class="math notranslate nohighlight">
-\[
- \frac{w_{i+1} - w_{i}}{h} = F\left(f, t_{i}, w_{i}, h \right),
-\]</div>
-<p>con</p>
-<div class="math notranslate nohighlight">
-\[
- F\left(f, t, w, h \right) = a_{0}k_{1} + a_{1}k_{2} + a_{2}k_{3},
-\]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[
- a_{0} + a_{1} + a_{2} = 1,
-\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
- \begin{aligned}
-  k_{1} &amp;= f\left(t_{i}, w_{i} \right), \\
-  k_{2} &amp;= f\left(t_{i} + \alpha_{1}h, t_{i} + \beta_{11}k_{1} \right), \\
-  k_{3} &amp;= f\left(t_{i} + \alpha_{2}h, t_{i} + \beta_{21}k_{1} + \beta_{22}k_{2} \right).
- \end{aligned}
-\end{split}\]</div>
-<p>Escogiendo <span class="math notranslate nohighlight">\(\alpha_{2} = 1\)</span>, <span class="math notranslate nohighlight">\(\beta_{11} = \frac{1}{2}\)</span>, obtenemos la siguiente ecuación</p>
-<div class="math notranslate nohighlight">
-\[
- w_{i+1} = w_{i} + \frac{h}{6}\left(k_{1} + 4k_{2} + k_{3} \right),
-\]</div>
-<p>donde</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
- \begin{aligned}
-  k_{1} &amp;= f\left(t_{i}, w_{i} \right), \\
-  k_{2} &amp;= f\left(t_{n} + \frac{h}{2}, w_{n} + \frac{h}{2}k_{1} \right), \\
-  k_{3} &amp;= f\left(t_{n} + h, w_{n} - hk_{1} + 2hk_{2} \right). \\
- \end{aligned}
-\end{split}\]</div>
-<p>Para obtener el método de Runge-Kutta de cuarto orden, consideramos</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
- \begin{aligned}
-  w_{0} &amp;= \alpha, \\
-  k_{1} &amp;= hf\left(t_{i}, w_{i} \right), \\
-  k_{2} &amp;= hf\left(t_{i} + \frac{h}{2}, w_{i} + \frac{k_{1}}{2} \right), \\
-  k_{3} &amp;= hf\left(t_{i} + \frac{h}{2}, w_{i} + \frac{k_{2}}{2} \right), \\
-  k_{4} &amp;= hf\left(t_{i+1}, w_{i} + k_{3} \right), \\
-  w_{i+1} &amp;= w_{i} + \frac{1}{6}\left(k_{1} + 2k_{2} + 2k_{3} + k_{4} \right).
- \end{aligned}
-\end{split}\]</div>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definición de la función continua</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula el valor de la función para un valor dado de x.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Función auxiliar: Método de Bisección</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">biseccion</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encuentra la raíz de una función en el intervalo [a, b] usando el método de bisección.</span>
+<span class="sd">    Retorna la raíz encontrada y una matriz con el historial de iteraciones.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fa</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">fb</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    
+    <span class="n">c_old</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="n">fc</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        
+        <span class="c1"># Cálculo del error relativo aproximado</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">c</span> <span class="o">-</span> <span class="n">c_old</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">c_old</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="mf">1.0</span>
+            
+        <span class="c1"># Almacena la iteración: [iteración, a, b, c, f(c), error]</span>
+        <span class="n">mat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">fc</span><span class="p">,</span> <span class="n">error</span><span class="p">])</span>
+        
+        <span class="c1"># Criterio de parada por tolerancia o raíz exacta</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span> <span class="ow">or</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="k">if</span> <span class="n">fa</span> <span class="o">*</span> <span class="n">fc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">fb</span> <span class="o">=</span> <span class="n">fc</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">fa</span> <span class="o">=</span> <span class="n">fc</span>
+        <span class="n">c_old</span> <span class="o">=</span> <span class="n">c</span>
+        
+    <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Principal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Buscando cruces por cero en el intervalo [4, 20]...&quot;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># Inicia el contador de cruces por cero</span>
+<span class="n">cruce_list</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># Lista para almacenar los valores de los cruces</span>
+<span class="n">M_list</span> <span class="o">=</span> <span class="p">[]</span>        <span class="c1"># Lista para almacenar las matrices de iteración de cada cruce</span>
+
+<span class="c1"># Ciclo para evaluar subintervalos de longitud 1 dentro del intervalo [4, 20]</span>
+<span class="c1"># En Python, range(4, 21) recorre k desde 4 hasta 20 inclusivo.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="c1"># Evaluación de la función en los puntos k y l</span>
+    <span class="n">gk</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    
+    <span class="c1"># Condición que marca el subintervalo donde se encuentra un cruce por cero</span>
+    <span class="k">if</span> <span class="n">gk</span> <span class="o">*</span> <span class="n">gl</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+        <span class="c1"># Llamada al método de bisección</span>
+        <span class="n">cero</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">biseccion</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">cruce_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cero</span><span class="p">)</span>  <span class="c1"># Almacena el cruce por cero</span>
+        <span class="n">M_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>       <span class="c1"># Almacena la matriz de iteraciones</span>
+
+<span class="c1"># Conversión de los cruces almacenados a un arreglo de NumPy</span>
+<span class="n">Cruce</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cruce_list</span><span class="p">)</span>
+
+<span class="c1"># Extracción de las iteraciones de cada cruce por cero encontrado (usando índices base 0)</span>
+<span class="c1"># Nota: Se accede de forma segura mediante condicionales o índices si existen suficientes cruces.</span>
+<span class="n">M1</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M3</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M4</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M5</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Mostrar resultados en pantalla</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total de cruces por cero encontrados: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores de los cruces por cero:&quot;</span><span class="p">,</span> <span class="n">Cruce</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">M1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Iteraciones del primer cruce por cero (M1):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">M1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Buscando cruces por cero en el intervalo [4, 20]...
+
+Total de cruces por cero encontrados: 5
+Valores de los cruces por cero: [ 6.18744278  9.50275421 12.48523712 15.80555725 18.72535706]
+
+Iteraciones del primer cruce por cero (M1):
+ [[ 1.00000000e+00  6.00000000e+00  7.00000000e+00  6.50000000e+00
+   4.60103386e+01  1.00000000e+00]
+ [ 2.00000000e+00  6.00000000e+00  6.50000000e+00  6.25000000e+00
+   8.63217105e+00  4.00000000e-02]
+ [ 3.00000000e+00  6.00000000e+00  6.25000000e+00  6.12500000e+00
+  -8.26244788e+00  2.04081633e-02]
+ [ 4.00000000e+00  6.12500000e+00  6.25000000e+00  6.18750000e+00
+   7.34941617e-03  1.01010101e-02]
+ [ 5.00000000e+00  6.12500000e+00  6.18750000e+00  6.15625000e+00
+  -4.17380019e+00  5.07614213e-03]
+ [ 6.00000000e+00  6.15625000e+00  6.18750000e+00  6.17187500e+00
+  -2.09456071e+00  2.53164557e-03]
+ [ 7.00000000e+00  6.17187500e+00  6.18750000e+00  6.17968750e+00
+  -1.04641046e+00  1.26422250e-03]
+ [ 8.00000000e+00  6.17968750e+00  6.18750000e+00  6.18359375e+00
+  -5.20228063e-01  6.31711939e-04]
+ [ 9.00000000e+00  6.18359375e+00  6.18750000e+00  6.18554688e+00
+  -2.56613248e-01  3.15756236e-04]
+ [ 1.00000000e+01  6.18554688e+00  6.18750000e+00  6.18652344e+00
+  -1.24675340e-01  1.57853197e-04]
+ [ 1.10000000e+01  6.18652344e+00  6.18750000e+00  6.18701172e+00
+  -5.86738103e-02  7.89203693e-05]
+ [ 1.20000000e+01  6.18701172e+00  6.18750000e+00  6.18725586e+00
+  -2.56649083e-02  3.94586276e-05]
+ [ 1.30000000e+01  6.18725586e+00  6.18750000e+00  6.18737793e+00
+  -9.15842378e-03  1.97289246e-05]
+ [ 1.40000000e+01  6.18737793e+00  6.18750000e+00  6.18743896e+00
+  -9.04673217e-04  9.86436498e-06]
+ [ 1.50000000e+01  6.18743896e+00  6.18750000e+00  6.18746948e+00
+   3.22232913e-03  4.93215816e-06]
+ [ 1.60000000e+01  6.18743896e+00  6.18746948e+00  6.18745422e+00
+   1.15881737e-03  2.46608516e-06]
+ [ 1.70000000e+01  6.18743896e+00  6.18745422e+00  6.18744659e+00
+   1.27069428e-04  1.23304410e-06]
+ [ 1.80000000e+01  6.18743896e+00  6.18744659e+00  6.18744278e+00
+  -3.88802557e-04  6.16522431e-07]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodo-de-la-falsa-posicion-o-regla-falsa">
+<h2>Método de la falsa posición o regla falsa<a class="headerlink" href="#metodo-de-la-falsa-posicion-o-regla-falsa" title="Link to this heading">#</a></h2>
+<p>Suponga que se eligen dos aproximaciones iniciales <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{0}\)</span> tales que los dos valores de la función en esos puntos tengan signo opuesto, entonces es posible generar una sucesión de valores que tengan esta propiedad. Si se construye una recta que pasa por los puntos <span class="math notranslate nohighlight">\(\left(x_{0},f\left(x_{0} \right) \right)\)</span> y <span class="math notranslate nohighlight">\(\left( \tilde{x}_{0},f\left(\tilde{x}_{0} \right) \right)\)</span>. Dado que <span class="math notranslate nohighlight">\(m_{1} = m_{2}\)</span> se tiene</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e0c09340-95d9-4eec-9a98-dd183ee25a8e">
+<span class="eqno">(71)<a class="headerlink" href="#equation-e0c09340-95d9-4eec-9a98-dd183ee25a8e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \frac{f\left(x_{1} \right) - f\left(x_{0} \right)}{x_{1} - x_{0}} = \frac{f\left(\tilde{x}_{0} \right) - f\left(x_{0} \right)}{\tilde{x}_{0} - x_{0}}.
+\end{equation}\]</div>
+<p>El valor del cruce por cero se define cuando se tiene un valor de <span class="math notranslate nohighlight">\(x_{1}\)</span> donde se cumple que <span class="math notranslate nohighlight">\(f(x_{1}) = 0\)</span>. Así, la ecuación queda de la siguiente forma</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c1db7820-d2f8-436e-84d8-c35d08406c5f">
+<span class="eqno">(72)<a class="headerlink" href="#equation-c1db7820-d2f8-436e-84d8-c35d08406c5f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \frac{0 - f\left(x_{0} \right)}{x_{1} - x_{0}} = \frac{f\left(\tilde{x}_{0} \right) - f\left(x_{0} \right)}{\tilde{x}_{0} - x_{0}},
+\end{equation}\]</div>
+<p>despejando <span class="math notranslate nohighlight">\(x_{1}\)</span> se tiene</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c099b73f-22c9-4ca6-aec2-88f0e3cc18df">
+<span class="eqno">(73)<a class="headerlink" href="#equation-c099b73f-22c9-4ca6-aec2-88f0e3cc18df" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{1} = x_{0} - \frac{f\left(x_{0} \right)\left(\tilde{x}_{0} - x_{0} \right)}{f\left(\tilde{x}_{0}\right) - f\left(x_{0}\right)}.
+\end{equation}\]</div>
+<p>El valor de <span class="math notranslate nohighlight">\(\tilde{x}_{1}\)</span> se elige tomando un valor entre <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{0}\)</span> tal que el valor de la función sea opuesto en signo a <span class="math notranslate nohighlight">\(f(x_{1})\)</span>. Por consiguiente, los valores de <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{1}\)</span> definen un menor intervalo que contiene el cruce por cero.</p>
+<p>Aunque el método de la falsa posición suele tener una mejor convergencia que el método de bisección, no siempre es así.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definición de la función continua</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula el valor de la función para un valor dado de x.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Función auxiliar: Método de Regla Falsa</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">regla_falsa</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encuentra la raíz de una función en el intervalo [a, b] usando el método de regla falsa.</span>
+<span class="sd">    Retorna la raíz encontrada y una matriz con el historial de iteraciones.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fa</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">fb</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    
+    <span class="n">c_old</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Fórmula de la regla falsa para calcular la aproximación c</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="p">(</span><span class="n">fb</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">fa</span> <span class="o">-</span> <span class="n">fb</span><span class="p">)</span>
+        <span class="n">fc</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        
+        <span class="c1"># Cálculo del error relativo aproximado</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">c</span> <span class="o">-</span> <span class="n">c_old</span><span class="p">)</span> <span class="o">/</span> <span class="n">c</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">abs</span><span class="p">(</span><span class="n">c</span> <span class="o">-</span> <span class="n">c_old</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="mf">1.0</span>
+            
+        <span class="c1"># Almacena la iteración: [iteración, a, b, c, f(c), error]</span>
+        <span class="n">mat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">fc</span><span class="p">,</span> <span class="n">error</span><span class="p">])</span>
+        
+        <span class="c1"># Criterio de parada por tolerancia o raíz exacta</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fc</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span> <span class="ow">or</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="k">if</span> <span class="n">fa</span> <span class="o">*</span> <span class="n">fc</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">fb</span> <span class="o">=</span> <span class="n">fc</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span>
+            <span class="n">fa</span> <span class="o">=</span> <span class="n">fc</span>
+        <span class="n">c_old</span> <span class="o">=</span> <span class="n">c</span>
+        
+    <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Principal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Buscando cruces por cero en el intervalo [4, 20] mediante Regla Falsa...&quot;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># Inicia contador de cruces por cero.</span>
+<span class="n">cruce_list</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># Lista para almacenar los valores de los cruces.</span>
+<span class="n">M_list</span> <span class="o">=</span> <span class="p">[]</span>        <span class="c1"># Lista para almacenar las matrices de iteración de cada cruce.</span>
+
+<span class="c1"># Ciclo para evaluar subintervalos de longitud 1 dentro del intervalo [4, 20].</span>
+<span class="c1"># En Python, range(4, 21) recorre k desde 4 hasta 20 inclusivo.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="c1"># Evaluación de la función en los puntos k y l.</span>
+    <span class="n">gk</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    
+    <span class="c1"># Condición que marca el subintervalo donde se encuentra un cruce por cero.</span>
+    <span class="k">if</span> <span class="n">gk</span> <span class="o">*</span> <span class="n">gl</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+        <span class="c1"># Llamada al método de regla falsa.</span>
+        <span class="n">cero</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">regla_falsa</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">cruce_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cero</span><span class="p">)</span>  <span class="c1"># Almacena el cruce por cero.</span>
+        <span class="n">M_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>       <span class="c1"># Almacena la matriz de iteraciones.</span>
+
+<span class="c1"># Conversión de los cruces almacenados a un arreglo de NumPy.</span>
+<span class="n">Cruce</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cruce_list</span><span class="p">)</span>
+
+<span class="c1"># Extracción segura de las iteraciones de cada cruce por cero encontrado (usando índices base 0).</span>
+<span class="n">M1</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M3</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M4</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M5</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Mostrar resultados en pantalla</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total de cruces por cero encontrados: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores de los cruces por cero:&quot;</span><span class="p">,</span> <span class="n">Cruce</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">M1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Iteraciones del primer cruce por cero (M1):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">M1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Buscando cruces por cero en el intervalo [4, 20] mediante Regla Falsa...
+
+Total de cruces por cero encontrados: 5
+Valores de los cruces por cero: [ 6.18744552  9.50275574 12.48524454 15.80556286 18.72534361]
+
+Iteraciones del primer cruce por cero (M1):
+ [[ 1.00000000e+00  6.00000000e+00  7.00000000e+00  6.15788396e+00
+  -3.95744150e+00  1.00000000e+00]
+ [ 2.00000000e+00  6.15788396e+00  7.00000000e+00  6.18352686e+00
+  -5.29249577e-01  4.14696994e-03]
+ [ 3.00000000e+00  6.18352686e+00  7.00000000e+00  6.18694188e+00
+  -6.81152424e-02  5.51971697e-04]
+ [ 4.00000000e+00  6.18694188e+00  7.00000000e+00  6.18738116e+00
+  -8.72144996e-03  7.09961924e-05]
+ [ 5.00000000e+00  6.18738116e+00  7.00000000e+00  6.18743740e+00
+  -1.11594980e-03  9.08961394e-06]
+ [ 6.00000000e+00  6.18743740e+00  7.00000000e+00  6.18744460e+00
+  -1.42778789e-04  1.16304643e-06]
+ [ 7.00000000e+00  6.18744460e+00  7.00000000e+00  6.18744552e+00
+  -1.82674532e-05  1.48804317e-07]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodo-de-la-secante">
+<h2>Método de la secante<a class="headerlink" href="#metodo-de-la-secante" title="Link to this heading">#</a></h2>
+<p>Este método considera los puntos en sucesión estric­ta en el sentido de que el valor más viejo se descarta, y sólo se usan toman en cuenta dos valores más recientes al calcu­lar el nuevo valor. si se tiene que <span class="math notranslate nohighlight">\(m_{1}=m_{2}\)</span>, entonces</p>
+<div class="amsmath math notranslate nohighlight" id="equation-74b787d0-8b86-4042-ad76-8247f5cb89f3">
+<span class="eqno">(74)<a class="headerlink" href="#equation-74b787d0-8b86-4042-ad76-8247f5cb89f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \frac{f\left(x_{1} \right) - f\left(x_{0} \right)}{x_{1} - x_{0}} = \frac{f\left(x_{2} \right) - f\left(x_{1} \right)}{x_{2}-x_{1}}.
+\end{equation}\]</div>
+<p>Si se tiene que <span class="math notranslate nohighlight">\(f\left(x_{2}\right)=0\)</span>, entonces</p>
+<div class="amsmath math notranslate nohighlight" id="equation-649f04cc-e257-4bc3-b262-a57befb4369a">
+<span class="eqno">(75)<a class="headerlink" href="#equation-649f04cc-e257-4bc3-b262-a57befb4369a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{2} - x_{1} = \frac{-(x_{1} - x_{0})\,f\left(x_{1} \right)}{f\left(x_{1} \right) - f\left(x_{0} \right)},
+\end{equation}\]</div>
+<p>reagrupando términos</p>
+<div class="amsmath math notranslate nohighlight" id="equation-85fab95d-bdcb-4db3-9f86-e3bf093fcbf3">
+<span class="eqno">(76)<a class="headerlink" href="#equation-85fab95d-bdcb-4db3-9f86-e3bf093fcbf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{n+1} = x_{n} - \frac{f\left(x_{n} \right)\left( x_{n} - x_{n-1} \right)}{f\left(x_{n} \right) - f\left(x_{n-1} \right)}.
+\end{equation}\]</div>
+<p>Este método necesita dos valores iniciales <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(x_{1}\)</span> de modo que los valores <span class="math notranslate nohighlight">\(f(x_{0})\)</span> y <span class="math notranslate nohighlight">\(f(x_{1})\)</span> se calculan y se obtienen dos puntos sobre la curva. Entonces, el nuevo punto de la sucesión es el punto en el cual la recta que une los dos puntos previos corta al eje <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Truco</p>
+<p>La velocidad de convergencia de este método, es superior a la de los métodos de bisección y falsa posición cuando se está suficien­ temente cerca de la solución.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definición de la función continua</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula el valor de la función para un valor dado de x.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Función auxiliar: Método de la Secante</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">secante</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encuentra la raíz de una función usando el método de la secante a partir de dos puntos iniciales x0 y x1.</span>
+<span class="sd">    Retorna la raíz encontrada y una matriz con el historial de iteraciones.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">f0</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+        
+        <span class="c1"># Validación para evitar división por cero</span>
+        <span class="k">if</span> <span class="n">f1</span> <span class="o">-</span> <span class="n">f0</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># Fórmula del método de la secante</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="p">(</span><span class="n">f1</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">f1</span> <span class="o">-</span> <span class="n">f0</span><span class="p">)</span>
+        <span class="n">f2</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+        
+        <span class="c1"># Cálculo del error relativo aproximado</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">/</span> <span class="n">x2</span><span class="p">)</span> <span class="k">if</span> <span class="n">x2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span>
+        
+        <span class="c1"># Almacena la iteración: [iteración, x0, x1, x2, f(x2), error]</span>
+        <span class="n">mat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">error</span><span class="p">])</span>
+        
+        <span class="c1"># Criterio de parada por tolerancia o raíz exacta</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span> <span class="ow">or</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># Actualización de puntos para la siguiente iteración</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">x1</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">x2</span>
+        
+    <span class="k">return</span> <span class="n">x2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Principal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Buscando cruces por cero en el intervalo [4, 20] mediante el Método de la Secante...&quot;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># Inicia el contador de cruces por cero.</span>
+<span class="n">cruce_list</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># Lista para almacenar los valores de los cruces.</span>
+<span class="n">M_list</span> <span class="o">=</span> <span class="p">[]</span>        <span class="c1"># Lista para almacenar las matrices de iteración de cada cruce.</span>
+
+<span class="c1"># Ciclo para evaluar subintervalos de longitud 1 dentro del intervalo [4, 20].</span>
+<span class="c1"># En Python, range(4, 21) recorre k desde 4 hasta 20 inclusivo.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="c1"># Evaluación de la función en los puntos k y l.</span>
+    <span class="n">gk</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    
+    <span class="c1"># Condición que marca el subintervalo donde se encuentra un cruce por cero.</span>
+    <span class="k">if</span> <span class="n">gk</span> <span class="o">*</span> <span class="n">gl</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+        <span class="c1"># Llamada al método de la secante usando k y l como puntos iniciales.</span>
+        <span class="n">cero</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">secante</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">cruce_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cero</span><span class="p">)</span>  <span class="c1"># Almacena el cruce por cero.</span>
+        <span class="n">M_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>       <span class="c1"># Almacena la matriz de iteraciones.</span>
+
+<span class="c1"># Conversión de los cruces almacenados a un arreglo de NumPy.</span>
+<span class="n">Cruce</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cruce_list</span><span class="p">)</span>
+
+<span class="c1"># Extracción segura de las iteraciones de cada cruce por cero encontrado (usando índices base 0).</span>
+<span class="n">M1</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M3</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M4</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M5</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Mostrar resultados en pantalla</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total de cruces por cero encontrados: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores de los cruces por cero:&quot;</span><span class="p">,</span> <span class="n">Cruce</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">M1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Iteraciones del primer cruce por cero (M1):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">M1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Buscando cruces por cero en el intervalo [4, 20] mediante el Método de la Secante...
+
+Total de cruces por cero encontrados: 5
+Valores de los cruces por cero: [ 6.18744565  9.50275574 12.48524454 15.80556286 18.72534361]
+
+Iteraciones del primer cruce por cero (M1):
+ [[ 1.00000000e+00  6.00000000e+00  7.00000000e+00  6.15788396e+00
+  -3.95744150e+00  1.36754125e-01]
+ [ 2.00000000e+00  7.00000000e+00  6.15788396e+00  6.18352686e+00
+  -5.29249577e-01  4.14696994e-03]
+ [ 3.00000000e+00  6.15788396e+00  6.18352686e+00  6.18748565e+00
+   5.40935770e-03  6.39806026e-04]
+ [ 4.00000000e+00  6.18352686e+00  6.18748565e+00  6.18744560e+00
+  -7.15024603e-06  6.47321466e-06]
+ [ 5.00000000e+00  6.18748565e+00  6.18744560e+00  6.18744565e+00
+  -9.61470903e-11  8.54518774e-09]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="metodo-de-newton-raphson">
+<h2>Método de Newton-Raphson<a class="headerlink" href="#metodo-de-newton-raphson" title="Link to this heading">#</a></h2>
+<p>En los métodos de cálculo estándar si la iteración ha alcanzado el punto <span class="math notranslate nohighlight">\(x_{n}\)</span>, entonces se requiere un incremento <span class="math notranslate nohighlight">\(\Delta\, x_{n}\)</span> que tomará el proceso hacia el punto solución <span class="math notranslate nohighlight">\(x^{\star}\)</span>. Si se realiza una expansión de <span class="math notranslate nohighlight">\(f\left(x^{\star} \right)\)</span> con series de Taylor se tiene</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4ea99023-1c2f-4073-93c8-fee72659b90c">
+<span class="eqno">(77)<a class="headerlink" href="#equation-4ea99023-1c2f-4073-93c8-fee72659b90c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ 0 = f\left(x^{\star} \right) \equiv f\left(x_{n} + \Delta\,x_{n} \right) = f\left(x_{n} \right) + \Delta\,x_{n}\, f'\left(x_{n} \right) + \frac{\left(\Delta\, x_{n} \right)^{2}}{2!}f''\left(x_{n} \right) + \dots
+\end{equation}\]</div>
+<p>Si la distancia <span class="math notranslate nohighlight">\(\Delta\,x_{n}\)</span> entre el punto de la iteración actual y la solución verdadera es suficientemente pe­queña, entonces si se toman los dos primeros términos del lado derecho de la ecuación anterior se tiene</p>
+<div class="amsmath math notranslate nohighlight" id="equation-bae3fd39-3722-444b-9b19-2205ef76a5b4">
+<span class="eqno">(78)<a class="headerlink" href="#equation-bae3fd39-3722-444b-9b19-2205ef76a5b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ 0 \approx f\left(x_{n} \right) + \Delta\, x_{n}\, f'\left(x_{n} \right).
+\end{equation}\]</div>
+<p>Despejando <span class="math notranslate nohighlight">\(\Delta\, x_{n}\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-70a3e37d-af0b-4b94-ae0e-3d48ae1f8fe0">
+<span class="eqno">(79)<a class="headerlink" href="#equation-70a3e37d-af0b-4b94-ae0e-3d48ae1f8fe0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \Delta\, x_{n} \approx - \frac{f\left(x_{n} \right)}{f'\left(x_{n} \right)}.
+\end{equation}\]</div>
+<p>El <em>método de Newton-Raphson</em> se obtiene tomando</p>
+<div class="amsmath math notranslate nohighlight" id="equation-713b9f25-f563-4932-b5f6-c96ed9f0f54d">
+<span class="eqno">(80)<a class="headerlink" href="#equation-713b9f25-f563-4932-b5f6-c96ed9f0f54d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \Delta\, x_{n} = x_{n+1} - x_{n},
+\end{equation}\]</div>
+<p>despejando <span class="math notranslate nohighlight">\(x_{n+1}\)</span> y sustituyendo en el valor de <span class="math notranslate nohighlight">\(\Delta\, x_{n}\)</span> como sigue</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d45c4c20-078f-47fa-a1a3-87370cc51544">
+<span class="eqno">(81)<a class="headerlink" href="#equation-d45c4c20-078f-47fa-a1a3-87370cc51544" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{n+1} = x_{n} - \frac{f\left(x_{n} \right)}{f'\left(x_{n} \right)}.
+\end{equation}\]</div>
+<p>Trazando la tangente a la curva en el punto <span class="math notranslate nohighlight">\(x_{0}\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-e8a3ad67-3d52-48a4-9e75-cc910161d127">
+<span class="eqno">(82)<a class="headerlink" href="#equation-e8a3ad67-3d52-48a4-9e75-cc910161d127" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \tan(\theta) = \frac{f\left(x_{0} \right)}{-\Delta\, x} = f'\left(x_{0} \right)
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definición de la función continua y su derivada</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula el valor de la función para un valor dado de x.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">derivada</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula la derivada analítica de la función con respecto a x.&quot;&quot;&quot;</span>
+    <span class="c1"># Derivada de 1 + 2x: 2</span>
+    <span class="c1"># Derivada de -3x^2 * e^(-x): -3 * (2x*e^(-x) - x^2*e^(-x)) = -6x*e^(-x) + 3x^2*e^(-x)</span>
+    <span class="c1"># Derivada de 2x^3 * sin(x) * e^(-x/5): Regla del producto de tres términos</span>
+    <span class="n">term1</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">term2</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">6</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">term3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">+</span> <span class="n">term3</span>
+
+<span class="c1"># Función auxiliar: Método de Newton-Raphson</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">newton_raphson</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encuentra la raíz de una función usando el método de Newton-Raphson a partir de un punto inicial x0.</span>
+<span class="sd">    Retorna la raíz encontrada y una matriz con el historial de iteraciones.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">fx</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        <span class="n">dfx</span> <span class="o">=</span> <span class="n">derivada</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+        
+        <span class="c1"># Validación para evitar división por cero en la derivada</span>
+        <span class="k">if</span> <span class="n">dfx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># Fórmula del método de Newton-Raphson</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">-</span> <span class="n">fx</span> <span class="o">/</span> <span class="n">dfx</span>
+        <span class="n">fx_new</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Cálculo del error relativo aproximado</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span>
+        
+        <span class="c1"># Almacena la iteración: [iteración, x0, x, f(x), error]</span>
+        <span class="n">mat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">fx_new</span><span class="p">,</span> <span class="n">error</span><span class="p">])</span>
+        
+        <span class="c1"># Criterio de parada por tolerancia o raíz exacta</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fx_new</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span> <span class="ow">or</span> <span class="n">error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">x</span>
+        
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Programa Principal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Buscando cruces por cero en el intervalo [4, 20] mediante el Método de Newton-Raphson...&quot;</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># Inicia el contador de cruces por cero.</span>
+<span class="n">cruce_list</span> <span class="o">=</span> <span class="p">[]</span>    <span class="c1"># Lista para almacenar los valores de los cruces.</span>
+<span class="n">M_list</span> <span class="o">=</span> <span class="p">[]</span>        <span class="c1"># Lista para almacenar las matrices de iteración de cada cruce.</span>
+
+<span class="c1"># Ciclo para evaluar subintervalos de longitud 1 dentro del intervalo [4, 20].</span>
+<span class="c1"># En Python, range(4, 21) recorre k desde 4 hasta 20 inclusivo.</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+    
+    <span class="c1"># Evaluación de la función en los puntos k y l.</span>
+    <span class="n">gk</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">funcion</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    
+    <span class="c1"># Condición que marca el subintervalo donde se encuentra un cruce por cero.</span>
+    <span class="k">if</span> <span class="n">gk</span> <span class="o">*</span> <span class="n">gl</span> <span class="o">&lt;</span> <span class="mf">1e-3</span><span class="p">:</span>
+        <span class="c1"># Llamada al método de Newton-Raphson usando k como valor inicial.</span>
+        <span class="n">cero</span><span class="p">,</span> <span class="n">mat</span> <span class="o">=</span> <span class="n">newton_raphson</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="n">cruce_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cero</span><span class="p">)</span>  <span class="c1"># Almacena el cruce por cero.</span>
+        <span class="n">M_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>       <span class="c1"># Almacena la matriz de iteraciones.</span>
+
+<span class="c1"># Conversión de los cruces almacenados a un arreglo de NumPy.</span>
+<span class="n">Cruce</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cruce_list</span><span class="p">)</span>
+
+<span class="c1"># Extracción segura de las iteraciones de cada cruce por cero encontrado (usando índices base 0).</span>
+<span class="n">M1</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M3</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M4</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="n">M5</span> <span class="o">=</span> <span class="n">M_list</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">M_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Mostrar resultados en pantalla</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total de cruces por cero encontrados: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valores de los cruces por cero:&quot;</span><span class="p">,</span> <span class="n">Cruce</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">M1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Iteraciones del primer cruce por cero (M1):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">M1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Buscando cruces por cero en el intervalo [4, 20] mediante el Método de Newton-Raphson...
+
+Total de cruces por cero encontrados: 5
+Valores de los cruces por cero: [ 6.18744565  9.50275574 12.48524454 15.80556286 18.72534361]
+
+Iteraciones del primer cruce por cero (M1):
+ [[ 1.00000000e+00  6.00000000e+00  6.20329685e+00  2.15494489e+00
+   3.27723872e-02]
+ [ 2.00000000e+00  6.20329685e+00  6.18752805e+00  1.11427905e-02
+   2.54848086e-03]
+ [ 3.00000000e+00  6.18752805e+00  6.18744566e+00  3.08689238e-07
+   1.33160788e-05]
+ [ 4.00000000e+00  6.18744566e+00  6.18744565e+00 -5.68434189e-14
+   3.68916454e-10]]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -808,20 +1166,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="almacenamiento_grandes_sistemas.html"
+       href="algoritmo_res_indirecta.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Almacenamiento de grandes sistemas lineales en computadora</p>
+        <p class="prev-next-title">Algoritmos de resolución indirecta</p>
       </div>
     </a>
     <a class="right-next"
-       href="algoritmos_aceleracion_convergencia.html"
+       href="resolucion_sistemas_ecuaciones.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Algoritmos de aceleración de convergencia</p>
+        <p class="prev-next-title">Solución de sistemas de ecuaciones diferenciales</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -841,8 +1199,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-euler">Método de Euler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-runge-kutta">Método de Runge-Kutta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-biseccion">Método de bisección</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-la-falsa-posicion-o-regla-falsa">Método de la falsa posición o regla falsa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-la-secante">Método de la secante</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-newton-raphson">Método de Newton-Raphson</a></li>
 </ul>
   </nav></div>
 
