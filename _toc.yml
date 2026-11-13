@@ -32,8 +32,8 @@ parts:
     - file: docs/resolucion_sistemas_ecuaciones
 - caption: VI. Optimización de funciones
   chapters:
-    - file: docs/leventberg_marquardt
     - file: docs/gradiente_conjugado
+    - file: docs/leventberg_marquardt
 - caption: VII. Cálculo de valores propios de una matriz
   chapters:
     - file: docs/metodos_globales

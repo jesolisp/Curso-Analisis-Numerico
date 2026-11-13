@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/gradiente_conjugado';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/gradiente_conjugado.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Métodos globales" href="metodos_globales.html" />
-    <link rel="prev" title="Método de Levenberg-Marquardt" href="leventberg_marquardt.html" />
+    <link rel="next" title="Método de Levenberg-Marquardt" href="leventberg_marquardt.html" />
+    <link rel="prev" title="Solución de sistemas de ecuaciones diferenciales" href="resolucion_sistemas_ecuaciones.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -205,18 +207,16 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Solución de ecuaciones no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_ecuaciones.html">Solución de sistemas de ecuaciones diferenciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Método del gradiente conjugado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="nav bd-sidenav">
@@ -469,7 +469,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -485,6 +487,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-cg">Algoritmo de CG</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -496,6 +506,155 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="metodo-del-gradiente-conjugado">
 <h1>Método del gradiente conjugado<a class="headerlink" href="#metodo-del-gradiente-conjugado" title="Link to this heading">#</a></h1>
+<p>El método del Gradiente Conjugado (CG) está diseñado para resolver sistemas de ecuaciones lineales de la forma</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c1b0ad6b-dcf7-47d2-830a-0a9ad6312eab">
+<span class="eqno">(84)<a class="headerlink" href="#equation-c1b0ad6b-dcf7-47d2-830a-0a9ad6312eab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ Ax = b,
+\end{equation}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(A\)</span> es una matriz simétrica y definida positiva. Esto es equivalente a encontrar el mínimo de la función cuadrática</p>
+<div class="amsmath math notranslate nohighlight" id="equation-18b259b9-1145-41b4-8e0a-118b413d80e0">
+<span class="eqno">(85)<a class="headerlink" href="#equation-18b259b9-1145-41b4-8e0a-118b413d80e0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ f(x) = \frac{1}{2} x^T A x - b^T x.
+\end{equation}\]</div>
+<p>En contraste con el método de gradiente descendente, el CG elige direcciones de búsqueda <span class="math notranslate nohighlight">\(p_{k}\)</span> que son <span class="math notranslate nohighlight">\(A\)</span>-ortogonales (conjugadas). Esto garantiza convergencia exacta en a lo mucho <span class="math notranslate nohighlight">\(n\)</span> pasos para un sistema de <span class="math notranslate nohighlight">\(n \times n\)</span>.</p>
+<section id="algoritmo-de-cg">
+<h2>Algoritmo de CG<a class="headerlink" href="#algoritmo-de-cg" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Dado un vector inicial <span class="math notranslate nohighlight">\(x_{0}\)</span>, calculamos el residuo inicial <span class="math notranslate nohighlight">\(r_{0} = b - A x_{0}\)</span>.</p></li>
+<li><p>La primera dirección de búsqueda es el residuo: <span class="math notranslate nohighlight">\(p_{0} = r_{0}\)</span>.</p></li>
+<li><p>En cada iteración <span class="math notranslate nohighlight">\(k\)</span>, calculamos el tamaño del paso <span class="math notranslate nohighlight">\(\alpha_{k}\)</span> que minimiza <span class="math notranslate nohighlight">\(f(x)\)</span> a lo largo de <span class="math notranslate nohighlight">\(p_{k}\)</span></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-86ac5dd6-786f-46bf-96f4-90b674a927fa">
+<span class="eqno">(86)<a class="headerlink" href="#equation-86ac5dd6-786f-46bf-96f4-90b674a927fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \alpha_{k} = \frac{r_{k}^T r_{k}}{p_{k}^T A p_{k}}.
+\end{equation}\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Actualizamos la solución y el nuevo residuo</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-f951ae33-6b49-43c1-bccd-391b068ec6a8">
+<span class="eqno">(87)<a class="headerlink" href="#equation-f951ae33-6b49-43c1-bccd-391b068ec6a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x_{k+1} = x_{k} + \alpha_{k} p_{k},
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-a20bcf49-dc67-4127-adf5-2a5eb1daf32a">
+<span class="eqno">(88)<a class="headerlink" href="#equation-a20bcf49-dc67-4127-adf5-2a5eb1daf32a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ r_{k+1} = r_{k} - \alpha_{k} A p_{k}.
+\end{equation}\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Calculamos el factor de conjugación <span class="math notranslate nohighlight">\(\beta_k\)</span> para asegurar que la nueva dirección sea ortogonal a las anteriores respecto a <span class="math notranslate nohighlight">\(A\)</span></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-6ffea7a8-1b2e-4ff7-af11-20019bd66c89">
+<span class="eqno">(89)<a class="headerlink" href="#equation-6ffea7a8-1b2e-4ff7-af11-20019bd66c89" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \beta_{k} = \frac{r_{k+1}^T r_{k+1}}{r_{k}^T r_{k}}.
+\end{equation}\]</div>
+<ol class="arabic simple" start="6">
+<li><p>Actualizamos la dirección de búsqueda</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-b1ebea79-079e-455a-8b83-dd9144beeedd">
+<span class="eqno">(90)<a class="headerlink" href="#equation-b1ebea79-079e-455a-8b83-dd9144beeedd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ p_{k+1} = r_{k+1} + \beta_{k} p_{k}.
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">conjugate_gradient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x0</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resuelve Ax = b usando Gradiente Conjugado.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    A : array-like o matriz dispersa (shape: n x n)</span>
+<span class="sd">        Matriz simétrica y definida positiva.</span>
+<span class="sd">    b : array-like (shape: n,)</span>
+<span class="sd">        Lado derecho del sistema.</span>
+<span class="sd">    x0 : array-like, opcional</span>
+<span class="sd">        Estimación inicial. Si es None, se inicializa en ceros.</span>
+<span class="sd">    tol : float</span>
+<span class="sd">        Tolerancia para la convergencia basada en la norma del residuo.</span>
+<span class="sd">    max_iter : int</span>
+<span class="sd">        Número máximo de iteraciones permitidas.</span>
+<span class="sd">        </span>
+<span class="sd">    Retorna:</span>
+<span class="sd">    --------</span>
+<span class="sd">    x : np.ndarray</span>
+<span class="sd">        Solución aproximada del sistema Ax = b.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">if</span> <span class="n">x0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    
+    <span class="n">r</span> <span class="o">=</span> <span class="n">b</span> <span class="o">-</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">rsold</span> <span class="o">=</span> <span class="n">r</span> <span class="o">@</span> <span class="n">r</span>  <span class="c1"># Producto interno seguro para vectores 1D</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">Ap</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">p</span>
+        <span class="n">denom</span> <span class="o">=</span> <span class="n">p</span> <span class="o">@</span> <span class="n">Ap</span>
+        
+        <span class="c1"># Validación para evitar división por cero si A no es definida positiva</span>
+        <span class="k">if</span> <span class="n">denom</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;En la iteración </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">, p.T @ Ap es menor o igual a cero (</span><span class="si">{</span><span class="n">denom</span><span class="si">}</span><span class="s2">). La matriz A podría no ser simétrica definida positiva.&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+            
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">rsold</span> <span class="o">/</span> <span class="n">denom</span>
+        
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">p</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">Ap</span>
+        
+        <span class="n">rsnew</span> <span class="o">=</span> <span class="n">r</span> <span class="o">@</span> <span class="n">r</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">rsnew</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CG convergió exitosamente en </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> iteraciones.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">x</span>
+            
+        <span class="n">p</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="p">(</span><span class="n">rsnew</span> <span class="o">/</span> <span class="n">rsold</span><span class="p">)</span> <span class="o">*</span> <span class="n">p</span>
+        <span class="n">rsold</span> <span class="o">=</span> <span class="n">rsnew</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CG alcanzó el número máximo de iteraciones (</span><span class="si">{</span><span class="n">max_iter</span><span class="si">}</span><span class="s2">) sin converger a la tolerancia tol=</span><span class="si">{</span><span class="n">tol</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz de coeficientes del sistema de ecuaciones lineales.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="c1"># Vector de términos independientes (entradas) del sistema.</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="n">x_sol</span> <span class="o">=</span> <span class="n">conjugate_gradient</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solución CG:&quot;</span><span class="p">,</span> <span class="n">x_sol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>En la iteración 2, p.T @ Ap es menor o igual a cero (-81.2428852550057). La matriz A podría no ser simétrica definida positiva.
+CG alcanzó el número máximo de iteraciones (1000) sin converger a la tolerancia tol=1e-08.
+Solución CG: [0.25212338 0.         0.37818507 0.50424676 0.31515422]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -529,20 +688,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="leventberg_marquardt.html"
+       href="resolucion_sistemas_ecuaciones.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Método de Levenberg-Marquardt</p>
+        <p class="prev-next-title">Solución de sistemas de ecuaciones diferenciales</p>
       </div>
     </a>
     <a class="right-next"
-       href="metodos_globales.html"
+       href="leventberg_marquardt.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Métodos globales</p>
+        <p class="prev-next-title">Método de Levenberg-Marquardt</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -552,6 +711,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-de-cg">Algoritmo de CG</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
