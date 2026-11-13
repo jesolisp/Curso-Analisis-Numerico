@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -67,7 +67,7 @@
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/algoritmo_res_indirecta.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Métodos de relajación e iterativos" href="metodos_relajacion.html" />
+    <link rel="next" title="Solución de ecuaciones no lineales" href="resolucion_sistemas_no_lineales.html" />
     <link rel="prev" title="Métodos de factorización" href="metodos_factorizacion.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -207,19 +207,16 @@
 
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Algoritmos de resolución indirecta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extrapolacion_richardson.html">Extrapolación de Richardson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Solución de ecuaciones no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_ecuaciones.html">Solución de sistemas de ecuaciones diferenciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gradiente_conjugado.html">Método del gradiente conjugado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="nav bd-sidenav">
@@ -521,8 +518,8 @@ esquema difiere en la forma de realizar la sustitución.</p>
 \]</div>
 <p>donde <span class="math notranslate nohighlight">\(\bf L\)</span> es una matriz triangular inferior con ceros en la diagonal, <span class="math notranslate nohighlight">\(\bf D\)</span> es la matriz diagonal que contiene los elementos de la diagonal de <span class="math notranslate nohighlight">\(\bf A\)</span>, y <span class="math notranslate nohighlight">\(\bf U\)</span> es una matriz triangular superior con ceros en la diagonal.</p>
 <p>El método de Jacobi para la <span class="math notranslate nohighlight">\(r\)</span>-­ésima iteración se escribe como</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e7ef47f3-c2b9-45a3-b8ba-703c7ac3e5a9">
-<span class="eqno">(61)<a class="headerlink" href="#equation-e7ef47f3-c2b9-45a3-b8ba-703c7ac3e5a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0610f4ba-e40e-4f2a-b3a8-91c904f66e98">
+<span class="eqno">(61)<a class="headerlink" href="#equation-0610f4ba-e40e-4f2a-b3a8-91c904f66e98" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf DX^{(r)} = -(L+U)X^{(r-1)}+B, \quad \left(r=0,1,2,\dots\right).
 \end{equation}\]</div>
 <div class="admonition note">
@@ -530,14 +527,14 @@ esquema difiere en la forma de realizar la sustitución.</p>
 <p>El método de Jacobi converge para matrices diagonalmente dominantes, en el sentido que es matemáticamente preciso.</p>
 </div>
 <p>Para determi­nar si el método converge, se tiene que la matriz de iteración</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ebb101a5-aa45-43c1-bde1-60ed6e12b443">
-<span class="eqno">(62)<a class="headerlink" href="#equation-ebb101a5-aa45-43c1-bde1-60ed6e12b443" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c37410b3-6d3c-4236-8445-5c60611de120">
+<span class="eqno">(62)<a class="headerlink" href="#equation-c37410b3-6d3c-4236-8445-5c60611de120" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf -D^{-1}\left(L+U \right),
 \end{equation}\]</div>
 <p>además de un término aditivo, <span class="math notranslate nohighlight">\(\bf D^{−1}B\)</span>, mapea un conjunto de <span class="math notranslate nohighlight">\(\bf X\)</span> en el siguiente.</p>
 <p>La rapidez de convergencia de este método está dada por la rapidez de disminución del eigenvalor más lento. Es decir, el factor con el módulo más grande. El módu­lo de este factor está acotado entre 0 y 1, y se le llama <em>radio espectral del operador de relajación</em> <span class="math notranslate nohighlight">\((\rho_{s})\)</span>. El número de iteraciones <span class="math notranslate nohighlight">\((r)\)</span> necesarias para reducir el error total por un factor <span class="math notranslate nohighlight">\((10^{-p})\)</span> se aproxima como</p>
-<div class="amsmath math notranslate nohighlight" id="equation-27f7f8f8-090b-48c5-87e5-3fd551c911ae">
-<span class="eqno">(63)<a class="headerlink" href="#equation-27f7f8f8-090b-48c5-87e5-3fd551c911ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2c3c79c7-1cbb-42b7-8d51-d2036451462b">
+<span class="eqno">(63)<a class="headerlink" href="#equation-2c3c79c7-1cbb-42b7-8d51-d2036451462b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  r \approx \frac{p\, \ln(10)}{-\ln(\rho_{s})}.
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -667,23 +664,23 @@ Solución final obtenida (última iteración): [0.51684613 0.01796922 0.79111632
 <section id="metodo-de-gauss-seidel">
 <h2>Método de Gauss-Seidel<a class="headerlink" href="#metodo-de-gauss-seidel" title="Link to this heading">#</a></h2>
 <p>Las ecuaciones <a class="reference internal" href="#equation-eqn-division-elementos">(60)</a> se necesitan escalar mediante la división entre los ele­mentos de la diagonal, de manera que <span class="math notranslate nohighlight">\(\bf D\)</span> será igual a la matriz identidad <span class="math notranslate nohighlight">\(\bf I\)</span>. Mientras que el método de Jacobi transfiere todos los términos al lado derecho, excepto los términos de la diagonal, iterando como sigue</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b68ca004-6e71-418f-8fec-19b17529ec02">
-<span class="eqno">(64)<a class="headerlink" href="#equation-b68ca004-6e71-418f-8fec-19b17529ec02" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-31621e30-a733-46b3-a84b-f4b4530581d8">
+<span class="eqno">(64)<a class="headerlink" href="#equation-31621e30-a733-46b3-a84b-f4b4530581d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf X^{(r+1)} = \left(-L-U \right)X^{(r)} + B, \quad (r=0,1,2,\dots),
 \end{equation}\]</div>
 <p>el método de Gauss­Seidel introduce <span class="math notranslate nohighlight">\(x_{1}^{(r+1)},x_{2}^{(r+1)},\dots,\)</span> en el lado derecho una vez calculados. Por lo tanto, las ecuaciones de iteración están dadas como</p>
-<div class="amsmath math notranslate nohighlight" id="equation-800a696b-0a2b-4a4d-b917-cb727827a88b">
-<span class="eqno">(65)<a class="headerlink" href="#equation-800a696b-0a2b-4a4d-b917-cb727827a88b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0018f37c-3e6b-4d98-9e11-5ac6507abf24">
+<span class="eqno">(65)<a class="headerlink" href="#equation-0018f37c-3e6b-4d98-9e11-5ac6507abf24" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf X^{(r+1)} = -LX^{(r+1)} - UX^{(r)} + B,
 \end{equation}\]</div>
 <p>o bien</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77008b31-1fbc-48fb-9e49-60c82474132d">
-<span class="eqno">(66)<a class="headerlink" href="#equation-77008b31-1fbc-48fb-9e49-60c82474132d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fe5e5f66-92dd-4799-a0ce-6030fca69894">
+<span class="eqno">(66)<a class="headerlink" href="#equation-fe5e5f66-92dd-4799-a0ce-6030fca69894" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf (I+L)X^{(r+1)} = -UX^{(r)} + B.
 \end{equation}\]</div>
 <p>O se puede escribir las ecuaciones de la siguiente forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-985d7c96-efd5-4339-910d-24497898f689">
-<span class="eqno">(67)<a class="headerlink" href="#equation-985d7c96-efd5-4339-910d-24497898f689" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2064310c-e5f7-4b4d-976e-ed5e61f6fc54">
+<span class="eqno">(67)<a class="headerlink" href="#equation-2064310c-e5f7-4b4d-976e-ed5e61f6fc54" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{aligned}
   x_{1}^{(r+1)} &amp; = - \left( a_{12}\,x_{2}^{(r)} + a_{13}\,x_{3}^{(r)} + a_{14}\,x_{4}^{(r)} + \cdots +  a_{1n}\,x_{n}^{(r)} \right) + b_{1}, \\
   x_{2}^{(r+1)} &amp; = - \left( a_{21}\,x_{1}^{(r+1)} + a_{23}\,x_{3}^{(r)} + a_{24}\,x_{4}^{(r)} + \cdots +  a_{2n}\,x_{n}^{(r)} \right) + b_{2}, \\
@@ -824,11 +821,11 @@ Solución final obtenida (última iteración): [-0.04547266  0.58844776 -0.06704
       </div>
     </a>
     <a class="right-next"
-       href="metodos_relajacion.html"
+       href="resolucion_sistemas_no_lineales.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Métodos de relajación e iterativos</p>
+        <p class="prev-next-title">Solución de ecuaciones no lineales</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

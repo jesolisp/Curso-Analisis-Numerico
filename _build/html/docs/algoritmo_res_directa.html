@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -207,19 +207,16 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="algoritmo_res_indirecta.html">Algoritmos de resolución indirecta</a></li>
-<li class="toctree-l1"><a class="reference internal" href="metodos_relajacion.html">Métodos de relajación e iterativos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="almacenamiento_grandes_sistemas.html">Almacenamiento de grandes sistemas lineales en computadora</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">V. Sistemas de ecuaciones no lineales</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Resolución de sistemas no lineales</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algoritmos_aceleracion_convergencia.html">Algoritmos de aceleración de convergencia</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extrapolacion_richardson.html">Extrapolación de Richardson</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_no_lineales.html">Solución de ecuaciones no lineales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resolucion_sistemas_ecuaciones.html">Solución de sistemas de ecuaciones diferenciales</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VI. Optimización de funciones</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gradiente_conjugado.html">Método del gradiente conjugado</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leventberg_marquardt.html">Método de Levenberg-Marquardt</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="nav bd-sidenav">
@@ -526,8 +523,8 @@ document.write(`
  \end{aligned}
 \end{split}\]</div>
 <p>donde el conjunto de coeficientes <span class="math notranslate nohighlight">\(a_{i,j}\left(i,j=1,2,\dots n \right)\)</span> se representan con <span class="math notranslate nohighlight">\(\bf A\)</span> y los elementos <span class="math notranslate nohighlight">\(x_{j}\)</span> y <span class="math notranslate nohighlight">\(b_{j}\left(j=1,2,\dots,n \right)\)</span> se representan con los vectores <span class="math notranslate nohighlight">\(\bf X\)</span> y <span class="math notranslate nohighlight">\(\bf B\)</span>, respectivamente. De modo que, utilizando álgebra matricial, el conjunto de ecuaciones se puede representar de la siguiente forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-062a6c85-b6ea-41dd-ac8b-dc13a466f4fd">
-<span class="eqno">(9)<a class="headerlink" href="#equation-062a6c85-b6ea-41dd-ac8b-dc13a466f4fd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27d2a9d9-2812-4163-8986-a7610c38831b">
+<span class="eqno">(9)<a class="headerlink" href="#equation-27d2a9d9-2812-4163-8986-a7610c38831b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf A}{\bf X} = {\bf B}.
 \end{equation}\]</div>
 <p>Recordemos que estas ecuaciones tienen una solución única, si y sólo si el <span class="math notranslate nohighlight">\(\text{det}(A) \neq 0\)</span>.</p>
@@ -540,48 +537,48 @@ document.write(`
 <section id="eliminacion-gaussiana">
 <h2>Eliminación gaussiana<a class="headerlink" href="#eliminacion-gaussiana" title="Link to this heading">#</a></h2>
 <p>Suponga un sistema de ecuaciones de la forma <a class="reference internal" href="#equation-eqn-sistemas-ecuaciones">(8)</a> donde todos los divisores son no nulos. Entonces, la primera ecuación se almacena para ser usada posteriormente y la variable <span class="math notranslate nohighlight">\(x_{1}\)</span> se elimina de las restantes <span class="math notranslate nohighlight">\(n-1\)</span> ecuaciones al restar un múltiplo apropiado de la primera ecuación de cada una de las otras ecuaciones. Para esto, la siguientes notaciones son utilizadas para hacer referencia a los coeficientes originales</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f8a250c-e9fe-4d24-becc-421c09d0c69f">
-<span class="eqno">(10)<a class="headerlink" href="#equation-7f8a250c-e9fe-4d24-becc-421c09d0c69f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-871c1aed-5cf6-4920-8f7f-312ed130e84c">
+<span class="eqno">(10)<a class="headerlink" href="#equation-871c1aed-5cf6-4920-8f7f-312ed130e84c" title="Permalink to this equation">#</a></span>\[\begin{equation}
  a_{ij}^{(1)} = a_{ij}, \quad \left(i,j=1,2,\dots,n \right),
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-97721f76-d461-47eb-a494-c978de25a025">
-<span class="eqno">(11)<a class="headerlink" href="#equation-97721f76-d461-47eb-a494-c978de25a025" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cbc3c018-d466-481e-8656-6148b708b2c1">
+<span class="eqno">(11)<a class="headerlink" href="#equation-cbc3c018-d466-481e-8656-6148b708b2c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
  b_{i}^{(1)} = b_{i}, \quad \left(i=1,2,\dots,n \right),
 \end{equation}\]</div>
 <p>mientras que esta es para los nuevos coeficientes que se encuentran al usar los multiplicadores</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d4f6c5c2-cf0e-499a-bac6-56cf51fc998a">
-<span class="eqno">(12)<a class="headerlink" href="#equation-d4f6c5c2-cf0e-499a-bac6-56cf51fc998a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c8f73c9-b1d8-416c-978e-883ca8de5b4c">
+<span class="eqno">(12)<a class="headerlink" href="#equation-5c8f73c9-b1d8-416c-978e-883ca8de5b4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
  m_{i1} = \frac{a_{i1}^{(1)}}{a_{11}^{(1)}}, \quad \left(i,j=2,3,\dots,n \right),
 \end{equation}\]</div>
 <p>con ellos conformamos los nuevos elementos para la matriz <span class="math notranslate nohighlight">\(\bf A\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-23cba520-bba6-4ddc-9ccb-c8136a694c98">
-<span class="eqno">(13)<a class="headerlink" href="#equation-23cba520-bba6-4ddc-9ccb-c8136a694c98" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-92eb22ed-0c43-4b02-b200-2396714b5e5a">
+<span class="eqno">(13)<a class="headerlink" href="#equation-92eb22ed-0c43-4b02-b200-2396714b5e5a" title="Permalink to this equation">#</a></span>\[\begin{equation}
  a_{ij}^{(2)} = a_{ij}^{(1)} - m_{i1}\, a_{1j}^{(1)}, \quad \left(i=2,3,\dots,n \right), \quad \left(j=1,2,\dots,n \right),
 \end{equation}\]</div>
 <p>mientras que para el vector <span class="math notranslate nohighlight">\(\bf B\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-abaef6d2-9b24-4e82-b418-34bedd545a33">
-<span class="eqno">(14)<a class="headerlink" href="#equation-abaef6d2-9b24-4e82-b418-34bedd545a33" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e147efe9-bd22-4bc9-b7a0-4ba8ed843d01">
+<span class="eqno">(14)<a class="headerlink" href="#equation-e147efe9-bd22-4bc9-b7a0-4ba8ed843d01" title="Permalink to this equation">#</a></span>\[\begin{equation}
  b_{i}^{(2)} = b_{i}^{(1)} - m_{i1}\, b_{i}^{(1)}, \quad \left(i=1,2,\dots,n \right).
 \end{equation}\]</div>
 <p>De esto se observa que los elementos de la primera columna <span class="math notranslate nohighlight">\(j = 1\)</span>, tienen los siguientes valores</p>
-<div class="amsmath math notranslate nohighlight" id="equation-93f4cc13-6904-4d12-acef-46e0957c5b10">
-<span class="eqno">(15)<a class="headerlink" href="#equation-93f4cc13-6904-4d12-acef-46e0957c5b10" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2b479985-639f-45ca-9d8a-ec2fabf2d9a0">
+<span class="eqno">(15)<a class="headerlink" href="#equation-2b479985-639f-45ca-9d8a-ec2fabf2d9a0" title="Permalink to this equation">#</a></span>\[\begin{equation}
  a_{i1}^{(2)} = a_{i1}^{(1)} - \frac{a_{i1}^{(1)}}{a_{11}^{(1)}}a_{11}^{(1)} = 0
 \end{equation}\]</div>
 <p>por lo que la primera variable <span class="math notranslate nohighlight">\(x_{1}\)</span> se ha eliminado de las últimas <span class="math notranslate nohighlight">\(n−1\)</span> ecuaciones. Si se repite este procedimiento <span class="math notranslate nohighlight">\(n −1\)</span> veces, la ecuación restante tendrá una sola incógnita y se puede resolver en forma directa.</p>
 <p>En cada etapa del proceso, cuando la variable <span class="math notranslate nohighlight">\(x_{k}\)</span> se va a eliminar, los multiplicadores son</p>
-<div class="amsmath math notranslate nohighlight" id="equation-64b3fd4d-ccb9-4cd2-8288-cc388eae67aa">
-<span class="eqno">(16)<a class="headerlink" href="#equation-64b3fd4d-ccb9-4cd2-8288-cc388eae67aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2241b1da-c2ec-4643-9bb0-5f57f86b601b">
+<span class="eqno">(16)<a class="headerlink" href="#equation-2241b1da-c2ec-4643-9bb0-5f57f86b601b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  m_{ik} = \frac{a_{ik}^{(k)}}{a_{kk}^{(k)}}, \quad \left(i=k+1,k+2,k+3,\dots,n \right),
 \end{equation}\]</div>
 <p>y los nuevos elementos formados son, para la matriz <span class="math notranslate nohighlight">\(\bf A\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-bb50a539-70c1-47f4-8af6-a65711f6eddc">
-<span class="eqno">(17)<a class="headerlink" href="#equation-bb50a539-70c1-47f4-8af6-a65711f6eddc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ade0a1f5-235f-4b62-809a-21a73364b3f0">
+<span class="eqno">(17)<a class="headerlink" href="#equation-ade0a1f5-235f-4b62-809a-21a73364b3f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
  a_{ij}^{(k+1)} = a_{ij}^{(k)} - m_{ik}\, a_{kj}^{(k)}, \quad \left(i=k+1,k+2,\dots,n \right), (j=k,k+1,k+2,\dots,n)
 \end{equation}\]</div>
 <p>y para el vector <span class="math notranslate nohighlight">\(\bf B\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-de666809-db8c-4ac8-b057-aa08c005252c">
-<span class="eqno">(18)<a class="headerlink" href="#equation-de666809-db8c-4ac8-b057-aa08c005252c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-be9d24a3-a031-4f6e-8f22-8b8bc018b8b2">
+<span class="eqno">(18)<a class="headerlink" href="#equation-be9d24a3-a031-4f6e-8f22-8b8bc018b8b2" title="Permalink to this equation">#</a></span>\[\begin{equation}
  b_{i}^{(k+1)} = b_{i}^{(k)} - m_{ik}\, b_{k}^{(k)}, \quad \left(i=k+1,k+2,\dots,n \right).
 \end{equation}\]</div>
 <p>El resultado de este proceso de eliminación es un conjunto triangular de ecuaciones de la forma</p>
@@ -595,8 +592,8 @@ document.write(`
  \end{aligned}
 \end{split}\]</div>
 <p>Con un proceso de sustitución hacia atrás o regresiva, la última ecuación tiene la solución</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e38f062a-0ab3-4641-9143-fea8d0341c5c">
-<span class="eqno">(19)<a class="headerlink" href="#equation-e38f062a-0ab3-4641-9143-fea8d0341c5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5cd120ff-b680-468a-a645-38ed883c6bb4">
+<span class="eqno">(19)<a class="headerlink" href="#equation-5cd120ff-b680-468a-a645-38ed883c6bb4" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{n} = \frac{b_{n}^{(n)}}{a_{nn}^{(n)}}.
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -732,8 +729,8 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="inversa-de-una-matriz">
 <h1>Inversa de una matriz<a class="headerlink" href="#inversa-de-una-matriz" title="Link to this heading">#</a></h1>
 <p>En el caso de un conjunto de ecuaciones con diferentes entradas de <span class="math notranslate nohighlight">\(\bf B\)</span>, se puede encontrar la solución calculando la inversa de la matriz <span class="math notranslate nohighlight">\(\bf A\)</span>, para lo cual se requiere que ésta sea no singular. Ésta se determina al resolver <span class="math notranslate nohighlight">\(\bf X\)</span> de la ecuación <span class="math notranslate nohighlight">\(\bf AX = I\)</span>, donde la matriz <span class="math notranslate nohighlight">\(\bf A\)</span> tiene los coeficientes del lado izquier­do y el lado derecho, <span class="math notranslate nohighlight">\(\bf I\)</span>, representa a la matriz identidad</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d71ec02-e3cf-47da-b9e9-7a4bd31c5596">
-<span class="eqno">(20)<a class="headerlink" href="#equation-9d71ec02-e3cf-47da-b9e9-7a4bd31c5596" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7bad21f8-b81b-4212-8da4-0d4b801fbdb8">
+<span class="eqno">(20)<a class="headerlink" href="#equation-7bad21f8-b81b-4212-8da4-0d4b801fbdb8" title="Permalink to this equation">#</a></span>\[\begin{equation}
  I = \begin{bmatrix}
   1 &amp; 0 &amp; \cdots &amp; 0 \\
   0 &amp; 1 &amp; \cdots &amp; 0 \\
@@ -742,8 +739,8 @@ document.write(`
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Resolviendo cada uno de estos vectores columna de <span class="math notranslate nohighlight">\(\bf I\)</span> se obtienen las columnas de la matriz inversa <span class="math notranslate nohighlight">\(\bf A^{-1}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-b757da66-d0a1-48d3-8f6b-ec57a71527dd">
-<span class="eqno">(21)<a class="headerlink" href="#equation-b757da66-d0a1-48d3-8f6b-ec57a71527dd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9f12437b-49fb-4e52-a8fc-f4ece21b37d4">
+<span class="eqno">(21)<a class="headerlink" href="#equation-9f12437b-49fb-4e52-a8fc-f4ece21b37d4" title="Permalink to this equation">#</a></span>\[\begin{equation}
  A^{-1} = \frac{\text{adj}(A)}{\text{det}(A)}.
 \end{equation}\]</div>
 <div class="admonition tip">
