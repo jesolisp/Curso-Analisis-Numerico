@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -502,13 +502,13 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="metodo-del-gradiente-conjugado">
 <h1>Método del gradiente conjugado<a class="headerlink" href="#metodo-del-gradiente-conjugado" title="Link to this heading">#</a></h1>
 <p>El método del Gradiente Conjugado (CG) está diseñado para resolver sistemas de ecuaciones lineales de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5eb7282c-fcab-4123-a962-366a58a6297f">
-<span class="eqno">(84)<a class="headerlink" href="#equation-5eb7282c-fcab-4123-a962-366a58a6297f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-435dcdc6-5005-4edf-867e-2aebe9c4723b">
+<span class="eqno">(84)<a class="headerlink" href="#equation-435dcdc6-5005-4edf-867e-2aebe9c4723b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  Ax = b,
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(A\)</span> es una matriz simétrica y definida positiva. Esto es equivalente a encontrar el mínimo de la función cuadrática</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bd14724-99e6-4841-a313-a368316056f0">
-<span class="eqno">(85)<a class="headerlink" href="#equation-4bd14724-99e6-4841-a313-a368316056f0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-695b5bcd-c2b5-49df-b72c-05f8b138a6e5">
+<span class="eqno">(85)<a class="headerlink" href="#equation-695b5bcd-c2b5-49df-b72c-05f8b138a6e5" title="Permalink to this equation">#</a></span>\[\begin{equation}
  f(x) = \frac{1}{2} x^T A x - b^T x.
 \end{equation}\]</div>
 <p>En contraste con el método de gradiente descendente, el CG elige direcciones de búsqueda <span class="math notranslate nohighlight">\(p_{k}\)</span> que son <span class="math notranslate nohighlight">\(A\)</span>-ortogonales (conjugadas). Esto garantiza convergencia exacta en a lo mucho <span class="math notranslate nohighlight">\(n\)</span> pasos para un sistema de <span class="math notranslate nohighlight">\(n \times n\)</span>.</p>
@@ -519,33 +519,33 @@ document.write(`
 <li><p>La primera dirección de búsqueda es el residuo: <span class="math notranslate nohighlight">\(p_{0} = r_{0}\)</span>.</p></li>
 <li><p>En cada iteración <span class="math notranslate nohighlight">\(k\)</span>, calculamos el tamaño del paso <span class="math notranslate nohighlight">\(\alpha_{k}\)</span> que minimiza <span class="math notranslate nohighlight">\(f(x)\)</span> a lo largo de <span class="math notranslate nohighlight">\(p_{k}\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-998e7f8f-b722-4ed9-a740-a98fae6de60a">
-<span class="eqno">(86)<a class="headerlink" href="#equation-998e7f8f-b722-4ed9-a740-a98fae6de60a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c5dd5f3c-5097-4f34-b9fb-c31a251cbc2a">
+<span class="eqno">(86)<a class="headerlink" href="#equation-c5dd5f3c-5097-4f34-b9fb-c31a251cbc2a" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \alpha_{k} = \frac{r_{k}^T r_{k}}{p_{k}^T A p_{k}}.
 \end{equation}\]</div>
 <ol class="arabic simple" start="4">
 <li><p>Actualizamos la solución y el nuevo residuo</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-d601c356-2227-477e-94c3-bce34debd220">
-<span class="eqno">(87)<a class="headerlink" href="#equation-d601c356-2227-477e-94c3-bce34debd220" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-03653d6d-d19a-4504-85e1-7832b4fbdab5">
+<span class="eqno">(87)<a class="headerlink" href="#equation-03653d6d-d19a-4504-85e1-7832b4fbdab5" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{k+1} = x_{k} + \alpha_{k} p_{k},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-49022af7-b1e5-4bb3-b2b3-8509f7b0ae9a">
-<span class="eqno">(88)<a class="headerlink" href="#equation-49022af7-b1e5-4bb3-b2b3-8509f7b0ae9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4c56860c-f36b-47f5-bf7b-56aa25d48364">
+<span class="eqno">(88)<a class="headerlink" href="#equation-4c56860c-f36b-47f5-bf7b-56aa25d48364" title="Permalink to this equation">#</a></span>\[\begin{equation}
  r_{k+1} = r_{k} - \alpha_{k} A p_{k}.
 \end{equation}\]</div>
 <ol class="arabic simple" start="5">
 <li><p>Calculamos el factor de conjugación <span class="math notranslate nohighlight">\(\beta_k\)</span> para asegurar que la nueva dirección sea ortogonal a las anteriores respecto a <span class="math notranslate nohighlight">\(A\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-ffbc1bb3-6868-4140-8b41-012283b5ee9e">
-<span class="eqno">(89)<a class="headerlink" href="#equation-ffbc1bb3-6868-4140-8b41-012283b5ee9e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3d88b4e5-4311-42be-a5c7-a213afdacbc2">
+<span class="eqno">(89)<a class="headerlink" href="#equation-3d88b4e5-4311-42be-a5c7-a213afdacbc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \beta_{k} = \frac{r_{k+1}^T r_{k+1}}{r_{k}^T r_{k}}.
 \end{equation}\]</div>
 <ol class="arabic simple" start="6">
 <li><p>Actualizamos la dirección de búsqueda</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-c87190a4-1ebf-4474-9895-8b26b07f58c6">
-<span class="eqno">(90)<a class="headerlink" href="#equation-c87190a4-1ebf-4474-9895-8b26b07f58c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-93ec0365-f573-4e30-8d7f-c55983547db7">
+<span class="eqno">(90)<a class="headerlink" href="#equation-93ec0365-f573-4e30-8d7f-c55983547db7" title="Permalink to this equation">#</a></span>\[\begin{equation}
  p_{k+1} = r_{k+1} + \beta_{k} p_{k}.
 \end{equation}\]</div>
 <div class="cell docutils container">

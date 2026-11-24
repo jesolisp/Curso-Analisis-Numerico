@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -534,19 +534,19 @@ document.write(`
 <section id="metodo-de-jacobi">
 <h2>Método de Jacobi<a class="headerlink" href="#metodo-de-jacobi" title="Link to this heading">#</a></h2>
 <p>Es un algoritmo iterativo diseñado para calcular todos los eigenvalores (eigenvalores) y eigenvectores (eigenvectores) de una matriz simétrica real</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee900cff-486a-41d6-a1f7-3935b5e44c5d">
-<span class="eqno">(93)<a class="headerlink" href="#equation-ee900cff-486a-41d6-a1f7-3935b5e44c5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c94d5d68-92aa-4e62-a5b0-7f52c9dd9081">
+<span class="eqno">(93)<a class="headerlink" href="#equation-c94d5d68-92aa-4e62-a5b0-7f52c9dd9081" title="Permalink to this equation">#</a></span>\[\begin{equation}
  A \in \mathbb{R}^{n \times n}, \quad A = A^T.
 \end{equation}\]</div>
 <p>Consiste en aplicar una sucesión de transformaciones ortogonales que van anulando los elementos fuera de la diagonal principal hasta que la matriz converge a una forma diagonal</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e3c17b1-08ea-4c73-9a9b-857added1fd3">
-<span class="eqno">(94)<a class="headerlink" href="#equation-8e3c17b1-08ea-4c73-9a9b-857added1fd3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2012b32d-9d77-47ae-adef-9b694d0058aa">
+<span class="eqno">(94)<a class="headerlink" href="#equation-2012b32d-9d77-47ae-adef-9b694d0058aa" title="Permalink to this equation">#</a></span>\[\begin{equation}
  D = V^T A V,
 \end{equation}\]</div>
 <p>donde los elementos de la diagonal de <span class="math notranslate nohighlight">\(D\)</span> son los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span> y las columnas de la matriz acumulada <span class="math notranslate nohighlight">\(V = J_1 J_2 \cdots J_k\)</span> son los eigenvectores correspondientes.</p>
 <p>En cada iteración, se busca eliminar el elemento fuera de la diagonal con mayor magnitud absoluta, ubicado en la posición <span class="math notranslate nohighlight">\((p, q)\)</span> con <span class="math notranslate nohighlight">\(p \neq q\)</span>. Para lograrlo, se construye una matriz de rotación de Jacobi <span class="math notranslate nohighlight">\(J(p, q, \theta)\)</span>, que es idéntica a la matriz identidad excepto en cuatro entradas</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ffdf2f4-b1f0-4894-8a32-ada85327f919">
-<span class="eqno">(95)<a class="headerlink" href="#equation-0ffdf2f4-b1f0-4894-8a32-ada85327f919" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5424909d-b1bf-4136-848a-02f59bfad5b7">
+<span class="eqno">(95)<a class="headerlink" href="#equation-5424909d-b1bf-4136-848a-02f59bfad5b7" title="Permalink to this equation">#</a></span>\[\begin{equation}
  J_{pp} = \cos(\theta), \quad J_{qq} = \cos(\theta), \quad J_{pq} = \sin(\theta), \quad J_{qp} = -\sin(\theta).
 \end{equation}\]</div>
 <p>Al aplicar la transformación de semejanza <span class="math notranslate nohighlight">\(A' = J^T A J\)</span>, solo se modifican las filas y columnas <span class="math notranslate nohighlight">\(p\)</span> y <span class="math notranslate nohighlight">\(q\)</span>. El ángulo <span class="math notranslate nohighlight">\(\theta\)</span> se elige específicamente para forzar que el nuevo elemento <span class="math notranslate nohighlight">\(a'_{pq} = a'_{qp} = 0\)</span>.</p>
@@ -556,23 +556,23 @@ document.write(`
 <ol class="arabic simple">
 <li><p>Se define el parámetro <span class="math notranslate nohighlight">\(\tau\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-cfde2f8e-2b23-466b-a0e3-60d3dd49bc49">
-<span class="eqno">(96)<a class="headerlink" href="#equation-cfde2f8e-2b23-466b-a0e3-60d3dd49bc49" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2e0cc823-b173-4519-a892-3b6249701ddb">
+<span class="eqno">(96)<a class="headerlink" href="#equation-2e0cc823-b173-4519-a892-3b6249701ddb" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \tau = \frac{a_{qq} - a_{pp}}{2 a_{pq}}.
 \end{equation}\]</div>
 <ol class="arabic simple" start="2">
 <li><p>Se calcula <span class="math notranslate nohighlight">\(t = \tan\theta\)</span> eligiendo la raíz de menor magnitud de <span class="math notranslate nohighlight">\(t^2 + 2\tau t - 1 = 0\)</span> (esto garantiza <span class="math notranslate nohighlight">\(\vert{}\theta\vert{} \le \frac{\pi}{4}\)</span> y máxima estabilidad)</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-82d06c9c-25f0-4b2e-bbc1-3dcb9ed2fe8d">
-<span class="eqno">(97)<a class="headerlink" href="#equation-82d06c9c-25f0-4b2e-bbc1-3dcb9ed2fe8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-27691907-3e31-4d85-bcc0-e0958d27e5a7">
+<span class="eqno">(97)<a class="headerlink" href="#equation-27691907-3e31-4d85-bcc0-e0958d27e5a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
  t = \frac{\text{sgn}(\tau)}{\vert{}\tau\vert{} + \sqrt{1 + \tau^2}}.
 \end{equation}\]</div>
 <p>(Si <span class="math notranslate nohighlight">\(\tau = 0\)</span>, se toma <span class="math notranslate nohighlight">\(t = 1\)</span>).</p>
 <ol class="arabic simple" start="3">
 <li><p>Se obtienen <span class="math notranslate nohighlight">\(c = \cos(\theta)\)</span> y <span class="math notranslate nohighlight">\(s = \sin(\theta)\)</span></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-ed6e3bf9-6eb7-403d-8750-03d5ddbe8276">
-<span class="eqno">(98)<a class="headerlink" href="#equation-ed6e3bf9-6eb7-403d-8750-03d5ddbe8276" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ba1aea40-c571-4225-b1f6-eec74ebf74e8">
+<span class="eqno">(98)<a class="headerlink" href="#equation-ba1aea40-c571-4225-b1f6-eec74ebf74e8" title="Permalink to this equation">#</a></span>\[\begin{equation}
  c = \frac{1}{\sqrt{1 + t^2}}, \qquad s = c \cdot t.
 \end{equation}\]</div>
 </section>
@@ -762,8 +762,8 @@ Error máximo de verificación: 5.43e-11
 <section id="fundamento-de-una-rotacion-de-givens">
 <h3>Fundamento de una rotación de Givens<a class="headerlink" href="#fundamento-de-una-rotacion-de-givens" title="Link to this heading">#</a></h3>
 <p>Para anular el elemento <span class="math notranslate nohighlight">\(x_j\)</span> usando como pivote <span class="math notranslate nohighlight">\(x_i\)</span> en un vector, se construye una rotación ortogonal <span class="math notranslate nohighlight">\(G(i, j, \theta)\)</span> donde <span class="math notranslate nohighlight">\(c = \cos\theta\)</span> y <span class="math notranslate nohighlight">\(s = \sin\theta\)</span> se calculan sin funciones trigonométricas mediante</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7fe6459c-8651-41ea-a0a5-25d76ff91784">
-<span class="eqno">(99)<a class="headerlink" href="#equation-7fe6459c-8651-41ea-a0a5-25d76ff91784" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dfae5385-b356-4dd4-bc24-4a1a4d170c42">
+<span class="eqno">(99)<a class="headerlink" href="#equation-dfae5385-b356-4dd4-bc24-4a1a4d170c42" title="Permalink to this equation">#</a></span>\[\begin{equation}
  r = \sqrt{x_i^2 + x_j^2}, \qquad c = \frac{x_i}{r}, \qquad s = \frac{-x_j}{r}.
 \end{equation}\]</div>
 <p>Al multiplicar por <span class="math notranslate nohighlight">\(G\)</span>, la coordenada <span class="math notranslate nohighlight">\(i\)</span> se transforma en <span class="math notranslate nohighlight">\(r\)</span> y la coordenada <span class="math notranslate nohighlight">\(j\)</span> se convierte exactamente en <span class="math notranslate nohighlight">\(0\)</span>.</p>
@@ -923,25 +923,25 @@ Error máximo de verificación: 7.56e-13
 <h2>Método de Householder<a class="headerlink" href="#metodo-de-householder" title="Link to this heading">#</a></h2>
 <p>Mientras que el método de Givens anula elementos de uno en uno mediante rotaciones planas, Householder utiliza reflexiones especulares sobre hiperplanos para anular toda una columna debajo de la subdiagonal en un solo paso.</p>
 <p>Una matriz de Householder <span class="math notranslate nohighlight">\(H\)</span> tiene la forma:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-66e5912c-2fde-4595-a3da-b86c40d6cefc">
-<span class="eqno">(100)<a class="headerlink" href="#equation-66e5912c-2fde-4595-a3da-b86c40d6cefc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-749ed976-32b4-4395-972c-464baed2438f">
+<span class="eqno">(100)<a class="headerlink" href="#equation-749ed976-32b4-4395-972c-464baed2438f" title="Permalink to this equation">#</a></span>\[\begin{equation}
  H = I - 2\frac{v v^T}{v^T v}.
 \end{equation}\]</div>
 <p>Geométricamente, <span class="math notranslate nohighlight">\(H\)</span> refleja cualquier vector <span class="math notranslate nohighlight">\(x\)</span> a través del hiperplano ortogonal al vector normal <span class="math notranslate nohighlight">\(v\)</span>. Es una matriz simétrica (<span class="math notranslate nohighlight">\(H^T = H\)</span>) y ortogonal (<span class="math notranslate nohighlight">\(H^T H = I\)</span>), por lo que <span class="math notranslate nohighlight">\(H^{-1} = H\)</span>.</p>
 <section id="construccion-del-vector-reflector-v">
 <h3>Construcción del vector reflector <span class="math notranslate nohighlight">\(v\)</span><a class="headerlink" href="#construccion-del-vector-reflector-v" title="Link to this heading">#</a></h3>
 <p>Tomamos el subvector debajo de la diagonal principal en la columna <span class="math notranslate nohighlight">\(k\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-4942ecbc-8531-4768-afc4-60711513ebfd">
-<span class="eqno">(101)<a class="headerlink" href="#equation-4942ecbc-8531-4768-afc4-60711513ebfd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-680045c7-dc27-49ed-805a-8a25358f19d8">
+<span class="eqno">(101)<a class="headerlink" href="#equation-680045c7-dc27-49ed-805a-8a25358f19d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x = \begin{bmatrix} a_{k+1, k} \\ a_{k+2, k} \\ \vdots \\ a_{n, k} \end{bmatrix}.
 \end{equation}\]</div>
 <p>Para evitar cancelación numérica (pérdida de cifras significativas), elegimos el signo opuesto al primer elemento de <span class="math notranslate nohighlight">\(x\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-46af8bca-d0d5-42ee-a2dc-ace887af8c5b">
-<span class="eqno">(102)<a class="headerlink" href="#equation-46af8bca-d0d5-42ee-a2dc-ace887af8c5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6d2ccbfe-5e08-40fd-bb53-3fe3c6bb2ac5">
+<span class="eqno">(102)<a class="headerlink" href="#equation-6d2ccbfe-5e08-40fd-bb53-3fe3c6bb2ac5" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \alpha = -\text{sgn}(x_1)\, \Vert{}x\Vert{}_2,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-bacb330a-2872-4330-b82c-3254cf13e4f7">
-<span class="eqno">(103)<a class="headerlink" href="#equation-bacb330a-2872-4330-b82c-3254cf13e4f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2c5c9990-c315-41b9-b323-dd78e1832e24">
+<span class="eqno">(103)<a class="headerlink" href="#equation-2c5c9990-c315-41b9-b323-dd78e1832e24" title="Permalink to this equation">#</a></span>\[\begin{equation}
  v = x - \alpha e_1 = \begin{bmatrix} x_1 - \alpha \\ x_2 \\ \vdots \\ x_{n-k} \end{bmatrix}.
 \end{equation}\]</div>
 <p>Aplicando la transformación de semejanza <span class="math notranslate nohighlight">\(A^{(k+1)} = H_k A^{(k)} H_k\)</span>, se anulan simultáneamente las entradas <span class="math notranslate nohighlight">\(a_{k+2, k}, \dots, a_{n, k}\)</span> (y sus simétricas en la fila <span class="math notranslate nohighlight">\(k\)</span>). En <span class="math notranslate nohighlight">\(n - 2\)</span> pasos, cualquier matriz simétrica se reduce a una matriz tridiagonal <span class="math notranslate nohighlight">\(T = Q^T A Q\)</span>.</p>
@@ -1128,13 +1128,13 @@ Error máximo de verificación: 7.55e-13
 <h2>Método de Multiplicación Sucesiva por <span class="math notranslate nohighlight">\(y^{(k)}\)</span> (Método de potencia)<a class="headerlink" href="#metodo-de-multiplicacion-sucesiva-por-y-k-metodo-de-potencia" title="Link to this heading">#</a></h2>
 <p>Conocido en la literatura como el Método de la Potencia (Power Iteration), es el algoritmo iterativo más directo para hallar el eigenvalor dominante (el de mayor magnitud absoluta, <span class="math notranslate nohighlight">\(\vert{}\lambda_1\vert{} &gt; \vert{}\lambda_2\vert{} \ge \dots \ge \vert{}\lambda_n\vert{}\)</span>) y su eigenvector asociado.</p>
 <p>Parte de un vector inicial arbitrario <span class="math notranslate nohighlight">\(y^{(0)} \neq 0\)</span>, cualquier vector en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> puede expresarse como combinación lineal de los eigenvectores <span class="math notranslate nohighlight">\(v_1, v_2, \dots, v_n\)</span> de <span class="math notranslate nohighlight">\(A\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-e923d3b2-aebc-45ff-874d-7f880a9c5d5c">
-<span class="eqno">(104)<a class="headerlink" href="#equation-e923d3b2-aebc-45ff-874d-7f880a9c5d5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a115f588-8859-48e0-9423-12a68e3b5173">
+<span class="eqno">(104)<a class="headerlink" href="#equation-a115f588-8859-48e0-9423-12a68e3b5173" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y^{(0)} = c_1 v_1 + c_2 v_2 + \dots + c_n v_n.
 \end{equation}\]</div>
 <p>Al multiplicar sucesivamente por la matriz <span class="math notranslate nohighlight">\(A\)</span>, cada componente se escala por la potencia de su eigenvalor</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a1f69b7e-f64b-43bb-9a63-c915e6c2fdb9">
-<span class="eqno">(105)<a class="headerlink" href="#equation-a1f69b7e-f64b-43bb-9a63-c915e6c2fdb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a4453ab-6412-43f2-a489-baa838a7795e">
+<span class="eqno">(105)<a class="headerlink" href="#equation-9a4453ab-6412-43f2-a489-baa838a7795e" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y^{(k)} = A^k y^{(0)} = \lambda_1^k \left[ c_1 v_1 + c_2 \left(\frac{\lambda_2}{\lambda_1}\right)^k v_2 + \dots + c_n \left(\frac{\lambda_n}{\lambda_1}\right)^k v_n \right].
 \end{equation}\]</div>
 <p>Como <span class="math notranslate nohighlight">\(\vert{}\lambda_1\vert{} &gt; \vert{}\lambda_i\vert{}\)</span> para todo <span class="math notranslate nohighlight">\(i \ge 2\)</span>, las razones <span class="math notranslate nohighlight">\(\left(\frac{\lambda_i}{\lambda_1}\right)^k \to 0\)</span> cuando <span class="math notranslate nohighlight">\(k \to \infty\)</span>. En consecuencia, <span class="math notranslate nohighlight">\(y^{(k)}\)</span> se alinea cada vez más con la dirección del eigenvector dominante <span class="math notranslate nohighlight">\(v_1\)</span>.</p>
@@ -1145,15 +1145,15 @@ Error máximo de verificación: 7.55e-13
 <li><p><strong>Multiplicación.</strong> <span class="math notranslate nohighlight">\(z^{(k)} = A y^{(k-1)}\)</span>.</p></li>
 <li><p><strong>Aproximación del eigenvalor (Cociente de Rayleigh)</strong></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-ff861e3c-9cb9-4f35-9cf0-95487a888b7d">
-<span class="eqno">(106)<a class="headerlink" href="#equation-ff861e3c-9cb9-4f35-9cf0-95487a888b7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-58f93837-0d5b-43ad-a4bc-46e71500df58">
+<span class="eqno">(106)<a class="headerlink" href="#equation-58f93837-0d5b-43ad-a4bc-46e71500df58" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \lambda_1^{(k)} = \frac{(y^{(k-1)})^T z^{(k)}}{(y^{(k-1)})^T y^{(k-1)}}.
 \end{equation}\]</div>
 <ol class="arabic simple" start="3">
 <li><p><strong>Normalización.</strong></p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-f569e9b2-a346-4921-a004-fc74322b471f">
-<span class="eqno">(107)<a class="headerlink" href="#equation-f569e9b2-a346-4921-a004-fc74322b471f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f8be2e7c-0536-4608-8b0f-c748a35d9c39">
+<span class="eqno">(107)<a class="headerlink" href="#equation-f8be2e7c-0536-4608-8b0f-c748a35d9c39" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y^{(k)} = \frac{z^{(k)}}{\Vert{}z^{(k)}\Vert{}_2}.
 \end{equation}\]</div>
 <p>Aplicando este mismo principio sobre <span class="math notranslate nohighlight">\(A^{-1}\)</span> se obtiene el eigenvalor más pequeño (Potencia Inversa), y combinándolo con deflación o ortogonalización de Gram-Schmidt se obtienen múltiples pares propios.</p>
@@ -1195,8 +1195,8 @@ Error máximo de verificación: 7.55e-13
 </li>
 </ol>
 <p>Dado que <span class="math notranslate nohighlight">\(L_k\)</span> es invertible, podemos despejar <span class="math notranslate nohighlight">\(R_k = L_k^{-1} A_k\)</span> y sustituirlo en el siguiente paso:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2a9938da-ee55-40e9-9ede-8cbdd3ca5072">
-<span class="eqno">(108)<a class="headerlink" href="#equation-2a9938da-ee55-40e9-9ede-8cbdd3ca5072" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-498d14ba-7479-4324-9837-3d0e05458ef7">
+<span class="eqno">(108)<a class="headerlink" href="#equation-498d14ba-7479-4324-9837-3d0e05458ef7" title="Permalink to this equation">#</a></span>\[\begin{equation}
  A_{k+1} = R_k L_k = L_k^{-1} A_k L_k.
 \end{equation}\]</div>
 <p>Lo anterior demuestra que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> es semejante a <span class="math notranslate nohighlight">\(A_k\)</span>, por lo que tiene exactamente los mismos eigenvalores. Bajo condiciones generales, los elementos por debajo de la diagonal de <span class="math notranslate nohighlight">\(A_k\)</span> tienden a cero, dejando los eigenvalores en la diagonal principal.</p>
@@ -1249,8 +1249,8 @@ Error máximo de verificación: 7.55e-13
 </li>
 </ol>
 <p>Dado que se trata de una transformación de semejanza ortogonal</p>
-<div class="amsmath math notranslate nohighlight" id="equation-acf668bc-09b6-4724-8b4b-36b44219cbf3">
-<span class="eqno">(109)<a class="headerlink" href="#equation-acf668bc-09b6-4724-8b4b-36b44219cbf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3e09cb9a-86a4-40ae-843e-554eecbc8bc3">
+<span class="eqno">(109)<a class="headerlink" href="#equation-3e09cb9a-86a4-40ae-843e-554eecbc8bc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
  A_{k+1} = R_k Q_k = Q_k^T A_k Q_k.
 \end{equation}\]</div>
 <p>A medida que <span class="math notranslate nohighlight">\(k \to \infty\)</span>, <span class="math notranslate nohighlight">\(A_k\)</span> converge a una matriz triangular superior (forma de Schur) cuyos elementos diagonales son los eigenvalores. Si <span class="math notranslate nohighlight">\(A\)</span> es simétrica, <span class="math notranslate nohighlight">\(A_k\)</span> converge directamente a una matriz diagonal y las columnas de <span class="math notranslate nohighlight">\(V_k\)</span> contienen los eigenvectores.</p>

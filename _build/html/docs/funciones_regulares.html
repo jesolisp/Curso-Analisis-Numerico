@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -705,36 +705,36 @@ Valor real (scipy.integrate.quad): 0.746824
 <section id="aplicaciones-en-sistemas-de-primer-orden">
 <h3>Aplicaciones en sistemas de primer orden<a class="headerlink" href="#aplicaciones-en-sistemas-de-primer-orden" title="Link to this heading">#</a></h3>
 <p>Considere un problema de valor inicial de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-336ba291-528c-4218-a621-e0b3bc215126">
-<span class="eqno">(2)<a class="headerlink" href="#equation-336ba291-528c-4218-a621-e0b3bc215126" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c201f34e-502f-4e7e-8e32-a89c9abdd00c">
+<span class="eqno">(2)<a class="headerlink" href="#equation-c201f34e-502f-4e7e-8e32-a89c9abdd00c" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \dot{y} = f(t,y),
 \end{equation}\]</div>
 <p>integrando por ambos lados de la igualdad en el intervalo <span class="math notranslate nohighlight">\([t_{n}, t_{n+1}]\)</span>, tenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-36aa1c3f-64e4-41f4-b798-c819e97a164b">
-<span class="eqno">(3)<a class="headerlink" href="#equation-36aa1c3f-64e4-41f4-b798-c819e97a164b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f84a4b24-32c3-4874-8da9-4d48e3fe468d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-f84a4b24-32c3-4874-8da9-4d48e3fe468d" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y\left(t_{n+1} \right) = y\left(t_{n} \right) + \int_{t_{n}}^{t_{n+1}}f(t,y(t))~\mathrm{d}t.
 \end{equation}\]</div>
 <section id="metodo-del-trapecio-implicito-adams-moulton-de-2do-orden">
 <h4>Método del trapecio implícito (Adams-Moulton de 2do orden)<a class="headerlink" href="#metodo-del-trapecio-implicito-adams-moulton-de-2do-orden" title="Link to this heading">#</a></h4>
 <p>Aplicando la regla del trapecio a la integral anterior, obtenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-49b7312f-a3be-4c9e-a3f9-62b7823c3637">
-<span class="eqno">(4)<a class="headerlink" href="#equation-49b7312f-a3be-4c9e-a3f9-62b7823c3637" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-644c1160-bfc0-4e42-9012-c1a10ad1412e">
+<span class="eqno">(4)<a class="headerlink" href="#equation-644c1160-bfc0-4e42-9012-c1a10ad1412e" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{n+1} = y_{n} + \frac{h}{2}\left[ f\left(t_{n},y_{n} \right) + f\left(t_{n+1},y_{n+1} \right) \right].
 \end{equation}\]</div>
 <p>Dado que <span class="math notranslate nohighlight">\(y_{n+1}\)</span> aparece en ambos lados (implícito) es necesario encontrar un algoritmo de búsqueda de raíces como Newton-Raphson para despejarlo.</p>
 <p>Para resolver un sistema mediante el método del trapecio implícito, necesitamos encontrar la raíz de una ecuación no lineal en cada paso de tiempo. Para encontrar <span class="math notranslate nohighlight">\(y_{n+1}\)</span> definimos una función residual <span class="math notranslate nohighlight">\(G\left(y_{n+1} \right)\)</span> que debe ser igual a cero</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6decdb1f-b7b5-4bed-8b34-0741260754e4">
-<span class="eqno">(5)<a class="headerlink" href="#equation-6decdb1f-b7b5-4bed-8b34-0741260754e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cfd3d006-27aa-472c-873d-e03da6dffe4c">
+<span class="eqno">(5)<a class="headerlink" href="#equation-cfd3d006-27aa-472c-873d-e03da6dffe4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
  G\left(y_{n+1} \right) = y_{n+1} - y_{n} - \frac{h}{2}\left[ f\left(t_{n},y_{n} \right) + f\left(t_{n+1},y_{n+1} \right) \right] = 0.
 \end{equation}\]</div>
 <p>Aplicando el método de Newton-Raphson multivariable, la iteración para actualizar la suposición inicial <span class="math notranslate nohighlight">\(y_{n+1}^{(k)}\)</span> es</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d71d79c6-2015-4525-ae3d-fb15bedfaaf6">
-<span class="eqno">(6)<a class="headerlink" href="#equation-d71d79c6-2015-4525-ae3d-fb15bedfaaf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d1c66fbd-615e-42c1-b589-d1404f671f84">
+<span class="eqno">(6)<a class="headerlink" href="#equation-d1c66fbd-615e-42c1-b589-d1404f671f84" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{n+1}^{(k+1)} = y_{n+1}^{(k)} - J_{G}^{-1}G\left(y_{n+1}^{(k)} \right),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(J_{G}\)</span> es la matriz Jacobiana del residual con respecto a <span class="math notranslate nohighlight">\(y_{n+1}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-9072a19e-d93b-43e9-8a65-5374a71ee39c">
-<span class="eqno">(7)<a class="headerlink" href="#equation-9072a19e-d93b-43e9-8a65-5374a71ee39c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5f8819e9-a185-4fa1-8885-a4b4f274e1ed">
+<span class="eqno">(7)<a class="headerlink" href="#equation-5f8819e9-a185-4fa1-8885-a4b4f274e1ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
  J_{G} = I - \frac{h}{2}J_{f}\left(t_{n+1},y_{n+1} \right).
 \end{equation}\]</div>
 <div class="cell docutils container">
