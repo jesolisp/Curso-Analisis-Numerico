@@ -36,12 +36,11 @@ parts:
     - file: docs/leventberg_marquardt
 - caption: VII. Cálculo de valores propios de una matriz
   chapters:
-    - file: docs/metodos_globales
     - file: docs/metodos_iterativos_mat
-- caption: VIII. Ecuaciones Diferenciales Parciales (EDP)
-  chapters:
-    - file: docs/introduccion_metodos_diferencias_finitas
-    - file: docs/introduccion_metodos_elementos_finitos
+# - caption: VIII. Ecuaciones Diferenciales Parciales (EDP)
+#   chapters:
+#     - file: docs/introduccion_metodos_diferencias_finitas
+#     - file: docs/introduccion_metodos_elementos_finitos
 - caption: Referencias
   chapters:
     - file: docs/references

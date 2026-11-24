@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -60,13 +60,15 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/metodos_iterativos_mat';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/metodos_iterativos_mat.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Método de diferencias finitas" href="introduccion_metodos_diferencias_finitas.html" />
-    <link rel="prev" title="Métodos globales" href="metodos_globales.html" />
+    <link rel="next" title="Bibliografía" href="references.html" />
+    <link rel="prev" title="Método de Levenberg-Marquardt" href="leventberg_marquardt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   </head>
@@ -218,13 +220,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Métodos iterativos</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -467,7 +464,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -483,6 +482,44 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Métodos iterativos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-jacobi">Método de Jacobi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-cos-theta-y-sin-theta">Cálculo de <span class="math notranslate nohighlight">\(\cos(\theta)\)</span> y <span class="math notranslate nohighlight">\(\sin(\theta)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-paso-a-paso">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-givens-o-rotaciones-de-givens">Método de Givens (o rotaciones de Givens)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamento-de-una-rotacion-de-givens">Fundamento de una rotación de Givens</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-householder">Método de Householder</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-vector-reflector-v">Construcción del vector reflector <span class="math notranslate nohighlight">\(v\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-multiplicacion-sucesiva-por-y-k-metodo-de-potencia">Método de Multiplicación Sucesiva por <span class="math notranslate nohighlight">\(y^{(k)}\)</span> (Método de potencia)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-l-r-rutishauser-1958">Método L-R (Rutishauser, 1958)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-q-r-francis-y-kublanovskaya-1961">Método Q-R (Francis y Kublanovskaya, 1961)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-de-estos-metodos">Conclusiones de estos métodos</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -494,6 +531,972 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="metodos-iterativos">
 <h1>Métodos iterativos<a class="headerlink" href="#metodos-iterativos" title="Link to this heading">#</a></h1>
+<section id="metodo-de-jacobi">
+<h2>Método de Jacobi<a class="headerlink" href="#metodo-de-jacobi" title="Link to this heading">#</a></h2>
+<p>Es un algoritmo iterativo diseñado para calcular todos los eigenvalores (eigenvalores) y eigenvectores (eigenvectores) de una matriz simétrica real</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ee900cff-486a-41d6-a1f7-3935b5e44c5d">
+<span class="eqno">(93)<a class="headerlink" href="#equation-ee900cff-486a-41d6-a1f7-3935b5e44c5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ A \in \mathbb{R}^{n \times n}, \quad A = A^T.
+\end{equation}\]</div>
+<p>Consiste en aplicar una sucesión de transformaciones ortogonales que van anulando los elementos fuera de la diagonal principal hasta que la matriz converge a una forma diagonal</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8e3c17b1-08ea-4c73-9a9b-857added1fd3">
+<span class="eqno">(94)<a class="headerlink" href="#equation-8e3c17b1-08ea-4c73-9a9b-857added1fd3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ D = V^T A V,
+\end{equation}\]</div>
+<p>donde los elementos de la diagonal de <span class="math notranslate nohighlight">\(D\)</span> son los eigenvalores de <span class="math notranslate nohighlight">\(A\)</span> y las columnas de la matriz acumulada <span class="math notranslate nohighlight">\(V = J_1 J_2 \cdots J_k\)</span> son los eigenvectores correspondientes.</p>
+<p>En cada iteración, se busca eliminar el elemento fuera de la diagonal con mayor magnitud absoluta, ubicado en la posición <span class="math notranslate nohighlight">\((p, q)\)</span> con <span class="math notranslate nohighlight">\(p \neq q\)</span>. Para lograrlo, se construye una matriz de rotación de Jacobi <span class="math notranslate nohighlight">\(J(p, q, \theta)\)</span>, que es idéntica a la matriz identidad excepto en cuatro entradas</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0ffdf2f4-b1f0-4894-8a32-ada85327f919">
+<span class="eqno">(95)<a class="headerlink" href="#equation-0ffdf2f4-b1f0-4894-8a32-ada85327f919" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ J_{pp} = \cos(\theta), \quad J_{qq} = \cos(\theta), \quad J_{pq} = \sin(\theta), \quad J_{qp} = -\sin(\theta).
+\end{equation}\]</div>
+<p>Al aplicar la transformación de semejanza <span class="math notranslate nohighlight">\(A' = J^T A J\)</span>, solo se modifican las filas y columnas <span class="math notranslate nohighlight">\(p\)</span> y <span class="math notranslate nohighlight">\(q\)</span>. El ángulo <span class="math notranslate nohighlight">\(\theta\)</span> se elige específicamente para forzar que el nuevo elemento <span class="math notranslate nohighlight">\(a'_{pq} = a'_{qp} = 0\)</span>.</p>
+<section id="calculo-de-cos-theta-y-sin-theta">
+<h3>Cálculo de <span class="math notranslate nohighlight">\(\cos(\theta)\)</span> y <span class="math notranslate nohighlight">\(\sin(\theta)\)</span><a class="headerlink" href="#calculo-de-cos-theta-y-sin-theta" title="Link to this heading">#</a></h3>
+<p>Para evitar errores numéricos y el costo computacional de calcular <span class="math notranslate nohighlight">\(\arctan\)</span>, <span class="math notranslate nohighlight">\(\sin\)</span> y <span class="math notranslate nohighlight">\(\cos\)</span>, se utilizan relaciones algebraicas directas:</p>
+<ol class="arabic simple">
+<li><p>Se define el parámetro <span class="math notranslate nohighlight">\(\tau\)</span></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-cfde2f8e-2b23-466b-a0e3-60d3dd49bc49">
+<span class="eqno">(96)<a class="headerlink" href="#equation-cfde2f8e-2b23-466b-a0e3-60d3dd49bc49" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \tau = \frac{a_{qq} - a_{pp}}{2 a_{pq}}.
+\end{equation}\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Se calcula <span class="math notranslate nohighlight">\(t = \tan\theta\)</span> eligiendo la raíz de menor magnitud de <span class="math notranslate nohighlight">\(t^2 + 2\tau t - 1 = 0\)</span> (esto garantiza <span class="math notranslate nohighlight">\(\vert{}\theta\vert{} \le \frac{\pi}{4}\)</span> y máxima estabilidad)</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-82d06c9c-25f0-4b2e-bbc1-3dcb9ed2fe8d">
+<span class="eqno">(97)<a class="headerlink" href="#equation-82d06c9c-25f0-4b2e-bbc1-3dcb9ed2fe8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ t = \frac{\text{sgn}(\tau)}{\vert{}\tau\vert{} + \sqrt{1 + \tau^2}}.
+\end{equation}\]</div>
+<p>(Si <span class="math notranslate nohighlight">\(\tau = 0\)</span>, se toma <span class="math notranslate nohighlight">\(t = 1\)</span>).</p>
+<ol class="arabic simple" start="3">
+<li><p>Se obtienen <span class="math notranslate nohighlight">\(c = \cos(\theta)\)</span> y <span class="math notranslate nohighlight">\(s = \sin(\theta)\)</span></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-ed6e3bf9-6eb7-403d-8750-03d5ddbe8276">
+<span class="eqno">(98)<a class="headerlink" href="#equation-ed6e3bf9-6eb7-403d-8750-03d5ddbe8276" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ c = \frac{1}{\sqrt{1 + t^2}}, \qquad s = c \cdot t.
+\end{equation}\]</div>
+</section>
+<section id="algoritmo-paso-a-paso">
+<h3>Algoritmo paso a paso<a class="headerlink" href="#algoritmo-paso-a-paso" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Inicialización.</strong> Sea <span class="math notranslate nohighlight">\(A^{(0)} = A\)</span> y <span class="math notranslate nohighlight">\(V^{(0)} = I_n\)</span> (matriz identidad de tamaño <span class="math notranslate nohighlight">\(n \times n\)</span>).</p></li>
+<li><p><strong>Búsqueda del pivote.</strong> Encontrar los índices <span class="math notranslate nohighlight">\((p, q)\)</span> con <span class="math notranslate nohighlight">\(p &lt; q\)</span> tales que <span class="math notranslate nohighlight">\(\vert{}a_{pq}\vert{}\)</span> sea el máximo entre todos los elementos fuera de la diagonal.</p></li>
+<li><p><strong>Criterio de parada.</strong> Si <span class="math notranslate nohighlight">\(\vert{}a_{pq}\vert{} &lt; \epsilon\)</span> (tolerancia deseada, por ejemplo <span class="math notranslate nohighlight">\(10^{-10}\)</span>), detener el ciclo.</p></li>
+<li><p><strong>Rotación.</strong> Calcular <span class="math notranslate nohighlight">\(c\)</span> y <span class="math notranslate nohighlight">\(s\)</span>, actualizar la matriz <span class="math notranslate nohighlight">\(A^{(k+1)} = J^T A^{(k)} J\)</span> y acumular los eigenvectores en <span class="math notranslate nohighlight">\(V^{(k+1)} = V^{(k)} J\)</span>.</p></li>
+<li><p>Repetir desde el paso 2.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Suprimir advertencias menores de integración durante los bucles de optimización</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar el estilo de graficación para una mejor visualización</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">metodo_Jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula los eigenvalores y eigenvectores de una</span>
+<span class="sd">    matriz simétrica real mediante el método de Jacobi,</span>
+<span class="sd">    registrando el historial de convergencia.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;La matriz debe ser cuadrada.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;El método de Jacobi requiere una matriz simétrica.&quot;</span><span class="p">)</span>
+    
+    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">error_history</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="c1"># 1. Encontrar el mayor elemento fuera de la diagonal</span>
+        <span class="n">off_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">off_diag</span><span class="p">),</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">max_error</span> <span class="o">=</span> <span class="n">off_diag</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span>
+        
+        <span class="c1"># Guardar el error de la iteración actual</span>
+        <span class="n">error_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_error</span><span class="p">)</span>
+        
+        <span class="c1"># 2. Criterio de parada</span>
+        <span class="k">if</span> <span class="n">max_error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># 3. Calcular c = cos(theta) y s = sin(theta)</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">tau</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">tau</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">tau</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="o">-</span><span class="n">tau</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+                
+            <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">t</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span>
+            
+        <span class="c1"># 4. Actualizar matriz A</span>
+        <span class="n">app</span><span class="p">,</span> <span class="n">aqq</span><span class="p">,</span> <span class="n">apq</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">app</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">apq</span> <span class="o">+</span> <span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">aqq</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">app</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">s</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">apq</span> <span class="o">+</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">aqq</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">p</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">q</span><span class="p">:</span>
+                <span class="n">aip</span><span class="p">,</span> <span class="n">aiq</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">aip</span> <span class="o">-</span> <span class="n">s</span> <span class="o">*</span> <span class="n">aiq</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">aip</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">aiq</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">q</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span>
+                
+        <span class="c1"># 5. Acumula los eigenvectores</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">vip</span><span class="p">,</span> <span class="n">viq</span> <span class="o">=</span> <span class="n">V</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">],</span> <span class="n">V</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span>
+            <span class="n">V</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">vip</span> <span class="o">-</span> <span class="n">s</span> <span class="o">*</span> <span class="n">viq</span>
+            <span class="n">V</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">q</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">vip</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">viq</span>
+            
+    <span class="c1"># Extraer los eigenvalores</span>
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">idx_orden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="n">idx_orden</span><span class="p">]</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">V</span><span class="p">[:,</span> <span class="n">idx_orden</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">error_history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">8.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">7.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+              <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">]])</span>
+    
+<span class="n">eig_val</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">,</span> <span class="n">jacobi_hist</span> <span class="o">=</span> <span class="n">metodo_Jacobi</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalores (Jacobi):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_val</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Eigenvectores (columnas):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_vec</span><span class="p">)</span>
+
+<span class="n">eig_val_np</span><span class="p">,</span> <span class="n">eig_vec_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Eigenvalores (NumPy):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_val_np</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Eigenvectores (columnas):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_vec_np</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+
+<span class="c1"># Verificación: M @ V - V @ diag(valores)</span>
+<span class="n">residuo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">eig_vec</span> <span class="o">-</span> <span class="n">eig_vec</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">eig_val</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error máximo de verificación: </span><span class="si">{</span><span class="n">residuo</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Graficar la convergencia en escala logarítmica</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">jacobi_hist</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">jacobi_hist</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1f77b4&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tolerancia ($10^{-12}$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergencia del Método de Jacobi&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteración&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Máximo $|a_</span><span class="si">{pq}</span><span class="s1">|$ fuera de la diagonal (escala log)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvalores (Jacobi):
+[29.00816702 11.81640893  2.71750235  1.07287503 -1.37028957 -7.24466376]
+
+Eigenvectores (columnas):
+[[ 0.33666304  0.61022947 -0.19543763 -0.66062462  0.06809406  0.18713746]
+ [ 0.41627298 -0.30862623  0.0632463  -0.05439457  0.83366027 -0.17180902]
+ [ 0.38241336  0.28038526  0.83434226  0.22927985 -0.11099208  0.11886394]
+ [ 0.44733301 -0.18724229 -0.3529441   0.35132921 -0.09615705  0.7124504 ]
+ [ 0.34899762  0.41576194 -0.3699778   0.5071309  -0.07317887 -0.55310234]
+ [ 0.49520568 -0.4958188   0.01496387 -0.35697777 -0.52292751 -0.3283669 ]]
+
+Eigenvalores (NumPy):
+[29.00816702 11.81640893 -7.24466376  2.71750235  1.07287503 -1.37028957]
+
+Eigenvectores (columnas):
+[[ 0.33666304  0.61022947 -0.18713746  0.19543763  0.66062462 -0.06809406]
+ [ 0.41627298 -0.30862623  0.17180902 -0.0632463   0.05439457 -0.83366027]
+ [ 0.38241336  0.28038526 -0.11886394 -0.83434226 -0.22927985  0.11099208]
+ [ 0.44733301 -0.18724229 -0.7124504   0.3529441  -0.35132921  0.09615705]
+ [ 0.34899762  0.41576194  0.55310234  0.3699778  -0.5071309   0.07317887]
+ [ 0.49520568 -0.4958188   0.3283669  -0.01496387  0.35697777  0.52292751]]
+
+Error máximo de verificación: 5.43e-11
+</pre></div>
+</div>
+<img alt="../_images/1d226c157f698ea4f4848cb8e2683db680acaf22bd942aaa453be49d04c73a9d.png" src="../_images/1d226c157f698ea4f4848cb8e2683db680acaf22bd942aaa453be49d04c73a9d.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="metodo-de-givens-o-rotaciones-de-givens">
+<h2>Método de Givens (o rotaciones de Givens)<a class="headerlink" href="#metodo-de-givens-o-rotaciones-de-givens" title="Link to this heading">#</a></h2>
+<p>Calcula los eigenvalores y eigenvectores de una matriz simétrica real <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{n \times n}\)</span> en dos etapas definidas, a diferencia de Jacobi que diagonaliza directamente:</p>
+<ol class="arabic simple">
+<li><p><strong>Tridiagonalización (directa, sin iteraciones).</strong> Aplica exactamente <span class="math notranslate nohighlight">\(\frac{(n-1)(n-2)}{2}\)</span> rotaciones planas de Givens para anular todos los elementos fuera de las tres diagonales principales (<span class="math notranslate nohighlight">\(\vert{}i - j\vert{} &gt; 1\)</span>), transformando <span class="math notranslate nohighlight">\(A\)</span> en una matriz simétrica tridiagonal <span class="math notranslate nohighlight">\(T = Q^T A Q\)</span>.</p></li>
+<li><p><strong>Diagonalización iterativa.</strong> Aplica iteraciones QR utilizando rotaciones de Givens sobre la matriz tridiagonal <span class="math notranslate nohighlight">\(T\)</span> (con desplazamientos de Wilkinson para acelerar la convergencia) hasta que la subdiagonal converge a cero.</p></li>
+</ol>
+<p>Esto reduce drásticamente el costo computacional respecto a Jacobi porque las rotaciones sobre matrices tridiagonales cuestan <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> en lugar de <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span> por paso.</p>
+<section id="fundamento-de-una-rotacion-de-givens">
+<h3>Fundamento de una rotación de Givens<a class="headerlink" href="#fundamento-de-una-rotacion-de-givens" title="Link to this heading">#</a></h3>
+<p>Para anular el elemento <span class="math notranslate nohighlight">\(x_j\)</span> usando como pivote <span class="math notranslate nohighlight">\(x_i\)</span> en un vector, se construye una rotación ortogonal <span class="math notranslate nohighlight">\(G(i, j, \theta)\)</span> donde <span class="math notranslate nohighlight">\(c = \cos\theta\)</span> y <span class="math notranslate nohighlight">\(s = \sin\theta\)</span> se calculan sin funciones trigonométricas mediante</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7fe6459c-8651-41ea-a0a5-25d76ff91784">
+<span class="eqno">(99)<a class="headerlink" href="#equation-7fe6459c-8651-41ea-a0a5-25d76ff91784" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ r = \sqrt{x_i^2 + x_j^2}, \qquad c = \frac{x_i}{r}, \qquad s = \frac{-x_j}{r}.
+\end{equation}\]</div>
+<p>Al multiplicar por <span class="math notranslate nohighlight">\(G\)</span>, la coordenada <span class="math notranslate nohighlight">\(i\)</span> se transforma en <span class="math notranslate nohighlight">\(r\)</span> y la coordenada <span class="math notranslate nohighlight">\(j\)</span> se convierte exactamente en <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rotacion_givens</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula c = cos(theta) y s = sin(theta) para anular b.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">tau</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">tau</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tridiagonalizacion_givens</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fase 1: Reduce una matriz simétrica A a forma tridiagonal T = Q^T A Q</span>
+<span class="sd">    mediante rotaciones planas de Givens.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">rotacion_givens</span><span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">])</span>
+                
+                <span class="c1"># Aplicar rotación por la izquierda (filas i-1, i)</span>
+                <span class="n">G_sub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">],</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+                <span class="n">T</span><span class="p">[[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">G_sub</span> <span class="o">@</span> <span class="n">T</span><span class="p">[[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">:]</span>
+                
+                <span class="c1"># Aplicar rotación por la derecha (columnas i-1, i)</span>
+                <span class="n">T</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">T</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]]</span> <span class="o">@</span> <span class="n">G_sub</span><span class="o">.</span><span class="n">T</span>
+                
+                <span class="c1"># Acumular vectores ortogonales: Q = Q * G^T</span>
+                <span class="n">Q</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]]</span> <span class="o">@</span> <span class="n">G_sub</span><span class="o">.</span><span class="n">T</span>
+                
+    <span class="k">return</span> <span class="n">T</span><span class="p">,</span> <span class="n">Q</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">metodo_Givens</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula los eigenvalores y eigeneigenvectores de una</span>
+<span class="sd">    matriz simétrica usando tridiagonalización de Givens + QR con Givens.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;La matriz debe ser cuadrada.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;El método requiere una matriz simétrica.&quot;</span><span class="p">)</span>
+        
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Fase 1: Tridiagonalización</span>
+    <span class="n">T</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">tridiagonalizacion_givens</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">error_history</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Fase 2: Iteraciones QR con rotaciones de Givens y desplazamiento de Wilkinson</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="c1"># El error es el máximo elemento en la subdiagonal</span>
+        <span class="n">subdiag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">max_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">subdiag</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">subdiag</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="n">error_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_error</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">max_error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># Desplazamiento de Wilkinson usando el bloque inferior 2x2</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="n">b2</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">sign_d</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">sign_d</span> <span class="o">*</span> <span class="n">b2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b2</span><span class="p">))</span>
+        
+        <span class="c1"># T - mu * I</span>
+        <span class="n">T_shifted</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+        <span class="c1"># Factorización QR de T_shifted usando rotaciones de Givens</span>
+        <span class="n">rotations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">rotacion_givens</span><span class="p">(</span><span class="n">T_shifted</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">T_shifted</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
+            <span class="n">G_sub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">],</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+            <span class="n">T_shifted</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">G_sub</span> <span class="o">@</span> <span class="n">T_shifted</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
+            <span class="n">rotations</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+            
+        <span class="c1"># Formar T_next = R * Q_qr + mu * I y acumular eigenvectores</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">rotations</span><span class="p">:</span>
+            <span class="n">G_sub_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+            <span class="n">T_shifted</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">T_shifted</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">@</span> <span class="n">G_sub_T</span>
+            <span class="n">Q</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">@</span> <span class="n">G_sub_T</span>
+            
+        <span class="n">T</span> <span class="o">=</span> <span class="n">T_shifted</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+    <span class="c1"># Extraer los eigenvalores</span>
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">idx_orden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="n">idx_orden</span><span class="p">]</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[:,</span> <span class="n">idx_orden</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">error_history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eig_val_g</span><span class="p">,</span> <span class="n">eig_vec_g</span><span class="p">,</span> <span class="n">givens_hist</span> <span class="o">=</span> <span class="n">metodo_Givens</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Eigenvalores (Método de Givens):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_val_g</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Eigenvectores (columnas):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_vec_g</span><span class="p">)</span>
+
+<span class="c1"># Verificación: M @ V - V @ diag(valores)</span>
+<span class="n">residuo_giv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">eig_vec_g</span> <span class="o">-</span> <span class="n">eig_vec_g</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">eig_val_g</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error máximo de verificación: </span><span class="si">{</span><span class="n">residuo_giv</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Graficar convergencia de la subdiagonal</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">givens_hist</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">givens_hist</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#2ca02c&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tolerancia ($10^{-12}$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergencia del Método de Givens (Tridiagonal + QR)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteración QR&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Máximo elemento subdiagonal (escala log)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvalores (Método de Givens):
+[29.00816702 11.81640893  2.71750235  1.07287503 -1.37028957 -7.24466376]
+
+Eigenvectores (columnas):
+[[ 0.33666304  0.61022947 -0.19543763 -0.66062462  0.06809406 -0.18713746]
+ [ 0.41627298 -0.30862623  0.0632463  -0.05439457  0.83366027  0.17180902]
+ [ 0.38241336  0.28038526  0.83434226  0.22927985 -0.11099208 -0.11886394]
+ [ 0.44733301 -0.18724229 -0.3529441   0.35132921 -0.09615705 -0.7124504 ]
+ [ 0.34899762  0.41576194 -0.3699778   0.5071309  -0.07317887  0.55310234]
+ [ 0.49520568 -0.4958188   0.01496387 -0.35697777 -0.52292751  0.3283669 ]]
+
+Error máximo de verificación: 7.56e-13
+</pre></div>
+</div>
+<img alt="../_images/fe8ec0fd92cc9d669be0d6fcc948ea676bcbd98232e515525838e9d980c53840.png" src="../_images/fe8ec0fd92cc9d669be0d6fcc948ea676bcbd98232e515525838e9d980c53840.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="metodo-de-householder">
+<h2>Método de Householder<a class="headerlink" href="#metodo-de-householder" title="Link to this heading">#</a></h2>
+<p>Mientras que el método de Givens anula elementos de uno en uno mediante rotaciones planas, Householder utiliza reflexiones especulares sobre hiperplanos para anular toda una columna debajo de la subdiagonal en un solo paso.</p>
+<p>Una matriz de Householder <span class="math notranslate nohighlight">\(H\)</span> tiene la forma:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-66e5912c-2fde-4595-a3da-b86c40d6cefc">
+<span class="eqno">(100)<a class="headerlink" href="#equation-66e5912c-2fde-4595-a3da-b86c40d6cefc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ H = I - 2\frac{v v^T}{v^T v}.
+\end{equation}\]</div>
+<p>Geométricamente, <span class="math notranslate nohighlight">\(H\)</span> refleja cualquier vector <span class="math notranslate nohighlight">\(x\)</span> a través del hiperplano ortogonal al vector normal <span class="math notranslate nohighlight">\(v\)</span>. Es una matriz simétrica (<span class="math notranslate nohighlight">\(H^T = H\)</span>) y ortogonal (<span class="math notranslate nohighlight">\(H^T H = I\)</span>), por lo que <span class="math notranslate nohighlight">\(H^{-1} = H\)</span>.</p>
+<section id="construccion-del-vector-reflector-v">
+<h3>Construcción del vector reflector <span class="math notranslate nohighlight">\(v\)</span><a class="headerlink" href="#construccion-del-vector-reflector-v" title="Link to this heading">#</a></h3>
+<p>Tomamos el subvector debajo de la diagonal principal en la columna <span class="math notranslate nohighlight">\(k\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-4942ecbc-8531-4768-afc4-60711513ebfd">
+<span class="eqno">(101)<a class="headerlink" href="#equation-4942ecbc-8531-4768-afc4-60711513ebfd" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ x = \begin{bmatrix} a_{k+1, k} \\ a_{k+2, k} \\ \vdots \\ a_{n, k} \end{bmatrix}.
+\end{equation}\]</div>
+<p>Para evitar cancelación numérica (pérdida de cifras significativas), elegimos el signo opuesto al primer elemento de <span class="math notranslate nohighlight">\(x\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-46af8bca-d0d5-42ee-a2dc-ace887af8c5b">
+<span class="eqno">(102)<a class="headerlink" href="#equation-46af8bca-d0d5-42ee-a2dc-ace887af8c5b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \alpha = -\text{sgn}(x_1)\, \Vert{}x\Vert{}_2,
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-bacb330a-2872-4330-b82c-3254cf13e4f7">
+<span class="eqno">(103)<a class="headerlink" href="#equation-bacb330a-2872-4330-b82c-3254cf13e4f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ v = x - \alpha e_1 = \begin{bmatrix} x_1 - \alpha \\ x_2 \\ \vdots \\ x_{n-k} \end{bmatrix}.
+\end{equation}\]</div>
+<p>Aplicando la transformación de semejanza <span class="math notranslate nohighlight">\(A^{(k+1)} = H_k A^{(k)} H_k\)</span>, se anulan simultáneamente las entradas <span class="math notranslate nohighlight">\(a_{k+2, k}, \dots, a_{n, k}\)</span> (y sus simétricas en la fila <span class="math notranslate nohighlight">\(k\)</span>). En <span class="math notranslate nohighlight">\(n - 2\)</span> pasos, cualquier matriz simétrica se reduce a una matriz tridiagonal <span class="math notranslate nohighlight">\(T = Q^T A Q\)</span>.</p>
+</section>
+<section id="id1">
+<h3>Algoritmo paso a paso<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Tridiagonalización de Householder (<span class="math notranslate nohighlight">\(O(\frac{4}{3}n^3)\)</span>).</strong> Se aplican <span class="math notranslate nohighlight">\(n - 2\)</span> reflexiones de Householder para transformar <span class="math notranslate nohighlight">\(A\)</span> en la matriz tridiagonal <span class="math notranslate nohighlight">\(T\)</span> y acumular la matriz ortogonal <span class="math notranslate nohighlight">\(Q = H_1 H_2 \cdots H_{n-2}\)</span>.</p></li>
+<li><p><strong>Diagonalización QR con desplazamiento de Wilkinson.</strong> Sobre la matriz tridiagonal <span class="math notranslate nohighlight">\(T\)</span>, se aplican iteraciones QR con rotaciones de Givens hasta que los elementos de la subdiagonal caen por debajo de la tolerancia <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tridiagonalizacion_householder</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fase 1: Reduce una matriz simétrica A a forma tridiagonal T = Q^T A Q</span>
+<span class="sd">    mediante n-2 reflexiones de Householder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="c1"># Subvector debajo de la diagonal en la columna k</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:,</span> <span class="n">k</span><span class="p">]</span>
+        <span class="n">norm_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">norm_x</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">continue</span>
+            
+        <span class="c1"># Elegir signo opuesto a x[0] para máxima estabilidad numérica</span>
+        <span class="n">sign</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="o">-</span><span class="n">sign</span> <span class="o">*</span> <span class="n">norm_x</span>
+        
+        <span class="c1"># Vector reflector v y normalización beta = 2 / (v^T v)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">alpha</span>
+        <span class="n">v_norm_sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">v_norm_sq</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="n">v_norm_sq</span>
+        
+        <span class="c1"># Aplicar transformación simétrica T[k+1:, k+1:] = H * T_sub * H</span>
+        <span class="c1"># de forma vectorial sin formar la matriz H completa</span>
+        <span class="n">T_sub</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">beta</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_sub</span> <span class="o">@</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">v</span>
+        
+        <span class="n">T</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">T_sub</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        
+        <span class="c1"># Fijar los elementos fuera de la subdiagonal en la columna/fila k</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:,</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">2</span><span class="p">:]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="c1"># Acumular los eigenvalores: Q[:, k+1:] = Q[:, k+1:] * H</span>
+        <span class="n">Q</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-=</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">Q</span><span class="p">[:,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">@</span> <span class="n">v</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">T</span><span class="p">,</span> <span class="n">Q</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">rotacion_givens</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotación de Givens auxiliar para la fase QR tridiagonal.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="o">-</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">s</span> <span class="o">*</span> <span class="n">tau</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="o">-</span><span class="n">b</span> <span class="o">/</span> <span class="n">a</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tau</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">tau</span>
+    <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">metodo_Householder</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula los eigenvalores y eigenvectores de una matriz simétrica</span>
+<span class="sd">    usando tridiagonalización de Householder + QR tridiagonal.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;La matriz debe ser cuadrada.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;El método requiere una matriz simétrica.&quot;</span><span class="p">)</span>
+        
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Fase 1: Tridiagonalización mediante reflexiones de Householder</span>
+    <span class="n">T</span><span class="p">,</span> <span class="n">Q</span> <span class="o">=</span> <span class="n">tridiagonalizacion_householder</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">error_history</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Fase 2: Diagonalización QR con desplazamiento de Wilkinson</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="n">subdiag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">max_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">subdiag</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">subdiag</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
+        <span class="n">error_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_error</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">max_error</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+            
+        <span class="c1"># Desplazamiento de Wilkinson</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="n">b2</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">sign_d</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">sign_d</span> <span class="o">*</span> <span class="n">b2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b2</span><span class="p">))</span>
+        
+        <span class="n">T_shifted</span> <span class="o">=</span> <span class="n">T</span> <span class="o">-</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+        <span class="c1"># Factorización QR sobre la matriz tridiagonal</span>
+        <span class="n">rotations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">rotacion_givens</span><span class="p">(</span><span class="n">T_shifted</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="n">T_shifted</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">])</span>
+            <span class="n">G_sub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="o">-</span><span class="n">s</span><span class="p">],</span> <span class="p">[</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+            <span class="n">T_shifted</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">G_sub</span> <span class="o">@</span> <span class="n">T_shifted</span><span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="p">:]</span>
+            <span class="n">rotations</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+            
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">rotations</span><span class="p">:</span>
+            <span class="n">G_sub_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span><span class="p">,</span> <span class="n">c</span><span class="p">]])</span>
+            <span class="n">T_shifted</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">T_shifted</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">@</span> <span class="n">G_sub_T</span>
+            <span class="n">Q</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[:,</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span> <span class="o">@</span> <span class="n">G_sub_T</span>
+            
+        <span class="n">T</span> <span class="o">=</span> <span class="n">T_shifted</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+    <span class="c1"># Extraer los eigenvalores</span>
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">idx_orden</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">eigenvalues</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="n">idx_orden</span><span class="p">]</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">Q</span><span class="p">[:,</span> <span class="n">idx_orden</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">error_history</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eig_val_h</span><span class="p">,</span> <span class="n">eig_vec_h</span><span class="p">,</span> <span class="n">givens_hist</span> <span class="o">=</span> <span class="n">metodo_Householder</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;eigenvalores ordenados (Método de Householder):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_val_h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">eigenvectores correspondientes (columnas):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_vec_h</span><span class="p">)</span>
+
+<span class="c1"># Verificación de precisión: ||M*V - V*diag(valores)||</span>
+<span class="n">residuo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">eig_vec_h</span> <span class="o">-</span> <span class="n">eig_vec_h</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">eig_val_h</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error máximo de verificación: </span><span class="si">{</span><span class="n">residuo</span><span class="si">:</span><span class="s2">.2e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Graficar convergencia</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">givens_hist</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">givens_hist</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#d62728&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tolerancia ($10^{-12}$)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Convergencia del Método de Householder + QR&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteración QR&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Máximo elemento subdiagonal (escala log)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigenvalores ordenados (Método de Householder):
+[29.00816702 11.81640893  2.71750235  1.07287503 -1.37028957 -7.24466376]
+
+eigenvectores correspondientes (columnas):
+[[ 0.33666304  0.61022947 -0.19543763  0.66062462 -0.06809406 -0.18713746]
+ [ 0.41627298 -0.30862623  0.0632463   0.05439457 -0.83366027  0.17180902]
+ [ 0.38241336  0.28038526  0.83434226 -0.22927985  0.11099208 -0.11886394]
+ [ 0.44733301 -0.18724229 -0.3529441  -0.35132921  0.09615705 -0.7124504 ]
+ [ 0.34899762  0.41576194 -0.3699778  -0.5071309   0.07317887  0.55310234]
+ [ 0.49520568 -0.4958188   0.01496387  0.35697777  0.52292751  0.3283669 ]]
+
+Error máximo de verificación: 7.55e-13
+</pre></div>
+</div>
+<img alt="../_images/52935329503d55678d5a35dc577e949e1583dea1e92d6acac5c326a9b9f1df33.png" src="../_images/52935329503d55678d5a35dc577e949e1583dea1e92d6acac5c326a9b9f1df33.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="metodo-de-multiplicacion-sucesiva-por-y-k-metodo-de-potencia">
+<h2>Método de Multiplicación Sucesiva por <span class="math notranslate nohighlight">\(y^{(k)}\)</span> (Método de potencia)<a class="headerlink" href="#metodo-de-multiplicacion-sucesiva-por-y-k-metodo-de-potencia" title="Link to this heading">#</a></h2>
+<p>Conocido en la literatura como el Método de la Potencia (Power Iteration), es el algoritmo iterativo más directo para hallar el eigenvalor dominante (el de mayor magnitud absoluta, <span class="math notranslate nohighlight">\(\vert{}\lambda_1\vert{} &gt; \vert{}\lambda_2\vert{} \ge \dots \ge \vert{}\lambda_n\vert{}\)</span>) y su eigenvector asociado.</p>
+<p>Parte de un vector inicial arbitrario <span class="math notranslate nohighlight">\(y^{(0)} \neq 0\)</span>, cualquier vector en <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> puede expresarse como combinación lineal de los eigenvectores <span class="math notranslate nohighlight">\(v_1, v_2, \dots, v_n\)</span> de <span class="math notranslate nohighlight">\(A\)</span></p>
+<div class="amsmath math notranslate nohighlight" id="equation-e923d3b2-aebc-45ff-874d-7f880a9c5d5c">
+<span class="eqno">(104)<a class="headerlink" href="#equation-e923d3b2-aebc-45ff-874d-7f880a9c5d5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y^{(0)} = c_1 v_1 + c_2 v_2 + \dots + c_n v_n.
+\end{equation}\]</div>
+<p>Al multiplicar sucesivamente por la matriz <span class="math notranslate nohighlight">\(A\)</span>, cada componente se escala por la potencia de su eigenvalor</p>
+<div class="amsmath math notranslate nohighlight" id="equation-a1f69b7e-f64b-43bb-9a63-c915e6c2fdb9">
+<span class="eqno">(105)<a class="headerlink" href="#equation-a1f69b7e-f64b-43bb-9a63-c915e6c2fdb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y^{(k)} = A^k y^{(0)} = \lambda_1^k \left[ c_1 v_1 + c_2 \left(\frac{\lambda_2}{\lambda_1}\right)^k v_2 + \dots + c_n \left(\frac{\lambda_n}{\lambda_1}\right)^k v_n \right].
+\end{equation}\]</div>
+<p>Como <span class="math notranslate nohighlight">\(\vert{}\lambda_1\vert{} &gt; \vert{}\lambda_i\vert{}\)</span> para todo <span class="math notranslate nohighlight">\(i \ge 2\)</span>, las razones <span class="math notranslate nohighlight">\(\left(\frac{\lambda_i}{\lambda_1}\right)^k \to 0\)</span> cuando <span class="math notranslate nohighlight">\(k \to \infty\)</span>. En consecuencia, <span class="math notranslate nohighlight">\(y^{(k)}\)</span> se alinea cada vez más con la dirección del eigenvector dominante <span class="math notranslate nohighlight">\(v_1\)</span>.</p>
+<section id="id2">
+<h3>Algoritmo paso a paso<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Para evitar desbordamiento numérico al elevar <span class="math notranslate nohighlight">\(\lambda_1^k\)</span>, en cada paso se normaliza el vector:</p>
+<ol class="arabic simple">
+<li><p><strong>Multiplicación.</strong> <span class="math notranslate nohighlight">\(z^{(k)} = A y^{(k-1)}\)</span>.</p></li>
+<li><p><strong>Aproximación del eigenvalor (Cociente de Rayleigh)</strong></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-ff861e3c-9cb9-4f35-9cf0-95487a888b7d">
+<span class="eqno">(106)<a class="headerlink" href="#equation-ff861e3c-9cb9-4f35-9cf0-95487a888b7d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \lambda_1^{(k)} = \frac{(y^{(k-1)})^T z^{(k)}}{(y^{(k-1)})^T y^{(k-1)}}.
+\end{equation}\]</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Normalización.</strong></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight" id="equation-f569e9b2-a346-4921-a004-fc74322b471f">
+<span class="eqno">(107)<a class="headerlink" href="#equation-f569e9b2-a346-4921-a004-fc74322b471f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ y^{(k)} = \frac{z^{(k)}}{\Vert{}z^{(k)}\Vert{}_2}.
+\end{equation}\]</div>
+<p>Aplicando este mismo principio sobre <span class="math notranslate nohighlight">\(A^{-1}\)</span> se obtiene el eigenvalor más pequeño (Potencia Inversa), y combinándolo con deflación o ortogonalización de Gram-Schmidt se obtienen múltiples pares propios.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">metodo_potencia</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">lam_old</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">y</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">lam</span> <span class="o">-</span> <span class="n">lam_old</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">lam_old</span> <span class="o">=</span> <span class="n">lam</span>
+
+    <span class="k">return</span> <span class="n">lam</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">it</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metodo-l-r-rutishauser-1958">
+<h2>Método L-R (Rutishauser, 1958)<a class="headerlink" href="#metodo-l-r-rutishauser-1958" title="Link to this heading">#</a></h2>
+<p>El método L-R (Left-Right) fue el primer algoritmo moderno basado en factorizaciones matriciales sucesivas para calcular todos los eigenvalores de una matriz general (incluso no simétrica).</p>
+<section id="id3">
+<h3>Algoritmo paso a paso<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Consiste en factorizar la matriz en el producto de una matriz triangular inferior con unos en la diagonal (<span class="math notranslate nohighlight">\(L\)</span>) y una matriz triangular superior (<span class="math notranslate nohighlight">\(R\)</span>), para luego invertir el orden de multiplicación:</p>
+<ol class="arabic simple">
+<li><p><strong>Inicialización.</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span>.</p></li>
+<li><p><strong>En cada iteración <span class="math notranslate nohighlight">\(k = 0, 1, 2, \dots\)</span>:</strong></p>
+<ol class="arabic simple">
+<li><p>Factorizar (descomposición LU sin pivoteo): <span class="math notranslate nohighlight">\(A_k = L_k R_k\)</span>.</p></li>
+<li><p>Recombinar en orden inverso: <span class="math notranslate nohighlight">\(A_{k+1} = R_k L_k\)</span>.</p></li>
+</ol>
+</li>
+</ol>
+<p>Dado que <span class="math notranslate nohighlight">\(L_k\)</span> es invertible, podemos despejar <span class="math notranslate nohighlight">\(R_k = L_k^{-1} A_k\)</span> y sustituirlo en el siguiente paso:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2a9938da-ee55-40e9-9ede-8cbdd3ca5072">
+<span class="eqno">(108)<a class="headerlink" href="#equation-2a9938da-ee55-40e9-9ede-8cbdd3ca5072" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ A_{k+1} = R_k L_k = L_k^{-1} A_k L_k.
+\end{equation}\]</div>
+<p>Lo anterior demuestra que <span class="math notranslate nohighlight">\(A_{k+1}\)</span> es semejante a <span class="math notranslate nohighlight">\(A_k\)</span>, por lo que tiene exactamente los mismos eigenvalores. Bajo condiciones generales, los elementos por debajo de la diagonal de <span class="math notranslate nohighlight">\(A_k\)</span> tienden a cero, dejando los eigenvalores en la diagonal principal.</p>
+<p><strong>Nota.</strong> La factorización <span class="math notranslate nohighlight">\(LU\)</span> sin pivoteo puede fallar o presentar inestabilidad numérica si aparece un pivote nulo o muy pequeño. Esta debilidad motivó el desarrollo del método Q-R</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">metodo_lr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">Ak</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">Ak</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># Descomposición LU manual sin pivoteo (L con 1s en diagonal)</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">Ak</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+                <span class="n">factor</span> <span class="o">=</span> <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+                <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">factor</span>
+                <span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">:]</span> <span class="o">-=</span> <span class="n">factor</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">:]</span>
+                
+        <span class="c1"># Recombinación inversa: A_{k+1} = R * L</span>
+        <span class="n">Ak</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">L</span>
+        
+        <span class="c1"># Verificar si la parte triangular inferior es menor a tol</span>
+        <span class="n">sub_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">tril</span><span class="p">(</span><span class="n">Ak</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">sub_norm</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ak</span><span class="p">),</span> <span class="n">k</span>
+            
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ak</span><span class="p">),</span> <span class="n">max_iter</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metodo-q-r-francis-y-kublanovskaya-1961">
+<h2>Método Q-R (Francis y Kublanovskaya, 1961)<a class="headerlink" href="#metodo-q-r-francis-y-kublanovskaya-1961" title="Link to this heading">#</a></h2>
+<p>El método Q-R reemplaza la descomposición triangular <span class="math notranslate nohighlight">\(LU\)</span> por la factorización ortogonal <span class="math notranslate nohighlight">\(QR\)</span>, eliminando por completo los problemas de inestabilidad de pivoteo del método L-R.</p>
+<p>Es el algoritmo estándar utilizado hoy en día para el cálculo completo de espectros.</p>
+<section id="id4">
+<h3>Algoritmo paso a paso<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Inicialización.</strong> <span class="math notranslate nohighlight">\(A_0 = A\)</span> y <span class="math notranslate nohighlight">\(V_0 = I\)</span>.</p></li>
+<li><p><strong>En cada iteración <span class="math notranslate nohighlight">\(k = 0, 1, 2, \dots\)</span></strong>:</p>
+<ol class="arabic simple">
+<li><p><em>Descomposición ortogonal.</em> <span class="math notranslate nohighlight">\(A_k = Q_k R_k\)</span> (donde <span class="math notranslate nohighlight">\(Q_k^T Q_k = I\)</span> y <span class="math notranslate nohighlight">\(R_k\)</span> es triangular superior).</p></li>
+<li><p><em>Recombinación inversa.</em> <span class="math notranslate nohighlight">\(A_{k+1} = R_k Q_k\)</span>.</p></li>
+<li><p><em>Acumulación de eigenvectores (si <span class="math notranslate nohighlight">\(A\)</span> es simétrica).</em> <span class="math notranslate nohighlight">\(V_{k+1} = V_k Q_k\)</span>.</p></li>
+</ol>
+</li>
+</ol>
+<p>Dado que se trata de una transformación de semejanza ortogonal</p>
+<div class="amsmath math notranslate nohighlight" id="equation-acf668bc-09b6-4724-8b4b-36b44219cbf3">
+<span class="eqno">(109)<a class="headerlink" href="#equation-acf668bc-09b6-4724-8b4b-36b44219cbf3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ A_{k+1} = R_k Q_k = Q_k^T A_k Q_k.
+\end{equation}\]</div>
+<p>A medida que <span class="math notranslate nohighlight">\(k \to \infty\)</span>, <span class="math notranslate nohighlight">\(A_k\)</span> converge a una matriz triangular superior (forma de Schur) cuyos elementos diagonales son los eigenvalores. Si <span class="math notranslate nohighlight">\(A\)</span> es simétrica, <span class="math notranslate nohighlight">\(A_k\)</span> converge directamente a una matriz diagonal y las columnas de <span class="math notranslate nohighlight">\(V_k\)</span> contienen los eigenvectores.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">metodo_qr</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">Ak</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">Ak</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span><span class="n">Ak</span><span class="p">)</span>
+        <span class="n">Ak</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">Q</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="n">V</span> <span class="o">@</span> <span class="n">Q</span>
+        
+        <span class="n">off_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">Ak</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ak</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">off_diag</span> <span class="o">&lt;</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ak</span><span class="p">),</span> <span class="n">V</span><span class="p">,</span> <span class="n">k</span>
+            
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Ak</span><span class="p">),</span> <span class="n">V</span><span class="p">,</span> <span class="n">max_iter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vec_potval_pot</span><span class="p">,</span> <span class="n">vec_pot</span><span class="p">,</span> <span class="n">it_pot</span> <span class="o">=</span> <span class="n">metodo_potencia</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">it_pot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>17
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_pot</span><span class="p">,</span> <span class="n">vec_pot</span><span class="p">,</span> <span class="n">it_pot</span> <span class="o">=</span> <span class="n">metodo_potencia</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">vals_lr</span><span class="p">,</span> <span class="n">it_lr</span> <span class="o">=</span> <span class="n">metodo_lr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">vals_qr</span><span class="p">,</span> <span class="n">vecs_qr</span><span class="p">,</span> <span class="n">it_qr</span> <span class="o">=</span> <span class="n">metodo_qr</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1. Multiplicación por y^(k) (</span><span class="si">{</span><span class="n">it_pot</span><span class="si">}</span><span class="s2"> iter): Eigenvalor dominante = </span><span class="si">{</span><span class="n">val_pot</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;   Eigenvector dominante = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">vec_pot</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. Método L-R (</span><span class="si">{</span><span class="n">it_lr</span><span class="si">}</span><span class="s2"> iter): eigenvalores = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">vals_lr</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3. Método Q-R (</span><span class="si">{</span><span class="n">it_qr</span><span class="si">}</span><span class="s2"> iter): eigenvalores = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">vals_qr</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   </span><span class="se">\n</span><span class="s2">Eigenvectores (columnas):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">vecs_qr</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Multiplicación por y^(k) (17 iter): Eigenvalor dominante = 29.008167
+   Eigenvector dominante = [[0.3367 0.4163 0.3824 0.4473 0.349  0.4952]]
+
+2. Método L-R (103 iter): eigenvalores = [29.008167 11.816409 -7.244664  2.717502 -1.37029   1.072875]
+
+3. Método Q-R (120 iter): eigenvalores = [29.008167 11.816409 -7.244664  2.717502 -1.37029   1.072875]
+   
+Eigenvectores (columnas):
+ [[ 0.3367 -0.6102 -0.1871 -0.1954 -0.0681  0.6606]
+ [ 0.4163  0.3086  0.1718  0.0632 -0.8337  0.0544]
+ [ 0.3824 -0.2804 -0.1189  0.8343  0.111  -0.2293]
+ [ 0.4473  0.1872 -0.7125 -0.3529  0.0962 -0.3513]
+ [ 0.349  -0.4158  0.5531 -0.37    0.0732 -0.5071]
+ [ 0.4952  0.4958  0.3284  0.015   0.5229  0.357 ]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusiones-de-estos-metodos">
+<h1>Conclusiones de estos métodos<a class="headerlink" href="#conclusiones-de-estos-metodos" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Método</p></th>
+<th class="head"><p>Familia / Estrategia</p></th>
+<th class="head"><p>Tipo de Matriz Admitida</p></th>
+<th class="head"><p>Qué calcula</p></th>
+<th class="head"><p>Complejidad / Costo</p></th>
+<th class="head"><p>Estabilidad numérica</p></th>
+<th class="head"><p>Velocidad de convergencia</p></th>
+<th class="head"><p>Ventaja principal</p></th>
+<th class="head"><p>Desventaja principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Jacobi</strong></p></td>
+<td><p>Rotaciones ortogonales planas iterativas (<span class="math notranslate nohighlight">\(J^T A J\)</span>)</p></td>
+<td><p>Simétrica real (<span class="math notranslate nohighlight">\(A = A^T\)</span>)</p></td>
+<td><p>Todos los valores y vectores propios</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span> por barrido completo</p></td>
+<td><p>Muy alta (ortogonalidad garantizada)</p></td>
+<td><p>Cuadrática asintótica (tras varios barridos)</p></td>
+<td><p>Extremadamente preciso con valores propios repetidos y fácil de paralelizar</p></td>
+<td><p>Lento en matrices densas grandes (<span class="math notranslate nohighlight">\(n &gt; 100\)</span>) porque deshace ceros previos</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Givens</strong></p></td>
+<td><p>Rotaciones ortogonales planas (<span class="math notranslate nohighlight">\(G^T A G\)</span>) + QR</p></td>
+<td><p>Simétrica real (o general para Hessenberg)</p></td>
+<td><p>Todos los valores y vectores propios</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{8}{3}n^3\)</span> para tridiagonalizar</p></td>
+<td><p>Muy alta (transformaciones ortogonales)</p></td>
+<td><p>Directo en fase 1; cúbica/cuadrática en fase QR</p></td>
+<td><p>Ideal para matrices dispersas o en banda, ya que anula entradas selectivamente</p></td>
+<td><p>El doble de costoso que Householder en matrices densas</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Householder</strong></p></td>
+<td><p>Reflexiones de hiperplano (<span class="math notranslate nohighlight">\(H A H\)</span>) + QR</p></td>
+<td><p>Simétrica real (o general para Hessenberg)</p></td>
+<td><p>Todos los valores y vectores propios</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{4}{3}n^3\)</span> para tridiagonalizar</p></td>
+<td><p>Muy alta (transformaciones ortogonales)</p></td>
+<td><p>Directo en fase 1 (<span class="math notranslate nohighlight">\(n - 2\)</span> pasos); cúbica en fase QR</p></td>
+<td><p>Estándar industrial para matrices densas; anula una columna entera por paso</p></td>
+<td><p>No preserva la estructura de matrices dispersas (genera relleno o <em>fill-in</em>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Método de la Potencia (<span class="math notranslate nohighlight">\(y^{(k)}\)</span>)</strong></p></td>
+<td><p>Multiplicación iterativa matriz-vector (<span class="math notranslate nohighlight">\(A^k y^{(0)}\)</span>)</p></td>
+<td><p>Cuadrada general (requiere <span class="math notranslate nohighlight">\(\lvert\lambda_1\rvert &gt; \lvert\lambda_2\rvert\)</span>)</p></td>
+<td><p>Solo el dominante (<span class="math notranslate nohighlight">\(\lambda_1, v_1\)</span>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n^2)\)</span> por iteración (o <span class="math notranslate nohighlight">\(O(\text{nnz})\)</span> si es dispersa)</p></td>
+<td><p>Alta (si se normaliza en cada paso)</p></td>
+<td><p>Lineal, a razón de <span class="math notranslate nohighlight">\(\left\lvert\frac{\lambda_2}{\lambda_1}\right\rvert^k\)</span></p></td>
+<td><p>Muy bajo consumo de memoria; excelente para matrices gigantes y dispersas</p></td>
+<td><p>Solo obtiene un par propio; converge muy lento si <span class="math notranslate nohighlight">\(\lvert\lambda_1\rvert \approx \lvert\lambda_2\rvert\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Método L-R</strong></p></td>
+<td><p>Factorización triangular sucesiva (<span class="math notranslate nohighlight">\(A_k = L_k R_k \rightarrow R_k L_k\)</span>)</p></td>
+<td><p>Cuadrada general (sin pivotes nulos)</p></td>
+<td><p>Todos los valores propios</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span> por iteración (<span class="math notranslate nohighlight">\(O(n^2)\)</span> si es Hessenberg)</p></td>
+<td><p>Baja / Media (riesgo de división por cero)</p></td>
+<td><p>Lineal (cúbica con desplazamientos)</p></td>
+<td><p>Primer algoritmo de factorización sucesiva; base conceptual del método Q-R</p></td>
+<td><p>Inestable sin pivoteo; puede fallar si aparece un cero en la diagonal</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Método Q-R</strong></p></td>
+<td><p>Factorización ortogonal sucesiva (<span class="math notranslate nohighlight">\(A_k = Q_k R_k \rightarrow R_k Q_k\)</span>)</p></td>
+<td><p>Cuadrada general (real o compleja)</p></td>
+<td><p>Todos los valores propios (y vectores si es simétrica)</p></td>
+<td><p><span class="math notranslate nohighlight">\(O(n^3)\)</span> por iteración (<span class="math notranslate nohighlight">\(O(n)\)</span> en tridiagonal)</p></td>
+<td><p>Incondicionalmente estable (<span class="math notranslate nohighlight">\(Q\)</span> es ortogonal)</p></td>
+<td><p>Cúbica (con desplazamiento de Wilkinson)</p></td>
+<td><p>El algoritmo más robusto y versátil para obtener el espectro completo</p></td>
+<td><p>Costoso si se aplica directo sin reducir antes con Householder o Givens</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matriz simétrica definida positiva 4x4</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span>  <span class="mf">2.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">0.5</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">2.0</span><span class="p">,</span>  <span class="mf">8.0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.5</span><span class="p">,</span>  <span class="mf">6.0</span><span class="p">,</span>  <span class="mf">2.0</span><span class="p">],</span>
+    <span class="p">[</span> <span class="mf">0.5</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">2.0</span><span class="p">,</span>  <span class="mf">4.0</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Referencia exacta con NumPy</span>
+<span class="n">ref_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="n">A</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">metodos</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Jacobi&quot;</span><span class="p">,</span> <span class="n">metodo_Jacobi</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Givens + QR&quot;</span><span class="p">,</span> <span class="n">metodo_Givens</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Householder + QR&quot;</span><span class="p">,</span> <span class="n">metodo_Householder</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Potencia (y^k)&quot;</span><span class="p">,</span> <span class="n">metodo_potencia</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Método L-R&quot;</span><span class="p">,</span> <span class="n">metodo_lr</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Método Q-R puro&quot;</span><span class="p">,</span> <span class="n">metodo_qr</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MATRIZ DE PRUEBA (4x4 simétrica):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A:&quot;</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Eigenvalores exactos (NumPy): </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ref_vals</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Encabezado de la tabla</span>
+<span class="n">header</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Método&#39;</span><span class="si">:</span><span class="s2">&lt;18</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Iter.&#39;</span><span class="si">:</span><span class="s2">&gt;5</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Tiempo (ms)&#39;</span><span class="si">:</span><span class="s2">&gt;11</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Error residual&#39;</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Eigenvalores&#39;</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">105</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">105</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">metodos</span><span class="p">:</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)</span>
+    <span class="n">dt_ms</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1000.0</span>
+    
+    <span class="c1"># Manejo flexible de retorno (2 elementos para L-R, 3 para los demás)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">iters</span> <span class="o">=</span> <span class="n">res</span>
+        <span class="n">vecs</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span><span class="p">,</span> <span class="n">iters</span> <span class="o">=</span> <span class="n">res</span>
+        
+    <span class="c1"># iters puede ser un entero o la lista del historial de errores</span>
+    <span class="n">n_iters</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">iters</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iters</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">iters</span>
+    
+    <span class="c1"># Asegurar que vals sea un array 1D</span>
+    <span class="n">vals_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+    
+    <span class="c1"># Cálculo del error residual</span>
+    <span class="k">if</span> <span class="n">vecs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># ||M*V - V*diag(vals)||_inf</span>
+        <span class="n">residuo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">vecs</span> <span class="o">-</span> <span class="n">vecs</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">vals_arr</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Para L-R (solo devuelve eigenvalores): error respecto a referencia exacta</span>
+        <span class="n">residuo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">vals_arr</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">ref_vals</span><span class="p">))</span>
+        
+    <span class="n">vals_str</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vals_arr</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nombre</span> <span class="o">==</span> <span class="s2">&quot;Potencia (y^k)&quot;</span><span class="p">:</span>
+        <span class="n">vals_str</span> <span class="o">+=</span> <span class="s2">&quot; (solo λ_1)&quot;</span>
+        
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nombre</span><span class="si">:</span><span class="s2">&lt;18</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">n_iters</span><span class="si">:</span><span class="s2">&gt;5d</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">dt_ms</span><span class="si">:</span><span class="s2">&gt;11.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">residuo</span><span class="si">:</span><span class="s2">&gt;14.2e</span><span class="si">}</span><span class="s2"> | [</span><span class="si">{</span><span class="n">vals_str</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">105</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MATRIZ DE PRUEBA (4x4 simétrica):
+A: [[10.   2.   1.   0.5]
+ [ 2.   8.   1.5  1. ]
+ [ 1.   1.5  6.   2. ]
+ [ 0.5  1.   2.   4. ]]
+
+Valores propios exactos (NumPy): [12.01509034  7.5         5.72413601  2.76077366]
+
+=========================================================================================================
+Método             | Iter. | Tiempo (ms) | Error residual | Eigenvalores
+---------------------------------------------------------------------------------------------------------
+Jacobi             |    18 |      1.6765 |       1.27e-13 | [12.015090, 7.500000, 5.724136, 2.760774]
+Givens + QR        |    59 |      8.3721 |       5.20e-13 | [12.015090, 7.500000, 5.724136, 2.760774]
+Householder + QR   |    59 |      7.3923 |       5.25e-13 | [12.015090, 7.500000, 5.724136, 2.760774]
+Potencia (y^k)     |    31 |      0.5431 |       4.74e-07 | [12.015090 (solo λ_1)]
+Método L-R         |   105 |      3.2045 |       5.59e-13 | [12.015090, 7.500000, 5.724136, 2.760774]
+Método Q-R puro    |   105 |      4.0734 |       4.69e-13 | [12.015090, 7.500000, 5.724136, 2.760774]
+=========================================================================================================
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -527,20 +1530,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="metodos_globales.html"
+       href="leventberg_marquardt.html"
        title="página anterior">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Métodos globales</p>
+        <p class="prev-next-title">Método de Levenberg-Marquardt</p>
       </div>
     </a>
     <a class="right-next"
-       href="introduccion_metodos_diferencias_finitas.html"
+       href="references.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Método de diferencias finitas</p>
+        <p class="prev-next-title">Bibliografía</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -550,6 +1553,51 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Métodos iterativos</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-jacobi">Método de Jacobi</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-cos-theta-y-sin-theta">Cálculo de <span class="math notranslate nohighlight">\(\cos(\theta)\)</span> y <span class="math notranslate nohighlight">\(\sin(\theta)\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritmo-paso-a-paso">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-givens-o-rotaciones-de-givens">Método de Givens (o rotaciones de Givens)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamento-de-una-rotacion-de-givens">Fundamento de una rotación de Givens</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-householder">Método de Householder</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-del-vector-reflector-v">Construcción del vector reflector <span class="math notranslate nohighlight">\(v\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-multiplicacion-sucesiva-por-y-k-metodo-de-potencia">Método de Multiplicación Sucesiva por <span class="math notranslate nohighlight">\(y^{(k)}\)</span> (Método de potencia)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-l-r-rutishauser-1958">Método L-R (Rutishauser, 1958)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-q-r-francis-y-kublanovskaya-1961">Método Q-R (Francis y Kublanovskaya, 1961)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Algoritmo paso a paso</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones-de-estos-metodos">Conclusiones de estos métodos</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

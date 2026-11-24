@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -67,7 +67,7 @@
     <link rel="canonical" href="https://jesolisp.github.io/Curso-Analisis-Numerico/docs/leventberg_marquardt.html" />
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Búsqueda" href="../search.html" />
-    <link rel="next" title="Métodos globales" href="metodos_globales.html" />
+    <link rel="next" title="Métodos iterativos" href="metodos_iterativos_mat.html" />
     <link rel="prev" title="Método del gradiente conjugado" href="gradiente_conjugado.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
@@ -220,13 +220,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -507,8 +502,8 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="metodo-de-levenberg-marquardt">
 <h1>Método de Levenberg-Marquardt<a class="headerlink" href="#metodo-de-levenberg-marquardt" title="Link to this heading">#</a></h1>
 <p>Levenberg-Marquardt (LM) se utiliza para resolver problemas de mínimos cuadrados no lineales, minimizando una función objetivo <span class="math notranslate nohighlight">\(S(\beta)\)</span> que es la suma de los residuos al cuadrado</p>
-<div class="amsmath math notranslate nohighlight" id="equation-15943f83-c074-431e-aefd-98dc878f4989">
-<span class="eqno">(91)<a class="headerlink" href="#equation-15943f83-c074-431e-aefd-98dc878f4989" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0ed4e2ad-d48f-4619-a9ae-2792b36a9e86">
+<span class="eqno">(91)<a class="headerlink" href="#equation-0ed4e2ad-d48f-4619-a9ae-2792b36a9e86" title="Permalink to this equation">#</a></span>\[\begin{equation}
  S(\beta) = \sum_{i=1}^m [y_i - f(x_i, \beta)]^2 = \Vert{} r(\beta) \Vert{}^2.
 \end{equation}\]</div>
 <p>LM es un método “híbrido” que interpola suavemente entre dos algoritmos clásicos mediante un factor de amortiguamiento <span class="math notranslate nohighlight">\(\lambda\)</span>:</p>
@@ -521,8 +516,8 @@ document.write(`
 <ol class="arabic simple">
 <li><p>En cada iteración, se actualiza <span class="math notranslate nohighlight">\(\delta\)</span> resolviendo el siguiente sistema lineal</p></li>
 </ol>
-<div class="amsmath math notranslate nohighlight" id="equation-43eb9d22-202e-42ff-9544-4f5e9e4dc774">
-<span class="eqno">(92)<a class="headerlink" href="#equation-43eb9d22-202e-42ff-9544-4f5e9e4dc774" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c840e1a2-2dd7-4a46-b738-47500a18bfbd">
+<span class="eqno">(92)<a class="headerlink" href="#equation-c840e1a2-2dd7-4a46-b738-47500a18bfbd" title="Permalink to this equation">#</a></span>\[\begin{equation}
  (J^T J + \lambda I) \delta = J^T r.
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(J\)</span> es la matriz Jacobiana de la función respecto a los parámetros <span class="math notranslate nohighlight">\(\beta\)</span> (<span class="math notranslate nohighlight">\(J_{ij} = \frac{\partial f(x_i, \beta)}{\partial \beta_j}\)</span>), <span class="math notranslate nohighlight">\(r = y - f(x, \beta)\)</span> es el vector de residuos, <span class="math notranslate nohighlight">\(I\)</span> es la matriz identidad.</p>
@@ -705,11 +700,11 @@ Parámetros LM estimados : [ 2.5831 -0.8602]
       </div>
     </a>
     <a class="right-next"
-       href="metodos_globales.html"
+       href="metodos_iterativos_mat.html"
        title="siguiente página">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Métodos globales</p>
+        <p class="prev-next-title">Métodos iterativos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

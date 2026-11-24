@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -220,13 +220,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -530,18 +525,18 @@ bisección.</p>
 <p class="admonition-title"><span class="caption-number">Teorema 16 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Suponga que <span class="math notranslate nohighlight">\(f\)</span> es  continua en el intervalo <span class="math notranslate nohighlight">\(\left[x_{0},\tilde{x}_{0} \right]\)</span> y <span class="math notranslate nohighlight">\(f(x_{0}), f(\tilde{x}_{0})&lt;0\)</span>, el método de bisección genera una sucesión <span class="math notranslate nohighlight">\(\left\{x_{n} \right\}_{n=1}^{\infty}\)</span> que aproxima <span class="math notranslate nohighlight">\(x^{\star}\)</span> a un cruce por cero de <span class="math notranslate nohighlight">\(f\)</span>, tal que</p>
-<div class="amsmath math notranslate nohighlight" id="equation-77d26188-716d-451c-a361-d1e6c27497d3">
-<span class="eqno">(68)<a class="headerlink" href="#equation-77d26188-716d-451c-a361-d1e6c27497d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-db4a9771-b6cb-4d46-b7e7-28e2c6e64b40">
+<span class="eqno">(68)<a class="headerlink" href="#equation-db4a9771-b6cb-4d46-b7e7-28e2c6e64b40" title="Permalink to this equation">#</a></span>\[\begin{equation}
  | x_{n} - x^{\star} | \leq \frac{x_{0}- \tilde{x}_{0}}{2^{n}}, \quad n \geq 1.
 \end{equation}\]</div>
 <p>Esto implica que</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2c49152b-bcd9-4da9-82e1-730cc50c5934">
-<span class="eqno">(69)<a class="headerlink" href="#equation-2c49152b-bcd9-4da9-82e1-730cc50c5934" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f864c0f8-40c2-4417-bf2e-4bc7bf030422">
+<span class="eqno">(69)<a class="headerlink" href="#equation-f864c0f8-40c2-4417-bf2e-4bc7bf030422" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{n} = x^{\star} + \mathcal{O}\left( \frac{1}{2^{n}} \right),
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\mathcal{O}\left( 1/2^{n} \right)\)</span> es la velocidad de convergencia del método. Además, el método de bisección satisface</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12f34e4f-697b-4550-973b-a90e5150e942">
-<span class="eqno">(70)<a class="headerlink" href="#equation-12f34e4f-697b-4550-973b-a90e5150e942" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b3c0f6d4-5a15-4494-bdae-bfb5c86081d9">
+<span class="eqno">(70)<a class="headerlink" href="#equation-b3c0f6d4-5a15-4494-bdae-bfb5c86081d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \lim_{n\rightarrow \infty}~\frac{| x_{n+1} - x^{\star} |}{| x_{n} - x^{\star} |} = \frac{1}{2},
 \end{equation}\]</div>
 <p>por lo que el método converge linealmente.</p>
@@ -707,18 +702,18 @@ Iteraciones del primer cruce por cero (M1):
 <section id="metodo-de-la-falsa-posicion-o-regla-falsa">
 <h2>Método de la falsa posición o regla falsa<a class="headerlink" href="#metodo-de-la-falsa-posicion-o-regla-falsa" title="Link to this heading">#</a></h2>
 <p>Suponga que se eligen dos aproximaciones iniciales <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{0}\)</span> tales que los dos valores de la función en esos puntos tengan signo opuesto, entonces es posible generar una sucesión de valores que tengan esta propiedad. Si se construye una recta que pasa por los puntos <span class="math notranslate nohighlight">\(\left(x_{0},f\left(x_{0} \right) \right)\)</span> y <span class="math notranslate nohighlight">\(\left( \tilde{x}_{0},f\left(\tilde{x}_{0} \right) \right)\)</span>. Dado que <span class="math notranslate nohighlight">\(m_{1} = m_{2}\)</span> se tiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-aa92a5ee-25e6-426d-82c5-341b07f8b8b3">
-<span class="eqno">(71)<a class="headerlink" href="#equation-aa92a5ee-25e6-426d-82c5-341b07f8b8b3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ee39064b-b60c-4736-b721-a74f76633ca8">
+<span class="eqno">(71)<a class="headerlink" href="#equation-ee39064b-b60c-4736-b721-a74f76633ca8" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \frac{f\left(x_{1} \right) - f\left(x_{0} \right)}{x_{1} - x_{0}} = \frac{f\left(\tilde{x}_{0} \right) - f\left(x_{0} \right)}{\tilde{x}_{0} - x_{0}}.
 \end{equation}\]</div>
 <p>El valor del cruce por cero se define cuando se tiene un valor de <span class="math notranslate nohighlight">\(x_{1}\)</span> donde se cumple que <span class="math notranslate nohighlight">\(f(x_{1}) = 0\)</span>. Así, la ecuación queda de la siguiente forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2114e2c7-82ce-43ce-ab8e-f98abfc1b857">
-<span class="eqno">(72)<a class="headerlink" href="#equation-2114e2c7-82ce-43ce-ab8e-f98abfc1b857" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7e77c418-5d33-46f2-b6a2-98d0eab23dc2">
+<span class="eqno">(72)<a class="headerlink" href="#equation-7e77c418-5d33-46f2-b6a2-98d0eab23dc2" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \frac{0 - f\left(x_{0} \right)}{x_{1} - x_{0}} = \frac{f\left(\tilde{x}_{0} \right) - f\left(x_{0} \right)}{\tilde{x}_{0} - x_{0}},
 \end{equation}\]</div>
 <p>despejando <span class="math notranslate nohighlight">\(x_{1}\)</span> se tiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d6ab75c-8159-4184-b84b-53b07128ca7c">
-<span class="eqno">(73)<a class="headerlink" href="#equation-9d6ab75c-8159-4184-b84b-53b07128ca7c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2ca4e169-1edd-41df-84cc-43e22a9bcdb1">
+<span class="eqno">(73)<a class="headerlink" href="#equation-2ca4e169-1edd-41df-84cc-43e22a9bcdb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{1} = x_{0} - \frac{f\left(x_{0} \right)\left(\tilde{x}_{0} - x_{0} \right)}{f\left(\tilde{x}_{0}\right) - f\left(x_{0}\right)}.
 \end{equation}\]</div>
 <p>El valor de <span class="math notranslate nohighlight">\(\tilde{x}_{1}\)</span> se elige tomando un valor entre <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{0}\)</span> tal que el valor de la función sea opuesto en signo a <span class="math notranslate nohighlight">\(f(x_{1})\)</span>. Por consiguiente, los valores de <span class="math notranslate nohighlight">\(x_{1}\)</span> y <span class="math notranslate nohighlight">\(\tilde{x}_{1}\)</span> definen un menor intervalo que contiene el cruce por cero.</p>
@@ -847,18 +842,18 @@ Iteraciones del primer cruce por cero (M1):
 <section id="metodo-de-la-secante">
 <h2>Método de la secante<a class="headerlink" href="#metodo-de-la-secante" title="Link to this heading">#</a></h2>
 <p>Este método considera los puntos en sucesión estric­ta en el sentido de que el valor más viejo se descarta, y sólo se usan toman en cuenta dos valores más recientes al calcu­lar el nuevo valor. si se tiene que <span class="math notranslate nohighlight">\(m_{1}=m_{2}\)</span>, entonces</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f060957c-409e-46e5-8f7d-d9c907f92dd0">
-<span class="eqno">(74)<a class="headerlink" href="#equation-f060957c-409e-46e5-8f7d-d9c907f92dd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3adb62eb-14d7-4dfc-9952-117fe10cd5c4">
+<span class="eqno">(74)<a class="headerlink" href="#equation-3adb62eb-14d7-4dfc-9952-117fe10cd5c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \frac{f\left(x_{1} \right) - f\left(x_{0} \right)}{x_{1} - x_{0}} = \frac{f\left(x_{2} \right) - f\left(x_{1} \right)}{x_{2}-x_{1}}.
 \end{equation}\]</div>
 <p>Si se tiene que <span class="math notranslate nohighlight">\(f\left(x_{2}\right)=0\)</span>, entonces</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f275a12d-2c25-4255-a9ca-54a1651aa817">
-<span class="eqno">(75)<a class="headerlink" href="#equation-f275a12d-2c25-4255-a9ca-54a1651aa817" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5c8005bb-6b4f-4f21-a330-ec4308dbafcb">
+<span class="eqno">(75)<a class="headerlink" href="#equation-5c8005bb-6b4f-4f21-a330-ec4308dbafcb" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{2} - x_{1} = \frac{-(x_{1} - x_{0})\,f\left(x_{1} \right)}{f\left(x_{1} \right) - f\left(x_{0} \right)},
 \end{equation}\]</div>
 <p>reagrupando términos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd643715-c234-4e94-abb5-e7d3692814fa">
-<span class="eqno">(76)<a class="headerlink" href="#equation-dd643715-c234-4e94-abb5-e7d3692814fa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b407491c-10f3-4d74-9143-d31c0f5cf02c">
+<span class="eqno">(76)<a class="headerlink" href="#equation-b407491c-10f3-4d74-9143-d31c0f5cf02c" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{n+1} = x_{n} - \frac{f\left(x_{n} \right)\left( x_{n} - x_{n-1} \right)}{f\left(x_{n} \right) - f\left(x_{n-1} \right)}.
 \end{equation}\]</div>
 <p>Este método necesita dos valores iniciales <span class="math notranslate nohighlight">\(x_{0}\)</span> y <span class="math notranslate nohighlight">\(x_{1}\)</span> de modo que los valores <span class="math notranslate nohighlight">\(f(x_{0})\)</span> y <span class="math notranslate nohighlight">\(f(x_{1})\)</span> se calculan y se obtienen dos puntos sobre la curva. Entonces, el nuevo punto de la sucesión es el punto en el cual la recta que une los dos puntos previos corta al eje <span class="math notranslate nohighlight">\(x\)</span>.</p>
@@ -983,33 +978,33 @@ Iteraciones del primer cruce por cero (M1):
 <section id="metodo-de-newton-raphson">
 <h2>Método de Newton-Raphson<a class="headerlink" href="#metodo-de-newton-raphson" title="Link to this heading">#</a></h2>
 <p>En los métodos de cálculo estándar si la iteración ha alcanzado el punto <span class="math notranslate nohighlight">\(x_{n}\)</span>, entonces se requiere un incremento <span class="math notranslate nohighlight">\(\Delta\, x_{n}\)</span> que tomará el proceso hacia el punto solución <span class="math notranslate nohighlight">\(x^{\star}\)</span>. Si se realiza una expansión de <span class="math notranslate nohighlight">\(f\left(x^{\star} \right)\)</span> con series de Taylor se tiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bb173bb-d2fb-41ab-b9f5-101fcb3ce484">
-<span class="eqno">(77)<a class="headerlink" href="#equation-5bb173bb-d2fb-41ab-b9f5-101fcb3ce484" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6179167b-418e-41c0-84d4-d49b067da84e">
+<span class="eqno">(77)<a class="headerlink" href="#equation-6179167b-418e-41c0-84d4-d49b067da84e" title="Permalink to this equation">#</a></span>\[\begin{equation}
  0 = f\left(x^{\star} \right) \equiv f\left(x_{n} + \Delta\,x_{n} \right) = f\left(x_{n} \right) + \Delta\,x_{n}\, f'\left(x_{n} \right) + \frac{\left(\Delta\, x_{n} \right)^{2}}{2!}f''\left(x_{n} \right) + \dots
 \end{equation}\]</div>
 <p>Si la distancia <span class="math notranslate nohighlight">\(\Delta\,x_{n}\)</span> entre el punto de la iteración actual y la solución verdadera es suficientemente pe­queña, entonces si se toman los dos primeros términos del lado derecho de la ecuación anterior se tiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f8c0a2ac-b830-4b05-94e7-2b85e46c30c5">
-<span class="eqno">(78)<a class="headerlink" href="#equation-f8c0a2ac-b830-4b05-94e7-2b85e46c30c5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ba42a38c-6668-4c03-98eb-0936f6a83161">
+<span class="eqno">(78)<a class="headerlink" href="#equation-ba42a38c-6668-4c03-98eb-0936f6a83161" title="Permalink to this equation">#</a></span>\[\begin{equation}
  0 \approx f\left(x_{n} \right) + \Delta\, x_{n}\, f'\left(x_{n} \right).
 \end{equation}\]</div>
 <p>Despejando <span class="math notranslate nohighlight">\(\Delta\, x_{n}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f5c323f-74fd-40fc-8f99-8498ec175b3f">
-<span class="eqno">(79)<a class="headerlink" href="#equation-0f5c323f-74fd-40fc-8f99-8498ec175b3f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-206c14bb-8ff4-4ca4-bf47-3df5b8046ec4">
+<span class="eqno">(79)<a class="headerlink" href="#equation-206c14bb-8ff4-4ca4-bf47-3df5b8046ec4" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \Delta\, x_{n} \approx - \frac{f\left(x_{n} \right)}{f'\left(x_{n} \right)}.
 \end{equation}\]</div>
 <p>El <em>método de Newton-Raphson</em> se obtiene tomando</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f484dc0c-2c03-41d2-8658-090c9155b2d0">
-<span class="eqno">(80)<a class="headerlink" href="#equation-f484dc0c-2c03-41d2-8658-090c9155b2d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ed713003-8807-4966-9678-7dd32641b405">
+<span class="eqno">(80)<a class="headerlink" href="#equation-ed713003-8807-4966-9678-7dd32641b405" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \Delta\, x_{n} = x_{n+1} - x_{n},
 \end{equation}\]</div>
 <p>despejando <span class="math notranslate nohighlight">\(x_{n+1}\)</span> y sustituyendo en el valor de <span class="math notranslate nohighlight">\(\Delta\, x_{n}\)</span> como sigue</p>
-<div class="amsmath math notranslate nohighlight" id="equation-90acaa9d-d12c-4ed0-91ed-3b2eb8de0d55">
-<span class="eqno">(81)<a class="headerlink" href="#equation-90acaa9d-d12c-4ed0-91ed-3b2eb8de0d55" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-32bfe376-371d-478c-bf97-00f199a3eead">
+<span class="eqno">(81)<a class="headerlink" href="#equation-32bfe376-371d-478c-bf97-00f199a3eead" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{n+1} = x_{n} - \frac{f\left(x_{n} \right)}{f'\left(x_{n} \right)}.
 \end{equation}\]</div>
 <p>Trazando la tangente a la curva en el punto <span class="math notranslate nohighlight">\(x_{0}\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-770f1774-0ad6-4fc4-8df9-df26590bc190">
-<span class="eqno">(82)<a class="headerlink" href="#equation-770f1774-0ad6-4fc4-8df9-df26590bc190" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-521b8659-a6f4-4ce6-a5ef-eacd9f7e55c1">
+<span class="eqno">(82)<a class="headerlink" href="#equation-521b8659-a6f4-4ce6-a5ef-eacd9f7e55c1" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \tan(\theta) = \frac{f\left(x_{0} \right)}{-\Delta\, x} = f'\left(x_{0} \right)
 \end{equation}\]</div>
 <div class="cell docutils container">

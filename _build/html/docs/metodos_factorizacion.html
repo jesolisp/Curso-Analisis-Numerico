@@ -32,9 +32,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css?v=8c6b312c" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=ed684290" />
   
@@ -220,13 +220,8 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">VII. Cálculo de valores propios de una matriz</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="metodos_globales.html">Métodos globales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="metodos_iterativos_mat.html">Métodos iterativos</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">VIII. Ecuaciones Diferenciales Parciales (EDP)</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_diferencias_finitas.html">Método de diferencias finitas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduccion_metodos_elementos_finitos.html">Métodos de elementos finitos</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Referencias</span></p>
 <ul class="nav bd-sidenav">
@@ -516,14 +511,14 @@ document.write(`
 <section id="factorizacion-lu">
 <h2>Factorización LU<a class="headerlink" href="#factorizacion-lu" title="Link to this heading">#</a></h2>
 <p>Si se necesita resolver el sistema de la forma <span class="math notranslate nohighlight">\(\bf AX = B\)</span>, se puede utilizar el método de descomposición triangular <span class="math notranslate nohighlight">\(\bf A=LU\)</span> y reescribir el sistema como</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3173b5b-f493-4240-949c-99895dfac9d6">
-<span class="eqno">(22)<a class="headerlink" href="#equation-f3173b5b-f493-4240-949c-99895dfac9d6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0ec1d9e4-b6a8-43b3-b328-98b0737bdd13">
+<span class="eqno">(22)<a class="headerlink" href="#equation-0ec1d9e4-b6a8-43b3-b328-98b0737bdd13" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf LUX = B.
 \end{equation}\]</div>
 <p>donde <span class="math notranslate nohighlight">\(\bf U\)</span> es una matriz triangular superior y <span class="math notranslate nohighlight">\(\bf L\)</span> es una matriz triangular inferior.</p>
 <p>Considere un sistema de ecuaciones de dimensión 3, tenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8216ffe2-62ff-438c-9298-b24094ae40c2">
-<span class="eqno">(23)<a class="headerlink" href="#equation-8216ffe2-62ff-438c-9298-b24094ae40c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fc612d0-91b7-4102-83ab-fc8dc6bec6e9">
+<span class="eqno">(23)<a class="headerlink" href="#equation-5fc612d0-91b7-4102-83ab-fc8dc6bec6e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{bmatrix}
   1 &amp; 0 &amp; 0 \\
   l_{21} &amp; 1 &amp; 0 \\
@@ -541,22 +536,22 @@ document.write(`
  \end{bmatrix}
 \end{equation}\]</div>
 <p>Introduciendo una variable auxiliar <span class="math notranslate nohighlight">\(\bf Y\)</span>, tenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6a3199e7-c57b-448b-9415-69e6e315b138">
-<span class="eqno">(24)<a class="headerlink" href="#equation-6a3199e7-c57b-448b-9415-69e6e315b138" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1a6a3ba0-5be1-4a08-b8af-a904958e7a9d">
+<span class="eqno">(24)<a class="headerlink" href="#equation-1a6a3ba0-5be1-4a08-b8af-a904958e7a9d" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf UX = Y, \quad LY = B.
 \end{equation}\]</div>
 <p>Dado un vector <span class="math notranslate nohighlight">\(\bf B\)</span>, se despeja <span class="math notranslate nohighlight">\(\bf Y\)</span> del sistema <span class="math notranslate nohighlight">\(\bf LY = B\)</span> y luego se despeja <span class="math notranslate nohighlight">\(\bf X\)</span> del sistema <span class="math notranslate nohighlight">\(\bf UX = Y\)</span>.</p>
 <p>Los valores diagonales de <span class="math notranslate nohighlight">\(\bf L\)</span> son iguales a 1, por lo tanto, el sistema de ecuaciones resultante es</p>
-<div class="amsmath math notranslate nohighlight" id="equation-388443f1-2ba8-4444-9abd-d38a94edb968">
-<span class="eqno">(25)<a class="headerlink" href="#equation-388443f1-2ba8-4444-9abd-d38a94edb968" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e775d8c9-dc04-463b-9690-a709d2505e53">
+<span class="eqno">(25)<a class="headerlink" href="#equation-e775d8c9-dc04-463b-9690-a709d2505e53" title="Permalink to this equation">#</a></span>\[\begin{equation}
  l_{21}u_{11} = a_{21} \quad \rightarrow \quad l_{21} = \frac{a_{21}}{u_{11}},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-df2a554e-cca6-4a33-bed9-0682c9d79f42">
-<span class="eqno">(26)<a class="headerlink" href="#equation-df2a554e-cca6-4a33-bed9-0682c9d79f42" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-62d5d757-0121-4183-b2b9-76a537a38500">
+<span class="eqno">(26)<a class="headerlink" href="#equation-62d5d757-0121-4183-b2b9-76a537a38500" title="Permalink to this equation">#</a></span>\[\begin{equation}
  l_{31}u_{11} = a_{31} \quad \rightarrow \quad l_{31} = \frac{a_{31}}{u_{11}},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ab0eef64-7a30-4561-a2f7-4350f7d99039">
-<span class="eqno">(27)<a class="headerlink" href="#equation-ab0eef64-7a30-4561-a2f7-4350f7d99039" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e4f37c65-2049-4e79-bc91-7d308c859f13">
+<span class="eqno">(27)<a class="headerlink" href="#equation-e4f37c65-2049-4e79-bc91-7d308c859f13" title="Permalink to this equation">#</a></span>\[\begin{equation}
  l_{31}u_{12} + l_{32}u_{22} = a_{32} \quad \rightarrow \quad l_{32} = \frac{\left(a_{32} - l_{31}u_{12}\right)}{u_{22}}.
 \end{equation}\]</div>
 <div class="admonition tip">
@@ -676,8 +671,8 @@ Vector solución x:
 <h1>Factorización de Doolittle-Crout<a class="headerlink" href="#factorizacion-de-doolittle-crout" title="Link to this heading">#</a></h1>
 <p>La matriz <span class="math notranslate nohighlight">\(\bf A\)</span> se factoriza en una triangular inferior <span class="math notranslate nohighlight">\(\bf D\)</span> y en una triangular superior <span class="math notranslate nohighlight">\(\bf C\)</span>, con unos en la diagonal que se obtiene haciendo una eliminación Gauss-­Jordan, quedando como <span class="math notranslate nohighlight">\(\bf DC = A\)</span>.</p>
 <p>Considere la siguiente matriz</p>
-<div class="amsmath math notranslate nohighlight" id="equation-19ce827f-3067-4a8b-8b4b-8442cc3c5c3a">
-<span class="eqno">(28)<a class="headerlink" href="#equation-19ce827f-3067-4a8b-8b4b-8442cc3c5c3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34e3a456-1032-473d-9e03-fa00d0161f70">
+<span class="eqno">(28)<a class="headerlink" href="#equation-34e3a456-1032-473d-9e03-fa00d0161f70" title="Permalink to this equation">#</a></span>\[\begin{equation}
  A = \begin{bmatrix}
   4 &amp; 1 &amp; 1 &amp; 1 \\
   1 &amp; 3 &amp; -1 &amp; 1 \\
@@ -686,8 +681,8 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Si aplicamos Gauss-­Jordan hasta poner unos en la diagonal, tenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5f95bf8d-3c0e-4a9a-a7f2-0dd49282adb7">
-<span class="eqno">(29)<a class="headerlink" href="#equation-5f95bf8d-3c0e-4a9a-a7f2-0dd49282adb7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3c15adf7-b0a7-434f-abb1-184e571e791e">
+<span class="eqno">(29)<a class="headerlink" href="#equation-3c15adf7-b0a7-434f-abb1-184e571e791e" title="Permalink to this equation">#</a></span>\[\begin{equation}
  C = \begin{bmatrix}
   1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
   0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
@@ -696,8 +691,8 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Dado que <span class="math notranslate nohighlight">\(\bf DC = A\)</span>, tenemos</p>
-<div class="amsmath math notranslate nohighlight" id="equation-709ce17c-d1fd-4b33-95b8-557d8c449b27">
-<span class="eqno">(30)<a class="headerlink" href="#equation-709ce17c-d1fd-4b33-95b8-557d8c449b27" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d6b999a2-5a16-411c-9f2a-2149281fd2c4">
+<span class="eqno">(30)<a class="headerlink" href="#equation-d6b999a2-5a16-411c-9f2a-2149281fd2c4" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{bmatrix}
   D_{11} &amp; 0 &amp; 0 &amp; 0 \\ \\
   D_{21} &amp; D_{22} &amp; 0 &amp; 0 \\ \\
@@ -718,52 +713,52 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Multiplicando los cuatro renglones por la primera columna se obtienen las siguientes ecuaciones</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9fea7ca5-e558-4fa2-9fc5-ef5746809cf6">
-<span class="eqno">(31)<a class="headerlink" href="#equation-9fea7ca5-e558-4fa2-9fc5-ef5746809cf6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e383a103-7887-498d-9dd4-9b1ed2979090">
+<span class="eqno">(31)<a class="headerlink" href="#equation-e383a103-7887-498d-9dd4-9b1ed2979090" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{1}}{\bf C_{1}} = A_{11}, \quad D_{11}(1) = 4, \quad D_{11} = 4,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2a27d548-d77e-4e3f-976e-0e725d25ff13">
-<span class="eqno">(32)<a class="headerlink" href="#equation-2a27d548-d77e-4e3f-976e-0e725d25ff13" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-20d5b3ba-45c3-4fc4-a111-6dd0ade09a80">
+<span class="eqno">(32)<a class="headerlink" href="#equation-20d5b3ba-45c3-4fc4-a111-6dd0ade09a80" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{2}}{\bf C_{1}} = A_{21}, \quad D_{21}(1) = 1, \quad D_{21} = 1,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f3393c00-4913-494d-b167-ec15b803ba91">
-<span class="eqno">(33)<a class="headerlink" href="#equation-f3393c00-4913-494d-b167-ec15b803ba91" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-250750be-bd83-4039-b7c4-7412b094c236">
+<span class="eqno">(33)<a class="headerlink" href="#equation-250750be-bd83-4039-b7c4-7412b094c236" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{3}}{\bf C_{1}} = A_{31}, \quad D_{13}(1) = 1, \quad D_{31} = 1,
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-1b0f84b5-c9d0-4383-a49c-072eb4864787">
-<span class="eqno">(34)<a class="headerlink" href="#equation-1b0f84b5-c9d0-4383-a49c-072eb4864787" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-33873ebb-8c99-483f-b8aa-799ba8df5a39">
+<span class="eqno">(34)<a class="headerlink" href="#equation-33873ebb-8c99-483f-b8aa-799ba8df5a39" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{4}}{\bf C_{1}} = A_{41}, \quad D_{41}(1) = 1, \quad D_{41} = 1.
 \end{equation}\]</div>
 <p>Para la columna dos sólo se necesitan calcular tres valores</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3bffd066-bb63-44e5-b0ef-9f9c302204e9">
-<span class="eqno">(35)<a class="headerlink" href="#equation-3bffd066-bb63-44e5-b0ef-9f9c302204e9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-befd2ac4-4774-43da-9082-7445bf7249cd">
+<span class="eqno">(35)<a class="headerlink" href="#equation-befd2ac4-4774-43da-9082-7445bf7249cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{2}}{\bf C_{2}} = A_{22}, \quad D_{21}\left(\frac{1}{4} \right) + D_{22}\left(1 \right) = 3, \quad D_{22} = \frac{11}{4},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-e9b1a2c9-2100-429f-bffb-341312489c47">
-<span class="eqno">(36)<a class="headerlink" href="#equation-e9b1a2c9-2100-429f-bffb-341312489c47" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ee68973-8aa0-4d7d-815e-3cc1e4b6e53b">
+<span class="eqno">(36)<a class="headerlink" href="#equation-4ee68973-8aa0-4d7d-815e-3cc1e4b6e53b" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{3}}{\bf C_{2}} = A_{32}, \quad D_{31}\left(\frac{1}{4} \right) + D_{32}\left(1 \right) = -1, \quad D_{32} = -\frac{5}{4},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-2ecda2e4-e0b6-4e33-818f-e1cd38ae431f">
-<span class="eqno">(37)<a class="headerlink" href="#equation-2ecda2e4-e0b6-4e33-818f-e1cd38ae431f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-28b3d54a-83c3-4c5d-860c-e87626f41863">
+<span class="eqno">(37)<a class="headerlink" href="#equation-28b3d54a-83c3-4c5d-860c-e87626f41863" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{4}}{\bf C_{2}} = A_{42}, \quad D_{41}\left(\frac{1}{4} \right) + D_{42}\left(1 \right) = 1, \quad D_{42} = \frac{3}{4}.
 \end{equation}\]</div>
 <p>En la columna tres sólo hay dos incógnitas</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a20bb727-fde5-40e7-8f25-e25e1d32be20">
-<span class="eqno">(38)<a class="headerlink" href="#equation-a20bb727-fde5-40e7-8f25-e25e1d32be20" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-02ca25aa-deff-4997-b110-4dcb6d238142">
+<span class="eqno">(38)<a class="headerlink" href="#equation-02ca25aa-deff-4997-b110-4dcb6d238142" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{3}}{\bf C_{3}} = A_{33}, \quad D_{31}\left(\frac{1}{4} \right) + D_{32}\left( -\frac{5}{11} \right) + D_{33}(1) = 2, \quad D_{33} = \frac{13}{11},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-6bc62151-e262-430d-995e-431a98e50b4d">
-<span class="eqno">(39)<a class="headerlink" href="#equation-6bc62151-e262-430d-995e-431a98e50b4d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6408102a-2cb4-4bd7-9620-3dee8201d835">
+<span class="eqno">(39)<a class="headerlink" href="#equation-6408102a-2cb4-4bd7-9620-3dee8201d835" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{4}}{\bf C_{3}} = A_{43}, \quad D_{41}\left(\frac{1}{4} \right) + D_{42}\left(-\frac{5}{11} \right) + D_{43}(1) = 0, \quad D_{43} = \frac{1}{11}.
 \end{equation}\]</div>
 <p>Finalmente, para la columna cuatro, se tiene una incógnita en función de los valores de las columnas anterio­res</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f0280ffa-d257-412b-a4bb-3d44a6233c6b">
-<span class="eqno">(40)<a class="headerlink" href="#equation-f0280ffa-d257-412b-a4bb-3d44a6233c6b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a55dee4-13b8-4456-963c-f1c85f30e054">
+<span class="eqno">(40)<a class="headerlink" href="#equation-6a55dee4-13b8-4456-963c-f1c85f30e054" title="Permalink to this equation">#</a></span>\[\begin{equation}
  {\bf R_{4}}{\bf C_{4}} = A_{44}, \quad D_{41}\left(\frac{1}{4} \right) + D_{42}\left(\frac{3}{11} \right) + D_{43}\left(\frac{1}{13}\right) + D_{44}(1) = 2, \quad D_{44} = \frac{20}{13}.
 \end{equation}\]</div>
 <p>Así, se tiene la factorización final <span class="math notranslate nohighlight">\(\bf DC = A\)</span></p>
-<div class="amsmath math notranslate nohighlight" id="equation-86aa0daa-708c-430e-9817-e0a953441b14">
-<span class="eqno">(41)<a class="headerlink" href="#equation-86aa0daa-708c-430e-9817-e0a953441b14" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-396606d8-69e5-45dd-9d74-f090eca40645">
+<span class="eqno">(41)<a class="headerlink" href="#equation-396606d8-69e5-45dd-9d74-f090eca40645" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{bmatrix}
   4 &amp; 0 &amp; 0 &amp; 0 \\ \\
   1 &amp; \frac{11}{4} &amp; 0 &amp; 0 \\ \\
@@ -784,8 +779,8 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>De modo que el sistema a resolver está dado como sigue</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cebf4e59-cc4d-4750-b131-54f393d1efc1">
-<span class="eqno">(42)<a class="headerlink" href="#equation-cebf4e59-cc4d-4750-b131-54f393d1efc1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1c4421e8-b097-45bd-85e8-1d56ff6b2cad">
+<span class="eqno">(42)<a class="headerlink" href="#equation-1c4421e8-b097-45bd-85e8-1d56ff6b2cad" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{bmatrix}
   4 &amp; 0 &amp; 0 &amp; 0 \\ \\
   1 &amp; \frac{11}{4} &amp; 0 &amp; 0 \\ \\
@@ -809,8 +804,8 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Utilizando un paso intermedio de la forma</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0ee8df10-2fa4-4d42-ac6b-8f940c77f0a7">
-<span class="eqno">(43)<a class="headerlink" href="#equation-0ee8df10-2fa4-4d42-ac6b-8f940c77f0a7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9f257232-8713-4861-93ac-be53bacf2064">
+<span class="eqno">(43)<a class="headerlink" href="#equation-9f257232-8713-4861-93ac-be53bacf2064" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{bmatrix}
   4 &amp; 0 &amp; 0 &amp; 0 \\ \\
   1 &amp; \frac{11}{4} &amp; 0 &amp; 0 \\ \\
@@ -828,25 +823,25 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Por sustitución hacia adelante se obtiene la solución</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b101ca92-4e89-4c81-ac71-55922761fc4e">
-<span class="eqno">(44)<a class="headerlink" href="#equation-b101ca92-4e89-4c81-ac71-55922761fc4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-48096c81-c50f-4328-ac61-3bb09646b265">
+<span class="eqno">(44)<a class="headerlink" href="#equation-48096c81-c50f-4328-ac61-3bb09646b265" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{1} = \frac{2}{4},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-a9fa11d9-0af9-45f9-917e-887b008a035d">
-<span class="eqno">(45)<a class="headerlink" href="#equation-a9fa11d9-0af9-45f9-917e-887b008a035d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d8263bd5-73c1-4903-aabe-664f3e57a0c3">
+<span class="eqno">(45)<a class="headerlink" href="#equation-d8263bd5-73c1-4903-aabe-664f3e57a0c3" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{2} = \frac{14}{11},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-01302d89-caf4-48fe-a8f6-0c0f993c0e85">
-<span class="eqno">(46)<a class="headerlink" href="#equation-01302d89-caf4-48fe-a8f6-0c0f993c0e85" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c2ac8877-305c-4c44-baf8-bf2f07043dde">
+<span class="eqno">(46)<a class="headerlink" href="#equation-c2ac8877-305c-4c44-baf8-bf2f07043dde" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{3} = \frac{78}{13},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-dbebe19d-6782-488f-aed4-915013d31d9b">
-<span class="eqno">(47)<a class="headerlink" href="#equation-dbebe19d-6782-488f-aed4-915013d31d9b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-781fb88f-a39e-428b-b404-c8bde07102c0">
+<span class="eqno">(47)<a class="headerlink" href="#equation-781fb88f-a39e-428b-b404-c8bde07102c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
  y_{4} = \frac{78}{20}.
 \end{equation}\]</div>
 <p>De esta forma se llega a</p>
-<div class="amsmath math notranslate nohighlight" id="equation-97c470eb-34a7-41f3-bf59-c2081ee20ce5">
-<span class="eqno">(48)<a class="headerlink" href="#equation-97c470eb-34a7-41f3-bf59-c2081ee20ce5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb67e758-70bd-40ef-8d04-f1cc8d49f836">
+<span class="eqno">(48)<a class="headerlink" href="#equation-cb67e758-70bd-40ef-8d04-f1cc8d49f836" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \begin{bmatrix}
   1 &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \\ \\
   0 &amp; 1 &amp; -\frac{5}{11} &amp; \frac{3}{11} \\ \\
@@ -864,20 +859,20 @@ Vector solución x:
  \end{bmatrix}.
 \end{equation}\]</div>
 <p>Finalmente, por sustitución regresiva obtenemos la solución del sistema</p>
-<div class="amsmath math notranslate nohighlight" id="equation-432b28fb-e0a3-468a-a1f6-33139a123170">
-<span class="eqno">(49)<a class="headerlink" href="#equation-432b28fb-e0a3-468a-a1f6-33139a123170" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1e2be84f-04ee-4a2a-91a1-d473b0a0d375">
+<span class="eqno">(49)<a class="headerlink" href="#equation-1e2be84f-04ee-4a2a-91a1-d473b0a0d375" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{4} = \frac{39}{10},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-996e58a2-0557-4377-827f-79e60b4b2a4e">
-<span class="eqno">(50)<a class="headerlink" href="#equation-996e58a2-0557-4377-827f-79e60b4b2a4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-73d4f123-77e4-4457-a568-7b49f64086b9">
+<span class="eqno">(50)<a class="headerlink" href="#equation-73d4f123-77e4-4457-a568-7b49f64086b9" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{3} = \frac{57}{10},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b31cef6b-3a17-408f-b0af-3b1a30f1f6ec">
-<span class="eqno">(51)<a class="headerlink" href="#equation-b31cef6b-3a17-408f-b0af-3b1a30f1f6ec" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cb613d82-0d68-481d-8719-983aa326e6d0">
+<span class="eqno">(51)<a class="headerlink" href="#equation-cb613d82-0d68-481d-8719-983aa326e6d0" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{2} = \frac{14}{5},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-b2cde5b4-27b3-40eb-9edc-f8f573b768ab">
-<span class="eqno">(52)<a class="headerlink" href="#equation-b2cde5b4-27b3-40eb-9edc-f8f573b768ab" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-79293b14-a0ad-4118-b013-c29ccd54de59">
+<span class="eqno">(52)<a class="headerlink" href="#equation-79293b14-a0ad-4118-b013-c29ccd54de59" title="Permalink to this equation">#</a></span>\[\begin{equation}
  x_{1} = -\frac{13}{5}.
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -978,23 +973,23 @@ Vector solución x:
 <section class="tex2jax_ignore mathjax_ignore" id="metodo-de-cholesky">
 <h1>Método de Cholesky<a class="headerlink" href="#metodo-de-cholesky" title="Link to this heading">#</a></h1>
 <p>La factorización de Choleski calcula y almacena los elementos de <span class="math notranslate nohighlight">\(\bf L\)</span> sólo si los elementos de <span class="math notranslate nohighlight">\(\bf L\)</span> y <span class="math notranslate nohighlight">\(\bf U\)</span> son iguales, entonces <span class="math notranslate nohighlight">\(\bf U = L^{T}\)</span>. Entonces, para el primer pivote se tiene</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1318f5c3-7e86-4388-b242-a14543b49ac6">
-<span class="eqno">(53)<a class="headerlink" href="#equation-1318f5c3-7e86-4388-b242-a14543b49ac6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-966d7bc4-dde7-42b1-a43e-e8c604f91f4c">
+<span class="eqno">(53)<a class="headerlink" href="#equation-966d7bc4-dde7-42b1-a43e-e8c604f91f4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
  C_{h}(1,1) = \sqrt{A(1,1)},
 \end{equation}\]</div>
 <p>y para la primera columna</p>
-<div class="amsmath math notranslate nohighlight" id="equation-eebd53ba-8c30-4da3-becd-30f0b111acd0">
-<span class="eqno">(54)<a class="headerlink" href="#equation-eebd53ba-8c30-4da3-becd-30f0b111acd0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69df2370-0bb2-47e4-b165-4557a8d35e15">
+<span class="eqno">(54)<a class="headerlink" href="#equation-69df2370-0bb2-47e4-b165-4557a8d35e15" title="Permalink to this equation">#</a></span>\[\begin{equation}
  C_{h}(2:n,1) = \frac{A(2:n,1)}{A(1,1)}.
 \end{equation}\]</div>
 <p>Los siguientes pivotes son</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b0f68850-b71b-479a-9e5a-25b9095665f9">
-<span class="eqno">(55)<a class="headerlink" href="#equation-b0f68850-b71b-479a-9e5a-25b9095665f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-93bedf2f-19f6-4bdd-9372-3dcf135e9847">
+<span class="eqno">(55)<a class="headerlink" href="#equation-93bedf2f-19f6-4bdd-9372-3dcf135e9847" title="Permalink to this equation">#</a></span>\[\begin{equation}
  C_{h}(i,i) = \left[ A(i,i) - \sum_{k=1}^{i-1} \left\{ C_{h}(i,k) \right\}^{2}  \right], \quad \text{para} \quad i=2,3,4,\dots,n.
 \end{equation}\]</div>
 <p>Las siguientes columnas se calculan con la siguiente expresión</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cd9080f8-bba7-4c37-85a6-0e43587de008">
-<span class="eqno">(56)<a class="headerlink" href="#equation-cd9080f8-bba7-4c37-85a6-0e43587de008" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4a83d5fc-9cc2-4a5a-b1bc-5fdd906a0b85">
+<span class="eqno">(56)<a class="headerlink" href="#equation-4a83d5fc-9cc2-4a5a-b1bc-5fdd906a0b85" title="Permalink to this equation">#</a></span>\[\begin{equation}
  C_{h}(i,j) = \frac{1}{C_{h}(i,i)} \left[ A(i,j) - \sum_{k=1}^{j-1} C_{h}(i,k)\, C_{h}(j,k) \right].
 \end{equation}\]</div>
 <div class="admonition note">
@@ -1104,17 +1099,17 @@ Vector solución x:
 <section class="tex2jax_ignore mathjax_ignore" id="factorizacion-qr">
 <h1>Factorización QR<a class="headerlink" href="#factorizacion-qr" title="Link to this heading">#</a></h1>
 <p>Este método consiste en realizar transformaciones ortogonales dentro del proceso para proporcionar condiciones de estabilidad. Es decir, las matrices se descomponen en un producto <span class="math notranslate nohighlight">\(\bf Q_{r}R_{r}\)</span>, donde <span class="math notranslate nohighlight">\(\bf R_{r}\)</span> es triangular superior</p>
-<div class="amsmath math notranslate nohighlight" id="equation-83581cc6-503f-4668-bfad-8ed256a6cbaf">
-<span class="eqno">(57)<a class="headerlink" href="#equation-83581cc6-503f-4668-bfad-8ed256a6cbaf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-570b5576-7047-4227-b1af-c22877b67652">
+<span class="eqno">(57)<a class="headerlink" href="#equation-570b5576-7047-4227-b1af-c22877b67652" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf A = A_{1} = Q_{1}R_{1},
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-ff265fa5-edd6-4846-9f1a-0402a6729f9a">
-<span class="eqno">(58)<a class="headerlink" href="#equation-ff265fa5-edd6-4846-9f1a-0402a6729f9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c7d651d0-8ae1-46be-9633-66f22d92fc60">
+<span class="eqno">(58)<a class="headerlink" href="#equation-c7d651d0-8ae1-46be-9633-66f22d92fc60" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf A_{r} = R_{r-1}Q_{r-1} = Q_{r}R_{r}, \quad r = 2,3,4,\dots .
 \end{equation}\]</div>
 <p>Se puede observar que las matrices son similares debido a que</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d1eaaf4-e1be-4a60-b7d3-7ec0f2a2149c">
-<span class="eqno">(59)<a class="headerlink" href="#equation-9d1eaaf4-e1be-4a60-b7d3-7ec0f2a2149c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a59490d6-2978-41c9-aa12-71aede48545a">
+<span class="eqno">(59)<a class="headerlink" href="#equation-a59490d6-2978-41c9-aa12-71aede48545a" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \bf A_{r} = R_{r-1}Q_{r-1} = Q_{r}R_{r} = Q_{r-1}^{-1}A_{r-1}Q_{r-1}.
 \end{equation}\]</div>
 <p>La descomposición básica <span class="math notranslate nohighlight">\(\bf A = Q_{r}R_{r}\)</span> se puede realizar para cualquier matriz, lo que no pasa en el caso de la descomposición <span class="math notranslate nohighlight">\(\bf LU\)</span>.</p>
